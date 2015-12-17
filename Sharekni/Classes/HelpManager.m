@@ -61,6 +61,18 @@
     return yearsBetweenDates;
 }
 
+- (BOOL) isDateBefor1900:(NSDate *)date{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSInteger desiredComponents = (NSCalendarUnitYear);
+    NSDateComponents *components = [calendar components:desiredComponents fromDate:date];
+    if (components.year > 1900) {
+        return NO;
+    }
+    else{
+        return YES;
+    }
+}
+
 - (void) saveUserPasswordInUserDefaults:(NSString *)password{
     [[NSUserDefaults standardUserDefaults] setValue:password forKey:PASSWORD_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];

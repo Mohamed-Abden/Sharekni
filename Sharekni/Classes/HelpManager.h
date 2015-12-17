@@ -25,4 +25,5 @@
 - (void) saveUserNameInUserDefaults:(NSString *)userName;
 - (void) saveUserPasswordInUserDefaults:(NSString *)password;
 - (NSString *) timeFormateFromTimeString:(NSString *)inputString;
+- (BOOL) isDateBefor1900:(NSDate *)date;
 @end

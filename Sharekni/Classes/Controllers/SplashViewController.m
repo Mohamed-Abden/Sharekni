@@ -49,7 +49,7 @@
     } afterDelay:4];
 }
 
--(void)viewWillDisappear:(BOOL)animated{
+-(void) viewWillDisappear:(BOOL)animated{
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
