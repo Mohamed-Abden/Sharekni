@@ -20,21 +20,26 @@
 #import "HelpManager.h"
 
 @import GoogleMaps;
-@interface MapLookupViewController ()<GMSMapViewDelegate>
+@interface MapLookupViewController ()<GMSMapViewDelegate,CLLocationManagerDelegate>
 {
     GMSMapView *mapView_;
-    BOOL firstLocationUpdate_;
+    BOOL currentLocationEnabled;
+    GMSMarker *userMarker;
+    
+    
 }
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic,strong) NSArray *mapLookups;
 @property (nonatomic,strong) WYPopoverController *popover;
 @property (nonatomic,strong) NSMutableArray *markers;
+@property (nonatomic,strong) CLLocationManager *locationManager;
 @end
 
 @implementation MapLookupViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    currentLocationEnabled = NO;
     self.title = NSLocalizedString(@"Map Lookup", nil);
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -46,33 +51,50 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"user-Location"] style:UIBarButtonItemStylePlain target:self action:@selector(currentLocationHanlder)];
     [self configureMapView];
     [self configureData];
+//    mapView_.myLocationEnabled = YES;
 }
 
 - (void) currentLocationHanlder{
+    currentLocationEnabled = !currentLocationEnabled;
+    if (currentLocationEnabled) {
+        [self.locationManager startUpdatingLocation];
+    }
+    else{
+        userMarker.map = nil;
+        [self.markers removeObject:userMarker];
+        [self focusMapToShowAllMarkers];
+    }
+//    mapView_.myLocationEnabled = YES;
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+//    [mapView_ addObserver:self forKeyPath:@"myLocation" options:0 context:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-//    [self.mapView removeObserver:self forKeyPath:@"myLocation"];
+//    [mapView_ removeObserver:self forKeyPath:@"myLocation"];
 }
 
 #pragma mark - KVO updates
 
-- (void)observeValueForKeyPath:(NSString *)keyPath
+/*- (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
                        context:(void *)context {
-    if (!firstLocationUpdate_) {
-        // If the first location update has not yet been recieved, then jump to that
-        // location.
-        firstLocationUpdate_ = YES;
-        CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
-        mapView_.camera = [GMSCameraPosition cameraWithTarget:location.coordinate
-                                                         zoom:10];
+    if([keyPath isEqualToString:@"myLocation"]) {
+        CLLocation *location = [object myLocation];
+        //...
+        NSLog(@"Location, %@,", location);
+        
+        CLLocationCoordinate2D target =
+        CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+        
+        [mapView_ animateToLocation:target];
+        [mapView_ animateToZoom:17];
     }
 }
-
+*/
 - (void) configureMapView{
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:24.4667
                                                             longitude:54.3667
@@ -82,16 +104,6 @@
     [self.view addSubview:mapView_];
     mapView_.settings.compassButton = YES;
     mapView_.settings.myLocationButton = YES;
-    
-    // Listen to the myLocation property of GMSMapView.
-//    [mapView_ addObserver:self
-//               forKeyPath:@"myLocation"
-//                  options:NSKeyValueObservingOptionNew
-//                  context:NULL];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        mapView_.myLocationEnabled = YES;
-    });
     mapView_.delegate = self;
 }
 
@@ -191,4 +203,34 @@
         [KVNProgress dismiss];
     }];
 }
+
+- (CLLocationManager *)locationManager{
+    if (!_locationManager) {
+        _locationManager = [[CLLocationManager alloc] init];
+        _locationManager.delegate = self;
+        //Configure Accuracy depending on your needs, default is kCLLocationAccuracyBest
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    }
+    return _locationManager;
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+     didUpdateLocations:(NSArray *)locations {
+    // If it's a relatively recent event, turn off updates to save power.
+    CLLocation* location = [locations lastObject];
+    [self addUserLocation:location];
+}
+
+- (void) addUserLocation:(CLLocation *)location{
+    CLLocationCoordinate2D position = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+    
+    userMarker = [GMSMarker markerWithPosition:position];
+    userMarker.userData = nil;
+    userMarker.title = @"Current Location";
+    userMarker.icon = [UIImage imageNamed:@"CurrentLocation"];
+    userMarker.map = mapView_;
+    [self.markers addObject:userMarker];
+    [self focusMapToShowAllMarkers];
+}
+
 @end
