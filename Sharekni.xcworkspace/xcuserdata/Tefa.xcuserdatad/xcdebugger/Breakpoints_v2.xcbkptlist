@@ -308,11 +308,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Sharekni/Classes/Controllers/RegisterViewController.m"
-            timestampString = "471148313.588782"
+            timestampString = "472028045.44161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "524"
-            endingLineNumber = "524"
+            startingLineNumber = "534"
+            endingLineNumber = "534"
             landmarkName = "-registerAction:"
             landmarkType = "5">
             <Locations>
@@ -372,11 +372,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Sharekni/Classes/Controllers/RegisterViewController.m"
-            timestampString = "471149540.938075"
+            timestampString = "472028045.44161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "522"
-            endingLineNumber = "522"
+            startingLineNumber = "532"
+            endingLineNumber = "532"
             landmarkName = "-registerAction:"
             landmarkType = "5">
          </BreakpointContent>
@@ -388,11 +388,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Sharekni/Classes/Controllers/RegisterViewController.m"
-            timestampString = "471149544.377714"
+            timestampString = "472028045.44161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "542"
-            endingLineNumber = "542"
+            startingLineNumber = "552"
+            endingLineNumber = "552"
             landmarkName = "-registerAction:"
             landmarkType = "5">
          </BreakpointContent>
@@ -404,11 +404,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Sharekni/Classes/Controllers/RegisterViewController.m"
-            timestampString = "471149619.648887"
+            timestampString = "472028045.44161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "539"
-            endingLineNumber = "539"
+            startingLineNumber = "549"
+            endingLineNumber = "549"
             landmarkName = "-registerAction:"
             landmarkType = "5">
          </BreakpointContent>

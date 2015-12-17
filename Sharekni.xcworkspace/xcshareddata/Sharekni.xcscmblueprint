@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "E20320794CAA897B6B73019ABE49ADB4C9CC998C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "24CAB096C527504E3A2A3D3DD4C8A4E8F2FF2087" : 0,
+    "E20320794CAA897B6B73019ABE49ADB4C9CC998C" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "47012ED1-2555-44C5-9141-BC954958563B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "24CAB096C527504E3A2A3D3DD4C8A4E8F2FF2087" : "",
+    "E20320794CAA897B6B73019ABE49ADB4C9CC998C" : "Distribution_Prov.mobileprovision"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Sharekni",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Sharekni.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mahmoudabogwella\/RTA-Sharekni-iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "24CAB096C527504E3A2A3D3DD4C8A4E8F2FF2087"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Mohamed-Abden\/Sharekni.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E20320794CAA897B6B73019ABE49ADB4C9CC998C"
+    }
+  ]
+}

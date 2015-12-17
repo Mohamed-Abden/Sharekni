@@ -1668,7 +1668,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sharekni.sharekni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f3cdcb57-91c7-47e4-b71d-56bffbd6a427";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

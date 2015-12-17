@@ -280,8 +280,18 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField*)textField{
-    [textField  resignFirstResponder];
-    return YES;
+    NSInteger nextTag = textField.tag + 10;
+    // Try to find next responder
+    UIResponder* nextResponder = [self.view viewWithTag:nextTag];
+    if (nextResponder) {
+        // Found next responder, so set it.
+        [nextResponder becomeFirstResponder];
+    } else {
+        // Not found, so remove keyboard.
+        [textField resignFirstResponder];
+    }
+    return NO; // We do not want UITextField to insert line-breaks.
+//    return YES;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
@@ -959,7 +969,7 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
     NSString *mobileNumber = self.mobileNumberTxt.text;
     NSString *begin = [mobileNumber substringToIndex:mobileNumber.length > 2 ? 2 : 0];
     
-    if (mobileNumber.length != 9) {
+    if (mobileNumber.length != 7) {
         [self addRedBorderToView:self.mobileNumberView];
         return NO;
     }

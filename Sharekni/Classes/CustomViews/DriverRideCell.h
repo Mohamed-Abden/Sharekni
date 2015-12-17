@@ -23,7 +23,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *secondButton;
 @property (weak, nonatomic) IBOutlet UIButton *thirdButton;
 
-
 @property (nonatomic, copy) void (^editHandler)(void);
 @property (nonatomic, copy) void (^deleteHandler)(void);
 @property (nonatomic, copy) void (^detailsHandler)(void);
@@ -36,4 +35,5 @@
 @property (nonatomic,strong) CreatedRide *createdRide;
 
 - (void)setSavedResultRideDetails:(MostRideDetails *)rideDetails ;
+
 @end
