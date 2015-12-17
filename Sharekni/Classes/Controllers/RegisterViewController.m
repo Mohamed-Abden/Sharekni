@@ -25,6 +25,8 @@
 #import <REFrostedViewController.h>
 #import "SideMenuTableViewController.h"
 #import "UploadImageManager.h"
+
+#define Nationality_Tag 70
 @interface RegisterViewController ()<UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,MLPAutoCompleteTextFieldDataSource,MLPAutoCompleteTextFieldDelegate,REFrostedViewControllerDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *privacyButton;
@@ -82,10 +84,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *uploadButton;
 
 @property (strong,nonatomic) UIImage *profileImage;
+
+@property (nonatomic,strong) UIToolbar *inputAccessoryView;
 @end
 
 @implementation RegisterViewController
-
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -105,7 +108,7 @@
     [self configureUI];
     [self configrueNationalityAutoCompelete];
     [self configureData];
-    
+    [self configureTextFields];
     self.isMale = YES;
 }
 
@@ -199,8 +202,7 @@
     self.isMale = YES;
 }
 
-- (void) configrueNationalityAutoCompelete
-{
+- (void) configrueNationalityAutoCompelete{
     self.nationalityTxt.delegate = self;
     self.nationalityTxt.autoCompleteDataSource = self;
     self.nationalityTxt.autoCompleteDelegate = self;
@@ -282,6 +284,9 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 - (BOOL)textFieldShouldReturn:(UITextField*)textField{
     NSInteger nextTag = textField.tag + 10;
     // Try to find next responder
+    if (nextTag == Nationality_Tag) {
+        [textField resignFirstResponder];
+    }
     UIResponder* nextResponder = [self.view viewWithTag:nextTag];
     if (nextResponder) {
         // Found next responder, so set it.
@@ -1020,4 +1025,34 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
     
     return frostedViewController;
 }
+
+#pragma TextFields
+
+- (void) configureTextFields{
+    
+    self.firstNametxt.inputAccessoryView = self.inputAccessoryView;
+    self.lastNametxt.inputAccessoryView = self.inputAccessoryView;
+    self.mobileNumberTxt.inputAccessoryView = self.inputAccessoryView;
+    self.usernameTxt.inputAccessoryView = self.inputAccessoryView;
+    
+    UITapGestureRecognizer *dismissGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doneTapped)];
+    [self.view addGestureRecognizer:dismissGesture];
+}
+
+- (UIToolbar *)inputAccessoryView{
+    if (!_inputAccessoryView) {
+        _inputAccessoryView = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+        _inputAccessoryView.barStyle = UIBarStyleDefault;
+        _inputAccessoryView.items = [NSArray arrayWithObjects:
+                         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneTapped)],
+                         nil];
+        [_inputAccessoryView sizeToFit];
+    }
+    return _inputAccessoryView;
+}
+
+- (void) doneTapped{
+    [self.view endEditing:YES];
+}
+
 @end
