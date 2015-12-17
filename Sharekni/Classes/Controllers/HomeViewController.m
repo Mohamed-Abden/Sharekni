@@ -80,8 +80,7 @@
 
 @implementation HomeViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
 
@@ -186,8 +185,7 @@
     }
 }
 
-- (void) configureUI
-{
+- (void) configureUI{
     self.navigationItem.title = NSLocalizedString(@"Home Page", nil);
     self.notificationCountLabel.text = [NSString stringWithFormat:@"%@",self.sharedUser.DriverMyAlertsCount];
     
@@ -235,8 +233,7 @@
     self.vehiclesLabel.text = vehiclesCountText;
 }
 
-- (IBAction) verfiyMobileAction:(id)sender
-{
+- (IBAction) verfiyMobileAction:(id)sender{
     [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
 
     [[MobAccountManager sharedMobAccountManager] verifyMobileNumber:[NSString stringWithFormat:@"%@",self.sharedUser.ID] WithSuccess:^(NSString *user)
@@ -260,8 +257,7 @@
     }];
 }
 
-- (void)dismissButtonClicked:(VerifyMobileViewController *)verifyMobileNumber
-{
+- (void)dismissButtonClicked:(VerifyMobileViewController *)verifyMobileNumber{
     self.verifiedImgTwo.hidden = NO ;
     self.verifyBtn.hidden = YES ;
 }
@@ -306,8 +302,7 @@
     [self.navigationController pushViewController:savedSearchViewController animated:YES];
 }
 
-- (IBAction) editAction:(id)sender
-{
+- (IBAction) editAction:(id)sender{
     EditProfileViewController *profileView = [[EditProfileViewController alloc] initWithNibName:@"EditProfileViewController" bundle:nil];
     [self.navigationController pushViewController:profileView animated:YES];
 }
@@ -371,13 +366,23 @@
 }
 
 - (void) showCreatedRides{
-    CreatedRidesViewController *createdRideViewController = [[CreatedRidesViewController alloc] initWithNibName:@"CreatedRidesViewController" bundle:nil];
-    [self.navigationController pushViewController:createdRideViewController animated:YES];
+    if (self.sharedUser.DriverMyRidesCount.integerValue > 0) {
+        CreatedRidesViewController *createdRideViewController = [[CreatedRidesViewController alloc] initWithNibName:@"CreatedRidesViewController" bundle:nil];
+        [self.navigationController pushViewController:createdRideViewController animated:YES];
+    }
+    else{
+        [[HelpManager sharedHelpManager] showAlertWithMessage:@"you don't have created rides yet"];
+    }
 }
 
 - (void) showJoinedRides{
-    RidesJoinedViewController *joinedRidesViewController =  [[RidesJoinedViewController alloc] initWithNibName:@"RidesJoinedViewController" bundle:nil];
-    [self.navigationController pushViewController:joinedRidesViewController animated:YES];
+    if (self.sharedUser.PassengerJoinedRidesCount.integerValue > 0) {
+        RidesJoinedViewController *joinedRidesViewController =  [[RidesJoinedViewController alloc] initWithNibName:@"RidesJoinedViewController" bundle:nil];
+        [self.navigationController pushViewController:joinedRidesViewController animated:YES];
+    }
+    else{
+        [[HelpManager sharedHelpManager] showAlertWithMessage:@"you don't have joined rides yet"];
+    }
 }
 
 @end
