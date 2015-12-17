@@ -104,6 +104,13 @@
     [self.view addSubview:mapView_];
     mapView_.settings.compassButton = YES;
     mapView_.settings.myLocationButton = YES;
+<<<<<<< Updated upstream
+=======
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        mapView_.myLocationEnabled = YES;
+    });
+>>>>>>> Stashed changes
     mapView_.delegate = self;
 }
 

@@ -10,7 +10,9 @@
 #import "Constants.h"
 #import "HelpManager.h"
 #import "Base64.h"
+
 @implementation BaseAPIManager
+
 - (instancetype)init{
     if (self = [super init]) {
         
@@ -74,25 +76,18 @@
                 responseString = [responseString stringByReplacingOccurrencesOfString:base64tag5 withString:@""];
                 responseString = [responseString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
                 
-                NSLog(@"string %@",responseString);
-//                NSString *test = @"asdasdasdasdasdasdqweqweqweqwejkbnjknknk";
-//                NSString * x = [self encodeStringTo64:test];
-//                responseString = [self encodeStringTo64:responseString];
                 responseString = [responseString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
                 NSData* data = [Base64 decode:responseString];
                 UIImage *image = [UIImage imageWithData:data];
                 NSData *pngData = UIImagePNGRepresentation(image);
                 [pngData writeToFile:path atomically:YES];
                 success(image,path);
-            } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+            } failure:^void(AFHTTPRequestOperation * operation, NSError * error){
                 NSLog(@"Error %@",error.description);
                 failure(error.description);
             }];
         }
     }
 }
-
-
-
 
 @end

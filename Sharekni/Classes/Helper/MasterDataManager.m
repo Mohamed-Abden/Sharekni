@@ -529,7 +529,6 @@
 //    }
 }
 
-
 - (void)getRequestNotifications:(NSString *)accountID isDriver:(BOOL)isDriver WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
 {
     NSString *path ;

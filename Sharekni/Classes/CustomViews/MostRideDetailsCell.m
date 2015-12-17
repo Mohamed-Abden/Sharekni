@@ -59,7 +59,7 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
     self.driverName.text = driver.AccountName;
     self.country.text = (KIS_ARABIC)?driver.Nationality_ar:driver.Nationality_en;
     self.phone = driver.AccountMobile ;
-    self.startingTime.text = [NSString stringWithFormat:@"%@ : %@",NSLocalizedString(@"Starting Time :", nil),driver.SDG_Route_Start_FromTime];
+    self.startingTime.text = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"Starting Time :", nil),driver.SDG_Route_Start_FromTime];
     
     NSString *daysText = @"";
     if (driver.SDG_RouteDays_Sunday.boolValue) {

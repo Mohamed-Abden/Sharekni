@@ -730,7 +730,8 @@
     [_MKmapView removeFromSuperview];
 }
 
-- (void) configurePins{
+- (void) configurePins
+{
     [_mapView clear];
     self.markers = [NSMutableArray array];
         CLLocationCoordinate2D startPosition = CLLocationCoordinate2DMake(self.routeDetails.StartLat.doubleValue, self.routeDetails.StartLng.doubleValue);

@@ -31,6 +31,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = NO ;
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
+
     self.title = NSLocalizedString(@"Most Rides", nil);
     
     if (self.enableBackButton) {

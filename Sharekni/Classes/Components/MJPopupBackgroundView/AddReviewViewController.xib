@@ -31,7 +31,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DGH-FA-56r">
-                    <rect key="frame" x="66" y="253" width="157" height="38"/>
+                    <rect key="frame" x="66" y="218" width="157" height="38"/>
                     <animations/>
                     <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -60,14 +60,14 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NsS-TU-tFr">
-                    <rect key="frame" x="8" y="101" width="274" height="139"/>
+                    <rect key="frame" x="8" y="101" width="274" height="103"/>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="139" id="vkG-kQ-YaR"/>
+                        <constraint firstAttribute="height" constant="103" id="vkG-kQ-YaR"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
                             <integer key="value" value="1"/>
@@ -84,8 +84,8 @@
                 <constraint firstItem="7YZ-F6-4nO" firstAttribute="top" secondItem="1" secondAttribute="top" id="0oS-BG-PjG"/>
                 <constraint firstAttribute="trailing" secondItem="7YZ-F6-4nO" secondAttribute="trailing" id="JEy-6M-SwE"/>
                 <constraint firstItem="DGH-FA-56r" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="Xfs-WK-dp2"/>
-                <constraint firstItem="DGH-FA-56r" firstAttribute="top" secondItem="NsS-TU-tFr" secondAttribute="bottom" constant="13" id="Y5a-rj-9zK"/>
-                <constraint firstAttribute="bottom" secondItem="DGH-FA-56r" secondAttribute="bottom" constant="14" id="aE9-wK-xQW"/>
+                <constraint firstItem="DGH-FA-56r" firstAttribute="top" secondItem="NsS-TU-tFr" secondAttribute="bottom" constant="14" id="Y5a-rj-9zK"/>
+                <constraint firstAttribute="bottom" secondItem="DGH-FA-56r" secondAttribute="bottom" constant="49" id="aE9-wK-xQW"/>
                 <constraint firstAttribute="trailing" secondItem="NsS-TU-tFr" secondAttribute="trailing" constant="8" id="edW-bJ-cLr"/>
                 <constraint firstItem="NsS-TU-tFr" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8" id="fJK-KL-tmc"/>
                 <constraint firstItem="NsS-TU-tFr" firstAttribute="top" secondItem="uKT-Tm-e1S" secondAttribute="bottom" constant="8" id="gpy-dP-z2t"/>

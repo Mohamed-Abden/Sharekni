@@ -55,16 +55,19 @@
     [[MobAccountManager sharedMobAccountManager] confirmMobileNumber:self.accountID andCode:verificationCodeTxt.text WithSuccess:^(NSString *user) {
         
         [KVNProgress dismiss];
+        
+        [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Mobile Verified", nil)];
 
-        if ([user containsString:@"1"]) {
+        if ([user containsString:@"1"])
+        {
             if (self.delegate && [self.delegate respondsToSelector:@selector(dismissButtonClicked:)]) {
                 [self.delegate dismissButtonClicked:self];
             }
         }else{
-        
+            [KVNProgress showErrorWithStatus:NSLocalizedString(@"Verification Code is wrong", nil)];
         }
 
-    } Failure:^(NSString *error) {
+    } Failure:^(NSString *error){
         [KVNProgress dismiss];
     }];
 }

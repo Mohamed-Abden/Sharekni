@@ -176,4 +176,8 @@
 
 "Edit Profile" = "تعديل الحساب";
 "Nationalty must be selected" = "يجب عليك اختيار الجنسية";
-"Please check your username and password" = "يزجي التأكد من الاسم وكلمة المرور";
+"Please check your username and password" = "يرجي التأكد من الاسم وكلمة المرور";
+"Edit profile info success" = "تم تحديث البيانات بنجاح";
+"Select date of birth" = "اختر تاريخ الميلاد";
+"Verification Code is wrong" = "كود التفعيل غير صحيح";
+"Mobile Verified" = "تم تفعيل رقم الجوال";

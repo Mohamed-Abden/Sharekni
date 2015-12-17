@@ -74,6 +74,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *verifiedImgTwo;
 @property (weak, nonatomic) IBOutlet UIButton *verifyBtn;
 
+@property (assign , nonatomic) int notificationCount ;
+@property (strong , nonatomic) NSString * notificationCountTxt ;
+
 
 @property (nonatomic,strong) User *sharedUser;
 @end
@@ -89,7 +92,6 @@
     [self configureData];
     [self configureUI];
     [self configureActionsUI];
-    [self getNotifications];
     
     __block HomeViewController *blockSelf = self;
     [[MobAccountManager sharedMobAccountManager] getCalculatedRatingForAccount:self.sharedUser.ID.stringValue WithSuccess:^(NSString *rating) {
@@ -99,16 +101,22 @@
     }];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
+
+    [self getNotifications];
+
     [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
     __block HomeViewController *blockSelf = self;
     [[MobAccountManager sharedMobAccountManager] getUser:self.sharedUser.ID.stringValue WithSuccess:^(User *user) {
         blockSelf.sharedUser = user;
         [blockSelf configureUI];
         [KVNProgress dismiss];
-    } Failure:^(NSString *error) {
+    } Failure:^(NSString *error)
+    {
         [KVNProgress dismiss];
     }];
 }
@@ -193,13 +201,7 @@
     self.nameLabel.text = [self.nameLabel.text capitalizedString];
 
     self.nationalityLabel.text = (KIS_ARABIC)?self.sharedUser.NationalityArName:self.sharedUser.NationalityEnName;
-    
-//    if (self.sharedUser.AccountRating) {
-//        self.ratingLabel.text = [NSString stringWithFormat:@"%@",self.sharedUser.AccountRating];
-//    }else{
-//        self.ratingLabel.text = @"0";
-//    }
-    
+
     self.emailLabel.text = self.sharedUser.Username;
     self.mobileNumberLabel.text = [NSString stringWithFormat:@"%@",self.sharedUser.Mobile];
     if ([self.sharedUser.IsPhotoVerified boolValue])
@@ -257,7 +259,13 @@
     }];
 }
 
+<<<<<<< Updated upstream
 - (void)dismissButtonClicked:(VerifyMobileViewController *)verifyMobileNumber{
+=======
+- (void)dismissButtonClicked:(VerifyMobileViewController *)verifyMobileNumber
+{
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+>>>>>>> Stashed changes
     self.verifiedImgTwo.hidden = NO ;
     self.verifyBtn.hidden = YES ;
 }
@@ -307,13 +315,15 @@
     [self.navigationController pushViewController:profileView animated:YES];
 }
 
-- (IBAction) openNotifications:(id)sender{
+- (IBAction) openNotifications:(id)sender
+{
     NotificationsViewController *notificationsView = [[NotificationsViewController alloc] initWithNibName:@"NotificationsViewController" bundle:nil];
     notificationsView.enableBackButton = YES;
     [self.navigationController pushViewController:notificationsView animated:YES];
 }
 
-- (void) getNotifications{
+- (void) getNotifications
+{
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     
     __block HomeViewController *blockSelf = self;
@@ -321,7 +331,7 @@
     
     [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] isDriver:YES WithSuccess:^(NSMutableArray *array) {
         
-        self.notificationCountLabel.text = [NSString stringWithFormat:@"%d",(unsigned int)array.count];
+        self.notificationCount = (int)array.count ;
        
         [self getAcceptedNotifications];
         
@@ -345,8 +355,10 @@
     
     [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] isDriver:NO WithSuccess:^(NSMutableArray *array) {
         
-        self.notificationCountLabel.text = [NSString stringWithFormat:@"%d",(unsigned int)array.count];
-        
+        self.notificationCount += (int)array.count ;
+        self.notificationCountTxt = [NSString stringWithFormat:@"%d",self.notificationCount];
+        self.notificationCountLabel.text = self.notificationCountTxt;
+
         [KVNProgress dismiss];
         
     } Failure:^(NSString *error) {

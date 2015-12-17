@@ -302,10 +302,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     {
         [self isValidLastName];
     }
-    else if (textField == self.mobileNumberTxt)
-    {
-        [self isValidMobileNumber];
-    }
     else if (textField == self.nationalityTxt)
     {
         [self isValidNationality];
@@ -482,12 +478,10 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 
 - (void)showDatePicker
 {
-    
     [self.view endEditing:YES];
     __block EditProfileViewController *blockSelf = self;
-    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select", nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select", nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {        
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
-        
         blockSelf.dateFormatter.dateFormat = @"dd, MMM, yyyy";
         NSString * dateString = [self.dateFormatter stringFromDate:date];
         self.dateLabel.text = dateString;
@@ -507,9 +501,9 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     
     //Create date selection view controller
     RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
-    dateSelectionController.title = @"select date of birth";
+    dateSelectionController.title = NSLocalizedString(@"Select date of birth", nil);
     dateSelectionController.datePicker.datePickerMode = UIDatePickerModeDate;
-    dateSelectionController.datePicker.date = [NSDate date];
+    dateSelectionController.datePicker.date = self.date;
     
     //Now just present the date selection controller using the standard iOS presentation method
     [self presentViewController:dateSelectionController animated:YES completion:nil];
@@ -540,10 +534,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     {
         [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Last name mustn't have numbers", nil)];
     }
-    else if (![self isValidMobileNumber])
-    {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Mobile Number should be only 9 and should start with [50 – 55 – 56 – 52]", nil)];
-    }
     else if (([[HelpManager sharedHelpManager] yearsBetweenDate:[NSDate date] andDate:self.date] < 18))
     {
         [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"You should be older than 18 Years", nil)];
@@ -554,28 +544,27 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     {
         [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please Choose a valid nationality.", nil)];
     }
-    else{
-        
+    else
+    {
+        self.dateFormatter.dateFormat = @"dd/MM/yyyy";
+        NSString *dateString = [self.dateFormatter stringFromDate:self.date];
+        [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
        
+        [[MobAccountManager sharedMobAccountManager] updateUserProfileWithAccountID:[NSString stringWithFormat:@"%@",self.sharedUser.ID] firstName:self.firstName lastName:self.lastName gender:self.isMale ? @"M":@"F" imagePath:@"" birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId Mobile:self.sharedUser.Mobile WithSuccess:^(NSString *user) {
+        
+            [KVNProgress dismiss];
+            [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Edit profile info success", nil)];
+            
+        } Failure:^(NSString *error)
+        {
+            [KVNProgress dismiss];
+            [[HelpManager sharedHelpManager] showAlertWithMessage:error];
+        }];
     }
 }
 
-- (void) registerDriverWithPhotoName:(NSString *)photoName{
-    self.dateFormatter.dateFormat = @"dd/MM/yyyy";
-    NSString *dateString = [self.dateFormatter stringFromDate:self.date];
-    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
-//    [[MobAccountManager sharedMobAccountManager] registerDriverWithFirstName:self.firstName lastName:self.lastName mobile:self.mobileNumber username:self.userName password:self.password gender:self.isMale ? @"M":@"F" imagePath:photoName birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId WithSuccess:^(NSMutableArray *array) {
-//        [KVNProgress dismiss];
-//        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Registration done successfully",nil)];
-//        [self loginAfterRegisteration];
-//    } Failure:^(NSString *error) {
-//        [KVNProgress dismiss];
-//        [[HelpManager sharedHelpManager] showAlertWithMessage:error];
-//    }];
-}
-
-
-- (IBAction)selectGender:(id)sender{
+- (IBAction)selectGender:(id)sender
+{
     UIButton *btn = (UIButton*)sender ;
     
     if (btn.selected)
@@ -584,15 +573,15 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         self.maleLabel.textColor = Red_UIColor;
         self.femaleLabel.textColor = [UIColor darkGrayColor];
         self.isMale = YES;
-    }else{
+    }
+    else
+    {
         self.isMale = NO;
         self.switchBtn.selected = YES ;
         self.maleLabel.textColor =  [UIColor darkGrayColor];
         self.femaleLabel.textColor = Red_UIColor;;
     }
 }
-//            [self presentViewController:[self homeViewController] animated:YES completion:nil];
-
 
 #pragma PickerViewDeelgate&DataSource
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
@@ -752,25 +741,6 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
     return YES;
 }
 
-- (BOOL) isValidMobileNumber{
-    NSArray *begins = @[@"50",@"55",@"56",@"52"];
-    NSString *mobileNumber = self.mobileNumberTxt.text;
-    NSString *begin = [mobileNumber substringToIndex:mobileNumber.length > 2 ? 2 : 0];
-    
-    if (mobileNumber.length != 9) {
-        [self addRedBorderToView:self.mobileNumberView];
-        return NO;
-    }
-    else if (![begins containsObject:begin]){
-        [self addRedBorderToView:self.mobileNumberView];
-        return NO;
-    }
-    else{
-        [self addGreyBorderToView:self.mobileNumberView];
-        return YES;
-    }
-    return YES;
-}
 
 -(BOOL) IsValidEmail:(NSString *)checkString{
     BOOL stricterFilter = NO; // Discussion http://blog.logichigh.com/2010/09/02/validating-an-e-mail-address/

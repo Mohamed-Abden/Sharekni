@@ -320,23 +320,28 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
              [[NSUserDefaults standardUserDefaults] synchronize];
              success(responseString);
          }
-         else if ([responseString containsString:@"-2"]){
+         else if ([responseString containsString:@"-2"])
+         {
              failure(@"You can't use this file number");
          }
-         else if ([responseString containsString:@"-3"]){
+         else if ([responseString containsString:@"-3"])
+         {
              failure(@"Date birth invalid");
          }
-         else if ([responseString containsString:@"-4"]){
+         else if ([responseString containsString:@"-4"])
+         {
              failure(@"License verified, but no cars found");
          }
-         else if ([responseString containsString:@"-5"]){
+         else if ([responseString containsString:@"-5"])
+         {
              failure(@"Invalid data please check again");
          }
-         else if ([responseString containsString:@"-6"]){
+         else if ([responseString containsString:@"-6"])
+         {
              failure(@"Invalid data please check again");
              success(responseString);
          }
-     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+     } failure:^void(AFHTTPRequestOperation * operation, NSError * error){
          failure(@"incorrect");
      }];
 }
@@ -508,8 +513,8 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
         NSLog(@"delete response :%@",responseString);
-        if ([responseString containsString:@"1"]) {
-            
+        if ([responseString containsString:@"1"])
+        {
             success(responseString);
         }
         else{
@@ -517,6 +522,27 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
         }
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
         failure(error.localizedDescription);
+    }];
+}
+
+- (void) updateUserProfileWithAccountID:(NSString *)accountID firstName:(NSString *)firstName lastName:(NSString *)lastName gender:(NSString *)gender imagePath:(NSString *)photoName birthDate:(NSString *)birthDate nationalityID:(NSString *)nationalityId PreferredLanguageId:(NSString *)langID Mobile:(NSString *)mobile WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure
+{
+    NSString *body = [NSString stringWithFormat:@"CLS_Mobios.asmx/EditProfile?id=%@&firstName=%@&lastName=%@&gender=%@&NewPhotoName=%@&BirthDate=%@&NationalityId=%@&PreferredLanguageId=%@&Mobile=%@",accountID,firstName,lastName,gender,photoName,birthDate,nationalityId,langID,mobile];
+    
+    [self.operationManager GET:body parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        
+        if([responseString containsString:@"1"])
+        {
+            success(responseString);
+        }
+        else if ([responseString containsString:@"0"])
+        {
+            failure(@"Failed");
+        }
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        failure(@"cannot register");
     }];
 }
 

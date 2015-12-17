@@ -11,7 +11,8 @@
 
 @implementation ReviewCell
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     // Initialization code
     self.driverPhoto.layer.cornerRadius = self.driverPhoto.frame.size.width / 2.0f ;
     self.driverPhoto.clipsToBounds = YES ;
@@ -23,7 +24,14 @@
     self.driverPhoto.image = [UIImage imageNamed:@"thumbnail"];
     self.driverName.text = review.AccountName ;
     self.nationality.text = (KIS_ARABIC)?review.AccountNationalityAr:review.AccountNationalityEn ;
-    self.comment.text = review.Review ;
+    if (review.Review && review.Review.length != 0)
+    {
+        self.comment.layer.borderColor = [[UIColor lightGrayColor]CGColor];
+        self.comment.layer.borderWidth = 1.0f;
+        self.comment.layer.cornerRadius = 4.0f;
+    }
+    
+    self.comment.text = [NSString stringWithFormat:@"  %@  ",review.Review] ;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

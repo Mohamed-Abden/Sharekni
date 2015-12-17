@@ -270,12 +270,13 @@
     
     Vehicle *vehicle = self.vehiclesArray[indexPath.row];
     vehicleCell.countryLbl.text = @"Dubai";
-    vehicleCell.numberLbl.text = [NSString stringWithFormat:@"%@ %@",vehicle.PlateCode,vehicle.PlateNumber];
+    vehicleCell.numberLbl.text = [NSString stringWithFormat:@"%@ %@",(vehicle.PlateCode)?vehicle.PlateCode:@"",(vehicle.PlateNumber)?vehicle.PlateNumber:@""];
     
     return vehicleCell ;
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
     for (UIView* view in self.view.subviews) {
         for (UIGestureRecognizer* recognizer in view.gestureRecognizers) {
             [recognizer addTarget:self action:@selector(touchEvent:)];

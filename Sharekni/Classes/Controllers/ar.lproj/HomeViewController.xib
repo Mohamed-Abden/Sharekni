@@ -277,7 +277,7 @@
                     <animations/>
                 </imageView>
                 <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Verified" id="dnK-NH-H65">
-                    <rect key="frame" x="213" y="249" width="31" height="31"/>
+                    <rect key="frame" x="228" y="249" width="31" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <animations/>
                 </imageView>
@@ -290,7 +290,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="232323232" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ec8-PH-DSi">
-                    <rect key="frame" x="97" y="254" width="126" height="21"/>
+                    <rect key="frame" x="87" y="254" width="136" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <animations/>
                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
