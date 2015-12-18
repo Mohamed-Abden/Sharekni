@@ -20,6 +20,7 @@
 #import <REFrostedViewController.h>
 #import "HomeViewController.h"
 #import "SideMenuTableViewController.h"
+#import "Languages.h"
 
 
 @import AdSupport;
@@ -65,8 +66,17 @@ NSString * const TUNE_PACKAGE_NAME   = @"com.sharekni.Sharekni";
     [Tune startAppToAppMeasurement:@"abc" advertiserId:TUNE_ADVERTISER_ID offerId:@"12345" publisherId:@"321" redirect:YES];
     [self configureAppearance];
     self.window.rootViewController = self.splashNavigationController;
+
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)reloadApp
+{
+    self.splashNavigationController = nil ;
+    self.welcomeNavigationController = nil ;
+    self.window.rootViewController = nil ;
+    self.window.rootViewController = self.splashNavigationController;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -133,7 +143,7 @@ NSString * const TUNE_PACKAGE_NAME   = @"com.sharekni.Sharekni";
 
 - (REFrostedViewController *) homeViewController {
     
-    HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
+    HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar":@"HomeViewController" bundle:nil];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeViewControlle];
     SideMenuTableViewController  *menuController = [[SideMenuTableViewController alloc] initWithNavigationController:navigationController];
     
@@ -149,9 +159,11 @@ NSString * const TUNE_PACKAGE_NAME   = @"com.sharekni.Sharekni";
     return frostedViewController;
 }
 
-- (UINavigationController *)welcomeNavigationController{
+- (UINavigationController *)welcomeNavigationController
+{
     if (!_welcomeNavigationController) {
-        WelcomeViewController *welcomeViewController = [[WelcomeViewController alloc] initWithNibName:@"WelcomeViewController" bundle:nil];
+        WelcomeViewController *welcomeViewController = [[WelcomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"WelcomeViewController_ar":@"WelcomeViewController" bundle:nil];
+        
                _welcomeNavigationController = [[UINavigationController alloc] initWithRootViewController:welcomeViewController];
         }
     return _welcomeNavigationController;

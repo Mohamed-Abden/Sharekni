@@ -7,18 +7,20 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AdvancedSearchViewController">
             <connections>
+                <outlet property="acceptBtn" destination="ImI-3k-OlZ" id="D1G-D1-vOg"/>
                 <outlet property="ageRangeButton" destination="KsY-8x-cEV" id="DrQ-oe-g0Y"/>
+                <outlet property="bothBtn" destination="EWs-lB-vhZ" id="jcB-Yc-ziO"/>
                 <outlet property="dateLabel" destination="nBN-yF-W5v" id="KOz-SC-Zqh"/>
                 <outlet property="dateView" destination="Pfb-ZU-eF0" id="kxI-Zy-JXp"/>
                 <outlet property="destinationLabel" destination="cLV-Ph-FUB" id="eXH-FP-E64"/>
                 <outlet property="dropoffTitleLabel" destination="siC-tX-unm" id="F9t-IC-vfZ"/>
                 <outlet property="emiratesAndRegionsView" destination="nKr-rW-weD" id="d7N-O2-U2Q"/>
-                <outlet property="genderLabel" destination="VMN-HA-Dko" id="sFq-9s-aOS"/>
-                <outlet property="genderSwitchImage" destination="hFb-RK-nSu" id="H6k-xI-FmE"/>
-                <outlet property="genderView" destination="BLD-Dg-rjL" id="2M0-6Q-7VM"/>
+                <outlet property="femaleBtn" destination="0Wk-rX-HM7" id="CoP-tT-Z10"/>
                 <outlet property="helpLabel" destination="et3-Bk-5hC" id="1gi-Jn-T23"/>
                 <outlet property="languageButton" destination="SLK-xa-2cc" id="rQK-xm-GDN"/>
+                <outlet property="maleBtn" destination="iQq-7R-60m" id="HOo-6s-IbZ"/>
                 <outlet property="nationalityTextField" destination="YcT-ft-LVD" id="iUD-2Z-nyZ"/>
+                <outlet property="notAcceptBtn" destination="JVo-Vr-6cA" id="60W-Cf-hm5"/>
                 <outlet property="optionalHeader" destination="FQW-Aa-PCT" id="Jak-m6-4Z5"/>
                 <outlet property="periodicLabel" destination="D7N-1A-kkZ" id="ExP-sp-ew8"/>
                 <outlet property="pickupTitleLabel" destination="HgF-JW-bRc" id="KNj-dH-o2N"/>
@@ -40,36 +42,31 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="eZ4-l9-jnL">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="709"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="817"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="wGa-E0-LJ3">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="709"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="817"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Login_bg" id="iMI-6q-by1">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="709"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <animations/>
-                        </imageView>
                         <view contentMode="scaleToFill" id="gGN-uR-wbc">
-                            <rect key="frame" x="13" y="331" width="294" height="1"/>
+                            <rect key="frame" x="13" y="332" width="294" height="1"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <color key="backgroundColor" red="1" green="0.0" blue="0.06479849268" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <view contentMode="scaleToFill" id="mhx-Zs-11e">
-                            <rect key="frame" x="16" y="583" width="288" height="45"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                            <rect key="frame" x="16" y="700" width="288" height="45"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="select_Right" id="ymk-kD-fkk">
-                                    <rect key="frame" x="226" y="5" width="60" height="35"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="select_Left" id="ymk-kD-fkk">
+                                    <rect key="frame" x="8" y="5" width="60" height="35"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <animations/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="حفظ البحث" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bs1-10-nOa">
-                                    <rect key="frame" x="117" y="12" width="95" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saved search" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bs1-10-nOa">
+                                    <rect key="frame" x="76" y="12" width="95" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <animations/>
                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -90,9 +87,9 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="اختياري" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FQW-Aa-PCT">
-                            <rect key="frame" x="161" y="303" width="142" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Optional" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FQW-Aa-PCT">
+                            <rect key="frame" x="17" y="303" width="142" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="1" green="0.0" blue="0.06479849268" alpha="1" colorSpace="calibratedRGB"/>
@@ -102,7 +99,7 @@
                             <rect key="frame" x="13" y="243" width="294" height="45"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="مرة واحدة" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DuK-LA-8eP">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Single Ride" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DuK-LA-8eP">
                                     <rect key="frame" x="11" y="12" width="88" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <animations/>
@@ -110,7 +107,7 @@
                                     <color key="textColor" red="0.90196078430000004" green="0.0" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="متكررة" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D7N-1A-kkZ">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Periodic" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D7N-1A-kkZ">
                                     <rect key="frame" x="214" y="12" width="63" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <animations/>
@@ -138,50 +135,18 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <view contentMode="scaleToFill" id="BLD-Dg-rjL">
-                            <rect key="frame" x="13" y="518" width="294" height="45"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="select_Right" id="hFb-RK-nSu">
-                                    <rect key="frame" x="226" y="4" width="60" height="38"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                    <animations/>
-                                </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="أنثي فقط" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VMN-HA-Dko">
-                                    <rect key="frame" x="117" y="12" width="95" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <animations/>
-                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <animations/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                    <integer key="value" value="5"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
-                                    <color key="value" white="0.59999999999999998" alpha="1" colorSpace="calibratedWhite"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                    <integer key="value" value="1"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </view>
                         <view contentMode="scaleToFill" id="Pfb-ZU-eF0">
-                            <rect key="frame" x="167" y="177" width="140" height="50"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                            <rect key="frame" x="13" y="177" width="140" height="50"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CalendarIcon" id="FZX-Ei-Klm">
-                                    <rect key="frame" x="107" y="12" width="25" height="25"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                    <rect key="frame" x="8" y="12" width="25" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <animations/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="تاريخ البدء" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nBN-yF-W5v">
-                                    <rect key="frame" x="8" y="6" width="93" height="36"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Date" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nBN-yF-W5v">
+                                    <rect key="frame" x="37" y="6" width="101" height="36"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <animations/>
                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -203,20 +168,20 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" id="JHQ-Kd-5sU">
-                            <rect key="frame" x="13" y="177" width="140" height="50"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <rect key="frame" x="167" y="177" width="140" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="وقت البدء" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vQo-0N-6Cp">
-                                    <rect key="frame" x="8" y="6" width="91" height="36"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Time" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vQo-0N-6Cp">
+                                    <rect key="frame" x="39" y="6" width="101" height="36"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <animations/>
                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timeIcon" id="sW3-my-pJZ">
-                                    <rect key="frame" x="107" y="12" width="25" height="25"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                    <rect key="frame" x="8" y="12" width="25" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <animations/>
                                 </imageView>
                             </subviews>
@@ -239,7 +204,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <color key="backgroundColor" red="1" green="0.0" blue="0.06479849268" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="الوجهة">
+                            <state key="normal" title="Set Direction">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -257,7 +222,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <color key="backgroundColor" red="1" green="0.0" blue="0.06479849268" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="بحث">
+                            <state key="normal" title="Search">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -281,7 +246,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <color key="backgroundColor" red="1" green="0.0" blue="0.06479849268" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="بحث">
+                            <state key="normal" title="Search">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -340,7 +305,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="يرجي الضغط علي زر الوجهة لاختيار نقطة الانطلاق والوصول" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="et3-Bk-5hC">
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please click on set direction button to set start and end point" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="et3-Bk-5hC">
                             <rect key="frame" x="13" y="75" width="289" height="81"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <animations/>
@@ -357,21 +322,21 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" id="762-dI-wn3">
-                                            <rect key="frame" x="225" y="4" width="1" height="25"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                            <rect key="frame" x="65" y="4" width="1" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <animations/>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="الانطلاق" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HgF-JW-bRc">
-                                            <rect key="frame" x="227" y="1" width="64" height="31"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pickup" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HgF-JW-bRc">
+                                            <rect key="frame" x="1" y="1" width="64" height="31"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <animations/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PUA-DD-9XX">
-                                            <rect key="frame" x="2" y="0.0" width="217" height="33"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PUA-DD-9XX">
+                                            <rect key="frame" x="72" y="0.0" width="217" height="33"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <animations/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -398,21 +363,21 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" id="8ir-rq-uNt">
-                                            <rect key="frame" x="226" y="4" width="1" height="25"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                            <rect key="frame" x="65" y="4" width="1" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <animations/>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="الوصول" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="siC-tX-unm">
-                                            <rect key="frame" x="228" y="1" width="63" height="31"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drop Off" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="siC-tX-unm">
+                                            <rect key="frame" x="1" y="1" width="64" height="31"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <animations/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cLV-Ph-FUB">
-                                            <rect key="frame" x="2" y="0.0" width="218" height="33"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cLV-Ph-FUB">
+                                            <rect key="frame" x="72" y="0.0" width="217" height="33"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <animations/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -439,11 +404,11 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="goQ-Bw-BsT">
-                            <rect key="frame" x="85" y="659" width="151" height="36"/>
+                            <rect key="frame" x="85" y="760" width="151" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <color key="backgroundColor" red="1" green="0.0" blue="0.06479849268" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="بحث">
+                            <state key="normal" title="Search">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -451,6 +416,150 @@
                                 <action selector="searchAction:" destination="-1" eventType="touchUpInside" id="c0u-89-EXw"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" id="rgA-UG-uLQ">
+                            <rect key="frame" x="13" y="510" width="294" height="81"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preferred Gender" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Dq-J5-gc9">
+                                    <rect key="frame" x="8" y="8" width="109" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <animations/>
+                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EWs-lB-vhZ">
+                                    <rect key="frame" x="8.5" y="38" width="25" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <animations/>
+                                    <state key="normal" backgroundImage="checkbox_unactive"/>
+                                    <state key="selected" backgroundImage="checkbox_active"/>
+                                    <connections>
+                                        <action selector="selectGenderType:" destination="-1" eventType="touchUpInside" id="mNb-Cg-XkX"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iQq-7R-60m">
+                                    <rect key="frame" x="100" y="38" width="25" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <animations/>
+                                    <state key="normal" backgroundImage="checkbox_unactive"/>
+                                    <state key="selected" backgroundImage="checkbox_active"/>
+                                    <connections>
+                                        <action selector="selectGenderType:" destination="-1" eventType="touchUpInside" id="r5D-Eu-Wzs"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0Wk-rX-HM7">
+                                    <rect key="frame" x="186" y="38" width="25" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <animations/>
+                                    <state key="normal" backgroundImage="checkbox_unactive"/>
+                                    <state key="selected" backgroundImage="checkbox_active"/>
+                                    <connections>
+                                        <action selector="selectGenderType:" destination="-1" eventType="touchUpInside" id="4zH-EW-duf"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Both" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Baw-g2-YAB">
+                                    <rect key="frame" x="46" y="40" width="36" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <animations/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Male" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Dcy-HT-kHf">
+                                    <rect key="frame" x="138" y="40" width="37" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <animations/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Female" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="90F-rj-Wq0">
+                                    <rect key="frame" x="226" y="40" width="56" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <animations/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <animations/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                                    <color key="value" red="0.75686274509999996" green="0.76078431369999999" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" id="LKs-Tg-TFD">
+                            <rect key="frame" x="13" y="599" width="294" height="81"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Smokers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FED-vl-31e">
+                                    <rect key="frame" x="8" y="8" width="109" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <animations/>
+                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ImI-3k-OlZ">
+                                    <rect key="frame" x="8.5" y="38" width="25" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <animations/>
+                                    <state key="normal" backgroundImage="checkbox_unactive"/>
+                                    <state key="selected" backgroundImage="checkbox_active"/>
+                                    <connections>
+                                        <action selector="selectIsSmoke:" destination="-1" eventType="touchUpInside" id="kny-Qz-0Wz"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JVo-Vr-6cA">
+                                    <rect key="frame" x="162.5" y="38" width="25" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <animations/>
+                                    <state key="normal" backgroundImage="checkbox_unactive"/>
+                                    <state key="selected" backgroundImage="checkbox_active"/>
+                                    <connections>
+                                        <action selector="selectIsSmoke:" destination="-1" eventType="touchUpInside" id="fFX-k2-FeC"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accept" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vmx-S5-MxC">
+                                    <rect key="frame" x="46" y="40" width="45" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <animations/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Accept" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZEw-te-XZo">
+                                    <rect key="frame" x="203" y="40" width="71" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <animations/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <animations/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                                    <color key="value" red="0.75686274509999996" green="0.76078431369999999" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
                     </subviews>
                     <animations/>
                 </scrollView>
@@ -459,15 +568,15 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="361" y="252.5"/>
+            <point key="canvasLocation" x="361" y="306.5"/>
         </view>
     </objects>
     <resources>
         <image name="Arrow-Down" width="50" height="50"/>
         <image name="CalendarIcon" width="78" height="78"/>
-        <image name="Login_bg" width="640" height="1039"/>
+        <image name="checkbox_active" width="300" height="300"/>
+        <image name="checkbox_unactive" width="300" height="300"/>
         <image name="select_Left" width="108" height="59"/>
-        <image name="select_Right" width="108" height="59"/>
         <image name="timeIcon" width="265" height="265"/>
     </resources>
 </document>

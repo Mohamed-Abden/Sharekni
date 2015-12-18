@@ -15,7 +15,7 @@
 #import "MobAccountManager.h"
 @implementation MobDriverManager
 
-- (void) findRidesFromEmirate:(Emirate *)fromemirate andFromRegion:(Region *)fromRegion toEmirate:(Emirate *)toEmirate andToRegion:(Region *)toRegion PerfferedLanguage:(Language *)language nationality:(Nationality *)nationality ageRange:(AgeRange *)ageRange date:(NSDate *)date isPeriodic:(NSNumber *)isPeriodic saveSearch:(BOOL)saveSearch Gender:(NSNumber *)isFemale WithSuccess:(void (^)(NSArray *searchResults))success Failure:(void (^)(NSString *error))failure{
+- (void) findRidesFromEmirate:(Emirate *)fromemirate andFromRegion:(Region *)fromRegion toEmirate:(Emirate *)toEmirate andToRegion:(Region *)toRegion PerfferedLanguage:(Language *)language nationality:(Nationality *)nationality ageRange:(AgeRange *)ageRange date:(NSDate *)date isPeriodic:(NSNumber *)isPeriodic saveSearch:(BOOL)saveSearch Gender:(NSString *)gender Smoke:(NSString *)smoke WithSuccess:(void (^)(NSArray *searchResults))success Failure:(void (^)(NSString *error))failure{
     NSString *dateString;
     NSString *timeString;
     if(date){
@@ -29,15 +29,6 @@
         dateString = @"";
         timeString = @"";
     }
-    NSString *gender;
-    if (isFemale.boolValue) {
-         gender = @"F";
-    }
-    else{
-        gender = @"N";
-    }
-    
-
     
     NSString *accountID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
     if (accountID.length == 0) {
@@ -54,7 +45,7 @@
     if (isPeriodic) {
         isPeriodicString = [isPeriodic boolValue] ? @"1":@"0";
     }
-    NSString *requestBody = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_FindRide?AccountID=%@&PreferredGender=%@&Time=%@&FromEmirateID=%@&FromRegionID=%@&ToEmirateID=%@&ToRegionID=%@&PrefferedLanguageId=%@&PrefferedNationlaities=%@&AgeRangeId=%@&StartDate=%@&SaveFind=%@&IsPeriodic=%@",accountID,gender,timeString,fromemirate.EmirateId,fromRegion.ID,toEmirateID,toRegionID,languageId,nationalityId,ageRange ? ageRange.RangeId : @"0" ,dateString,saveSearchString,isPeriodicString];
+    NSString *requestBody = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_FindRide?AccountID=%@&PreferredGender=%@&Time=%@&FromEmirateID=%@&FromRegionID=%@&ToEmirateID=%@&ToRegionID=%@&PrefferedLanguageId=%@&PrefferedNationlaities=%@&AgeRangeId=%@&StartDate=%@&SaveFind=%@&IsPeriodic=%@&IsSmoking=%@",accountID,gender,timeString,fromemirate.EmirateId,fromRegion.ID,toEmirateID,toRegionID,languageId,nationalityId,ageRange ? ageRange.RangeId : @"0" ,dateString,saveSearchString,isPeriodicString,smoke];
 
     [self.operationManager GET:requestBody parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         NSLog(@"%@",responseObject);
@@ -167,7 +158,7 @@
 
 //GET /_mobfiles/cls_mobios.asmx/Driver_CreateCarpool?AccountID=string&EnName=string&FromEmirateID=string&ToEmirateID=string&FromRegionID=string&ToRegionID=string&IsRounded=string&Time=string&Saturday=string&Sunday=string&Monday=string&Tuesday=string&Wednesday=string&Thursday=string&Friday=string&PreferredGender=string&VehicleID=string&NoOfSeats=string&StartLat=string&StartLng=string&EndLat=string&EndLng=string&PrefferedLanguageId=string&PrefferedNationlaities=string&AgeRangeId=string&StartDate=string HTTP/1.1
 
-- (void) createEditRideWithName:(NSString *)name fromEmirateID:(NSString *)fromEmirateID fromRegionID:(NSString *)fromRegionID toEmirateID:(NSString *)toEmirateID toRegionID:(NSString *)toRegionID isRounded:(BOOL)isRounded  date:(NSDate *)date saturday:(BOOL) saturday sunday:(BOOL) sunday  monday:(BOOL) monday  tuesday:(BOOL) tuesday  wednesday:(BOOL) wednesday  thursday:(BOOL) thursday friday:(BOOL) friday PreferredGender:(NSString *)gender vehicleID:(NSString *)vehicleID noOfSeats:(NSInteger)noOfSeats language:(Language *)language nationality:(Nationality *)nationality ageRange:(AgeRange *)ageRange  isEdit:(BOOL) isEdit routeID:(NSString *)routeID startLat:(NSString *)startLat startLng:(NSString *)startLng endLat:(NSString *)endLat endLng:(NSString *)endLng WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure{
+- (void) createEditRideWithName:(NSString *)name fromEmirateID:(NSString *)fromEmirateID fromRegionID:(NSString *)fromRegionID toEmirateID:(NSString *)toEmirateID toRegionID:(NSString *)toRegionID isRounded:(BOOL)isRounded  date:(NSDate *)date saturday:(BOOL) saturday sunday:(BOOL) sunday  monday:(BOOL) monday  tuesday:(BOOL) tuesday  wednesday:(BOOL) wednesday  thursday:(BOOL) thursday friday:(BOOL) friday PreferredGender:(NSString *)gender vehicleID:(NSString *)vehicleID noOfSeats:(NSInteger)noOfSeats language:(Language *)language nationality:(Nationality *)nationality ageRange:(AgeRange *)ageRange  isEdit:(BOOL) isEdit routeID:(NSString *)routeID startLat:(NSString *)startLat startLng:(NSString *)startLng endLat:(NSString *)endLat endLng:(NSString *)endLng Smoke:(NSString *)smoke WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure{
     
     NSString *dateString;
     NSString *timeString;
@@ -210,7 +201,7 @@
     else{
         path =[NSString stringWithFormat:@"cls_mobios.asmx/Driver_CreateCarpool?AccountID=%@",accountID];
     }
-    NSString *requestBody = [NSString stringWithFormat:@"%@&EnName=%@&FromEmirateID=%@&ToEmirateID=%@&FromRegionID=%@&ToRegionID=%@&IsRounded=%@&Time=%@&Saturday=%@&Sunday=%@&Monday=%@&Tuesday=%@&Wednesday=%@&Thursday=%@&Friday=%@&PreferredGender=%@&VehicleID=%@&NoOfSeats=%@&StartLat=%@&StartLng=%@&EndLat=%@&EndLng=%@&PrefferedLanguageId=%@&PrefferedNationlaities=%@&AgeRangeId=%@&StartDate=%@",path,name,fromEmirateID,toEmirateID,fromRegionID,toRegionID,_isRounded,timeString,sat,sun,mon,tue,wed,thu,fri,gender,vehicleID,_noOfSeats,startLat,startLng,endLat,endLng,languageId,nationalityId,ageRangeId,dateString];
+    NSString *requestBody = [NSString stringWithFormat:@"%@&EnName=%@&FromEmirateID=%@&ToEmirateID=%@&FromRegionID=%@&ToRegionID=%@&IsRounded=%@&Time=%@&Saturday=%@&Sunday=%@&Monday=%@&Tuesday=%@&Wednesday=%@&Thursday=%@&Friday=%@&PreferredGender=%@&VehicleID=%@&NoOfSeats=%@&StartLat=%@&StartLng=%@&EndLat=%@&EndLng=%@&PrefferedLanguageId=%@&PrefferedNationlaities=%@&AgeRangeId=%@&StartDate=%@&IsSmoking=%@",path,name,fromEmirateID,toEmirateID,fromRegionID,toRegionID,_isRounded,timeString,sat,sun,mon,tue,wed,thu,fri,gender,vehicleID,_noOfSeats,startLat,startLng,endLat,endLng,languageId,nationalityId,ageRangeId,dateString,smoke];
     
     requestBody = [requestBody stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     

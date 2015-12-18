@@ -12,7 +12,7 @@
 #import "MostRideDetailsCell.h"
 #import "DriverDetailsViewController.h"
 #import "MessageUI/MessageUI.h"
-
+#import "Constants.h"
 
 @interface SearchResultsViewController () <SendMSGDelegate,MFMessageComposeViewControllerDelegate>
 
@@ -25,19 +25,21 @@
 
 @implementation SearchResultsViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self configureUI];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.translucent = NO;
 }
 
-- (void) configureUI{
-    
-   self.title = NSLocalizedString(@"Search Results", nil);
+- (void) configureUI
+{
+   self.title = GET_STRING(@"Search Results");
     self.fromLabel.text = [NSString stringWithFormat:@"%@ : %@",self.fromEmirate , self.fromRegion];
     self.toLabel.text = (self.toEmirate&&self.toRegion) ? [NSString stringWithFormat:@"%@ : %@",self.toEmirate , self.toRegion] : @"Not specified";
 
@@ -65,7 +67,8 @@
 }
 
 #pragma mark - Methods
-- (void)popViewController{
+- (void)popViewController
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -76,7 +79,8 @@
     return self.results.count;
 }
 
-- (MostRideDetailsCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (MostRideDetailsCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
    MostRideDetailsCell *cell = (MostRideDetailsCell*)[tableView dequeueReusableCellWithIdentifier:MOST_RIDE_DETAILS_CELLID];
     if (cell == nil) {
         cell = (MostRideDetailsCell *)[[[NSBundle mainBundle] loadNibNamed:@"MostRideDetailsCell" owner:nil options:nil] objectAtIndex:0];
@@ -131,7 +135,7 @@
 #pragma mark UITableView Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    DriverDetailsViewController *driverDetails = [[DriverDetailsViewController alloc] initWithNibName:@"DriverDetailsViewController" bundle:nil];
+    DriverDetailsViewController *driverDetails = [[DriverDetailsViewController alloc] initWithNibName:(KIS_ARABIC)?@"DriverDetailsViewController_ar":@"DriverDetailsViewController" bundle:nil];
     DriverSearchResult *driver = [self.results objectAtIndex:indexPath.row];
     driverDetails.driverSearchResult = driver;
     [self.navigationController pushViewController:driverDetails animated:YES];

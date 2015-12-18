@@ -17,9 +17,6 @@
     // Initialization code
     self.driverImage.layer.cornerRadius = self.driverImage.frame.size.width / 2.0f ;
     self.driverImage.clipsToBounds = YES ;
-    
-    self.driverName.textAlignment = NSTextAlignmentNatural ;
-    self.driverCountry.textAlignment = NSTextAlignmentNatural ;
 }
 
 - (void)setDriver:(BestDriver *)driver

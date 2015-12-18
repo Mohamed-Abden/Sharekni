@@ -38,11 +38,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = NSLocalizedString(@"login", nil);
+    self.title = GET_STRING(@"login");
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn", nil)] forState:UIControlStateNormal];
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
@@ -72,8 +72,8 @@
 - (void) configureUI{
     if ([self.usernameTextField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
         UIColor *color = [UIColor add_colorWithRGBHexString:Red_HEX];
-        self.usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Username (Your Email)",nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Password", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"Username (Your Email)") attributes:@{NSForegroundColorAttributeName: color}];
+        self.passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"Password") attributes:@{NSForegroundColorAttributeName: color}];
     } else {
         NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
         // TODO: Add fall-back code to set placeholder color.
@@ -91,15 +91,15 @@
     [self.view endEditing:YES];
     if(self.usernameTextField.text.length == 0)
     {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"nameReq",nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"nameReq")];
     }
     else if (self.passwordTextField.text.length == 0)
     {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"passReq", nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"passReq")];
     }
     else
     {
-        [KVNProgress showWithStatus:@"Loading...."];
+        [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
         [[MobAccountManager sharedMobAccountManager] checkLoginWithUserName:self.usernameTextField.text andPassword:self.passwordTextField.text WithSuccess:^(User *user) {
             [KVNProgress dismiss];
             if (user) {
@@ -111,7 +111,7 @@
                 }
             }
             else{
-            [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please check your username and password", nil)];
+            [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please check your username and password")];
             }
         } Failure:^(NSString *error) {
             [[HelpManager sharedHelpManager] showAlertWithMessage:error];
@@ -122,11 +122,12 @@
 
 - (IBAction)signupAction:(id)sender{
     [self.view endEditing:YES];
-    RegisterViewController *registerView = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
+    RegisterViewController *registerView = [[RegisterViewController alloc] initWithNibName:(KIS_ARABIC)?@"RegisterViewController_ar":@"RegisterViewController" bundle:nil];
     [self.navigationController pushViewController:registerView animated:YES];
 }
 
-- (IBAction)forgotPasswordAction:(id)sender{
+- (IBAction)forgotPasswordAction:(id)sender
+{
     ForgetPasswordViewController *forgetPass = [[ForgetPasswordViewController alloc] initWithNibName:@"ForgetPasswordViewController" bundle:nil];
     [self.navigationController pushViewController:forgetPass animated:YES];
 }

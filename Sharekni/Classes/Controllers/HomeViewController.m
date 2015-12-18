@@ -109,10 +109,11 @@
 
     [self getNotifications];
 
-    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
     __block HomeViewController *blockSelf = self;
     [[MobAccountManager sharedMobAccountManager] getUser:self.sharedUser.ID.stringValue WithSuccess:^(User *user) {
         blockSelf.sharedUser = user;
+        [[MobAccountManager sharedMobAccountManager] setApplicationUser:user];
         [blockSelf configureUI];
         [KVNProgress dismiss];
     } Failure:^(NSString *error)
@@ -122,7 +123,8 @@
 }
 
 #pragma Data
-- (void) configureData{
+- (void) configureData
+{
     self.sharedUser = [[MobAccountManager sharedMobAccountManager] applicationUser];
     if(!self.sharedUser){
         //handle open home without user
@@ -138,22 +140,22 @@
     
     if ([self.sharedUser.AccountStatus containsString:@"D"] || [self.sharedUser.AccountStatus containsString:@"B"]) {      //Driver
         self.topLeftIcon.image = [UIImage imageNamed:@"search-icon"];
-        self.topLeftLabel.text = NSLocalizedString(@"Search", nil);
+        self.topLeftLabel.text = GET_STRING(@"Search");
         UITapGestureRecognizer *topLeftGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchAction)];
         [self.topLeftView addGestureRecognizer:topLeftGesture];
         
         self.topRightIcon.image = [UIImage imageNamed:@"create-ride"];
-        self.topRightLabel.text = NSLocalizedString(@"Create Ride", nil);
+        self.topRightLabel.text = GET_STRING(@"Create Ride");
         UITapGestureRecognizer *topRightGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(createRideAction)];
         [self.topRightView addGestureRecognizer:topRightGesture];
         
         self.bottomLeftIcon.image = [UIImage imageNamed:@"history"];
-        self.bottomLeftLabel.text = NSLocalizedString(@"History", nil);
+        self.bottomLeftLabel.text = GET_STRING(@"History");
         UITapGestureRecognizer *bottomLeftGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(historyAction)];
         [self.bottomLeftView addGestureRecognizer:bottomLeftGesture];
         
         self.bottomRightIcon.image = [UIImage imageNamed:@"permit"];
-        self.bottomRightLabel.text = NSLocalizedString(@"Permits", nil);
+        self.bottomRightLabel.text = GET_STRING(@"Permits");
         UITapGestureRecognizer *bottomRightGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(permitAction)];
         [self.bottomRightView addGestureRecognizer:bottomRightGesture];
         
@@ -172,29 +174,29 @@
         self.vehiclesView.alpha = 0;
         self.ridesJoinedView.alpha = 0;
         self.topLeftIcon.image = [UIImage imageNamed:@"search-icon"];
-        self.topLeftLabel.text = NSLocalizedString(@"Search", nil);
+        self.topLeftLabel.text = GET_STRING(@"Search");
         UITapGestureRecognizer *topLeftGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchAction)];
         [self.topLeftView addGestureRecognizer:topLeftGesture];
         
         self.topRightIcon.image = [UIImage imageNamed:@"RidesJoined_home"];
-        self.topRightLabel.text = NSLocalizedString(@"Rides Joined", nil);
+        self.topRightLabel.text = GET_STRING(@"Rides Joined");
         UITapGestureRecognizer *topRightGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showJoinedRides)];
         [self.topRightView addGestureRecognizer:topRightGesture];
         
         self.bottomLeftIcon.image = [UIImage imageNamed:@"history"];
-        self.bottomLeftLabel.text = NSLocalizedString(@"History", nil);
+        self.bottomLeftLabel.text = GET_STRING(@"History");
         UITapGestureRecognizer *bottomLeftGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(historyAction)];
         [self.bottomLeftView addGestureRecognizer:bottomLeftGesture];
         
         self.bottomRightIcon.image = [UIImage imageNamed:@"SavedSearch_Home"];
-        self.bottomRightLabel.text = NSLocalizedString(@"Saved Search", nil);
+        self.bottomRightLabel.text = GET_STRING(@"Saved Search");
         UITapGestureRecognizer *bottomRightGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(savedSearchAction)];
         [self.bottomRightView addGestureRecognizer:bottomRightGesture];
     }
 }
 
 - (void) configureUI{
-    self.navigationItem.title = NSLocalizedString(@"Home Page", nil);
+    self.navigationItem.title = GET_STRING(@"Home Page");
     self.notificationCountLabel.text = [NSString stringWithFormat:@"%@",self.sharedUser.DriverMyAlertsCount];
     
     self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",self.sharedUser.FirstName,self.sharedUser.LastName];
@@ -218,9 +220,9 @@
         self.verifyBtn.hidden = NO ;
     }
     
-    NSString *ridesCreatedText = [NSString stringWithFormat:@"%@ (%@)",NSLocalizedString(@"Rides Created", nil),self.sharedUser.DriverMyRidesCount];
-    NSString *ridesJoinedText = [NSString stringWithFormat:@"%@ (%@)",NSLocalizedString(@"Rides Joined", nil),self.sharedUser.PassengerJoinedRidesCount];
-    NSString *vehiclesCountText = [NSString stringWithFormat:@"%@ (%@)",NSLocalizedString(@"Vehicles", nil),self.sharedUser.VehiclesCount.stringValue];
+    NSString *ridesCreatedText = [NSString stringWithFormat:@"%@ (%@)",GET_STRING(@"Rides Created"),self.sharedUser.DriverMyRidesCount];
+    NSString *ridesJoinedText = [NSString stringWithFormat:@"%@ (%@)",GET_STRING(@"Rides Joined"),self.sharedUser.PassengerJoinedRidesCount];
+    NSString *vehiclesCountText = [NSString stringWithFormat:@"%@ (%@)",GET_STRING(@"Vehicles"),self.sharedUser.VehiclesCount.stringValue];
     
     
     self.profileImageView.image = self.sharedUser.userImage ? self.sharedUser.userImage : [UIImage imageNamed:@"thumbnail"];
@@ -236,14 +238,14 @@
 }
 
 - (IBAction) verfiyMobileAction:(id)sender{
-    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
 
     [[MobAccountManager sharedMobAccountManager] verifyMobileNumber:[NSString stringWithFormat:@"%@",self.sharedUser.ID] WithSuccess:^(NSString *user)
     {
         [KVNProgress dismiss];
 
         if ([user containsString:@"1"]) {
-            [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Mobile verification code has been sent to your mobile", nil)];
+            [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Mobile verification code has been sent to your mobile")];
             
             VerifyMobileViewController *verifyView = [[VerifyMobileViewController alloc] initWithNibName:@"VerifyMobileViewController" bundle:nil];
             
@@ -252,20 +254,16 @@
             [self presentPopupViewController:verifyView animationType:MJPopupViewAnimationSlideBottomBottom];
             
         }else{
-            [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please check your mobile number", nil)];
+            [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please check your mobile number")];
         }
     } Failure:^(NSString *error) {
         [KVNProgress dismiss];
     }];
 }
 
-<<<<<<< Updated upstream
-- (void)dismissButtonClicked:(VerifyMobileViewController *)verifyMobileNumber{
-=======
 - (void)dismissButtonClicked:(VerifyMobileViewController *)verifyMobileNumber
 {
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
->>>>>>> Stashed changes
     self.verifiedImgTwo.hidden = NO ;
     self.verifyBtn.hidden = YES ;
 }
@@ -282,24 +280,27 @@
 }
 
 - (void) createRideAction{
-    CreateRideViewController *createRideViewController = [[CreateRideViewController alloc] initWithNibName:@"CreateRideViewController" bundle:nil];
+    CreateRideViewController *createRideViewController = [[CreateRideViewController alloc] initWithNibName:(KIS_ARABIC)?@"CreateRideViewController_ar":@"CreateRideViewController" bundle:nil];
     [self.navigationController pushViewController:createRideViewController animated:YES];
 }
 
-- (void) historyAction{
-
-    if ([[[[MobAccountManager sharedMobAccountManager] applicationUser] AccountStatus] isEqualToString:@"P"]) {
+- (void) historyAction
+{
+    if ([[[[MobAccountManager sharedMobAccountManager] applicationUser] AccountStatus] isEqualToString:@"P"])
+    {
         RidesJoinedViewController *joinedRidesViewController =  [[RidesJoinedViewController alloc] initWithNibName:@"RidesJoinedViewController" bundle:nil];
-        joinedRidesViewController.title =  NSLocalizedString(@"History", nil);
+        joinedRidesViewController.title =  GET_STRING(@"History");
         [self.navigationController pushViewController:joinedRidesViewController animated:YES];
     }
-    else{
-        HistoryViewController *historyView = [[HistoryViewController alloc] initWithNibName:@"HistoryViewController" bundle:nil];
+    else
+    {
+        HistoryViewController *historyView = [[HistoryViewController alloc] initWithNibName:(KIS_ARABIC)?@"HistoryViewController_ar":@"HistoryViewController" bundle:nil];
         [self.navigationController pushViewController:historyView animated:YES];
     }
 }
 
-- (void) permitAction{
+- (void) permitAction
+{
     PermitsViewController *permitsView = [[PermitsViewController alloc] initWithNibName:@"PermitsViewController" bundle:nil];
     [self.navigationController pushViewController:permitsView animated:YES];
 }
@@ -327,7 +328,7 @@
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     
     __block HomeViewController *blockSelf = self;
-    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     
     [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] isDriver:YES WithSuccess:^(NSMutableArray *array) {
         
@@ -351,7 +352,7 @@
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     
     __block HomeViewController *blockSelf = self;
-    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     
     [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] isDriver:NO WithSuccess:^(NSMutableArray *array) {
         
@@ -372,7 +373,7 @@
 }
 
 - (void) showVeichles:(id)sender{
-        VehiclesViewController *registerVehicle = [[VehiclesViewController alloc] initWithNibName:@"VehiclesViewController" bundle:nil];
+    VehiclesViewController *registerVehicle = [[VehiclesViewController alloc] initWithNibName:(KIS_ARABIC)?@"VehiclesViewController_ar":@"VehiclesViewController" bundle:nil];
     registerVehicle.enableBackButton = YES;
         [self.navigationController pushViewController:registerVehicle animated:YES];
 }

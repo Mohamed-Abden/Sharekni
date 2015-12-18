@@ -362,7 +362,7 @@
 {
     if (!_vehiclesNavigationController)
     {
-        VehiclesViewController *vehiclesView = [[VehiclesViewController alloc] initWithNibName:@"VehiclesViewController" bundle:nil];
+        VehiclesViewController *vehiclesView = [[VehiclesViewController alloc] initWithNibName:(KIS_ARABIC)?@"VehiclesViewController_ar":@"VehiclesViewController" bundle:nil];
         _vehiclesNavigationController = [[UINavigationController alloc] initWithRootViewController:vehiclesView];
     }
     return _vehiclesNavigationController;

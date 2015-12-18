@@ -8,6 +8,7 @@
 
 #import "ActivatePermitViewController.h"
 #import <KVNProgress/KVNProgress.h>
+#import "Constants.h"
 
 @interface ActivatePermitViewController ()
 
@@ -20,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Permit";
+    self.title = GET_STRING(@"Permit");
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
@@ -29,7 +30,7 @@
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
     
-    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
 
     NSURL *url = [NSURL URLWithString:self.url];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -38,12 +39,6 @@
     
     [ActivatePermitViewController attemptRotationToDeviceOrientation];
 }
-
-- (NSUInteger)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskLandscape;
-}
-
 
 - (void)popViewController
 {

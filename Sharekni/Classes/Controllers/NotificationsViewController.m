@@ -38,7 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = NSLocalizedString(@"Notifications", nil);
+    self.title = GET_STRING(@"Notifications");
 
     self.notifications = [NSMutableArray new];
     [self getNotifications];
@@ -55,7 +55,7 @@
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     
     __block NotificationsViewController *blockSelf = self;
-    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     
     [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] isDriver:YES WithSuccess:^(NSMutableArray *array) {
         
@@ -70,7 +70,7 @@
     } Failure:^(NSString *error) {
         NSLog(@"Error in Notifications");
         [KVNProgress dismiss];
-        [KVNProgress showErrorWithStatus:@"Error"];
+        [KVNProgress showErrorWithStatus:GET_STRING(@"Error")];
         [blockSelf performBlock:^{
             [KVNProgress dismiss];
         } afterDelay:3];
@@ -81,7 +81,7 @@
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     
     __block NotificationsViewController *blockSelf = self;
-    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     
     [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] isDriver:NO WithSuccess:^(NSMutableArray *array) {
         

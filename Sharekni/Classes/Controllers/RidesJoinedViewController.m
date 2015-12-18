@@ -32,19 +32,19 @@
     [super viewDidLoad];
     if (self.title.length > 0) {
         self.navigationItem.title = self.title;
-        self.noResultLabel.text = NSLocalizedString(@"No history", nil);
+        self.noResultLabel.text = GET_STRING(@"No history");
     }
     else{
-        self.navigationItem.title = NSLocalizedString(@"Rides Joined", nil);
-        self.noResultLabel.text = NSLocalizedString(@"No rides joined yet", nil);
+        self.navigationItem.title = GET_STRING(@"Rides Joined");
+        self.noResultLabel.text = GET_STRING(@"No rides joined yet");
     }
     
-    self.noResultLabel.text = NSLocalizedString(@"No rides joined yet", nil);
+    self.noResultLabel.text = GET_STRING(@"No rides joined yet");
     
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn", nil)] forState:UIControlStateNormal];
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
@@ -74,7 +74,7 @@
 
 - (void) configureData{
     __block RidesJoinedViewController *blockSelf = self;
-    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
     [[MobAccountManager sharedMobAccountManager] getJoinedRidesWithSuccess:^(NSMutableArray *array) {
         [KVNProgress dismiss];
         blockSelf.rides = array;
@@ -133,39 +133,40 @@
     return 220;
 }
 
-- (void)leaveRide:(Ride *)ride{
+- (void)leaveRide:(Ride *)ride
+{
     self.toBeLeavedRide = ride;
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Confirm", nil) message:NSLocalizedString(@"Do you want to leave this ride", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Leave", nil), nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:GET_STRING(@"Confirm") message:GET_STRING(@"Do you want to leave this ride") delegate:self cancelButtonTitle:GET_STRING(@"Cancel") otherButtonTitles:GET_STRING(@"Leave"), nil];
     [alertView show];
 }
 
-
-- (void) showDetailsViewControllerWithRide:(Ride *)createdRide{
-    RideDetailsViewController *rideDetails = [[RideDetailsViewController alloc] initWithNibName:@"RideDetailsViewController" bundle:nil];
+- (void) showDetailsViewControllerWithRide:(Ride *)createdRide
+{
+    RideDetailsViewController *rideDetails = [[RideDetailsViewController alloc] initWithNibName:(KIS_ARABIC)?@"RideDetailsViewController_ar":@"RideDetailsViewController" bundle:nil];
     rideDetails.joinedRide = createdRide ;
     [self.navigationController pushViewController:rideDetails animated:YES];
 }
 
 - (void) showDriverDetailsForRide:(Ride *)ride{
-    DriverDetailsViewController *driverDetailsViewController = [[DriverDetailsViewController alloc] initWithNibName:@"DriverDetailsViewController" bundle:nil];
-    driverDetailsViewController.joinedRide = ride;
-    [self.navigationController pushViewController:driverDetailsViewController animated:YES];
+    DriverDetailsViewController *driverDetails = [[DriverDetailsViewController alloc] initWithNibName:(KIS_ARABIC)?@"DriverDetailsViewController_ar":@"DriverDetailsViewController" bundle:nil];
+    driverDetails.joinedRide = ride;
+    [self.navigationController pushViewController:driverDetails animated:YES];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) {
-        [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+        [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
         __block RidesJoinedViewController *blockSelf = self;
         [[MobAccountManager sharedMobAccountManager] leaveRideWithID:self.toBeLeavedRide.RouteID.stringValue withSuccess:^(BOOL deletedSuccessfully) {
             [KVNProgress dismiss];
-            [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Ride leaved successfully.", nil)];
+            [KVNProgress showSuccessWithStatus:GET_STRING(@"Ride leaved successfully.")];
             [blockSelf performBlock:^{
                 [KVNProgress dismiss];
                 [blockSelf configureData];
             } afterDelay:3];
             
         } Failure:^(NSString *error) {
-            [KVNProgress showErrorWithStatus:NSLocalizedString(@"an error occured when leaving ride", nil)];
+            [KVNProgress showErrorWithStatus:GET_STRING(@"An error occured when leaving ride")];
             [blockSelf configureData];
             [blockSelf performBlock:^{
                 [KVNProgress dismiss];

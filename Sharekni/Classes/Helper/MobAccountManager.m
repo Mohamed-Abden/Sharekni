@@ -150,7 +150,7 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
     }];
 }
 
-- (void) forgetPassword:(NSString *)number andEmail:(NSString *)email WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
+- (void) forgetPassword:(NSString *)number andEmail:(NSString *)email WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure{
     NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ForgetPassword?mobile=%@&email=%@",number,email];
     
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
@@ -158,6 +158,14 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         
         responseString = [self jsonStringFromResponse:responseString];
+
+        if (responseString)
+        {
+            NSString *str = @"A reset password link has been sent to your email";
+            success(str);
+        }else{
+            success(nil);
+        }
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
         failure(@"incorrect");

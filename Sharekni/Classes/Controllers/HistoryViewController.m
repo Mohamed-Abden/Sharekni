@@ -249,14 +249,14 @@
     if (tableView.tag == 0)
     {
         CreatedRide *ride = self.createdRides[indexPath.row];
-        RideDetailsViewController *rideDetails = [[RideDetailsViewController alloc] initWithNibName:@"RideDetailsViewController" bundle:nil];
+        RideDetailsViewController *rideDetails = [[RideDetailsViewController alloc] initWithNibName:(KIS_ARABIC)?@"RideDetailsViewController_ar":@"RideDetailsViewController" bundle:nil];
         rideDetails.createdRide = ride ;
         [self.navigationController pushViewController:rideDetails animated:YES];
     }
     else
     {
         Ride *ride = self.joinRides[indexPath.row];
-        DriverDetailsViewController *driverDetails = [[DriverDetailsViewController alloc] initWithNibName:@"DriverDetailsViewController" bundle:nil];
+        DriverDetailsViewController *driverDetails = [[DriverDetailsViewController alloc] initWithNibName:(KIS_ARABIC)?@"DriverDetailsViewController_ar":@"DriverDetailsViewController" bundle:nil];
         driverDetails.joinedRide = ride ;
         [self.navigationController pushViewController:driverDetails animated:YES];
     }

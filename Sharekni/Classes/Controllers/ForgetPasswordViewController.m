@@ -36,11 +36,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = NSLocalizedString(@"forget", nil);
+    self.title = GET_STRING(@"forget");
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn",nil)] forState:UIControlStateNormal];
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
@@ -63,15 +63,15 @@
 - (void) configureUI{
     if ([self.mobileTextField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
         UIColor *color = [UIColor add_colorWithRGBHexString:Red_HEX];
-        self.mobileTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"mobileReq",nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.emailTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"mailReq", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.mobileTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"mobileReq") attributes:@{NSForegroundColorAttributeName: color}];
+        self.emailTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"mailReq") attributes:@{NSForegroundColorAttributeName: color}];
     } else {
         NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
         // TODO: Add fall-back code to set placeholder color.
     }
     
     [self.submitButton setBackgroundColor:Red_UIColor];
-    [self.submitButton setTitle:NSLocalizedString(@"Submit", nil) forState:UIControlStateNormal];
+    [self.submitButton setTitle:GET_STRING(@"Submit") forState:UIControlStateNormal];
     self.submitButton.layer.cornerRadius = 8;
     
 }
@@ -82,19 +82,23 @@
 
     if(self.mobileTextField.text.length == 0){
   
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"mobileReq",nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"mobileReq")];
     }
     else if (self.emailTextField.text.length == 0)
     {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"mailReq", nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"mailReq")];
     }
     else
     {
-        [KVNProgress showWithStatus:@"Loading..."];
+        [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
         
-        [[MobAccountManager sharedMobAccountManager] forgetPassword:self.mobileTextField.text andEmail:self.emailTextField.text WithSuccess:^(NSMutableArray *array) {
-            
+        [[MobAccountManager sharedMobAccountManager] forgetPassword:self.mobileTextField.text andEmail:self.emailTextField.text WithSuccess:^(NSString *user) {
             [KVNProgress dismiss];
+            if (user) {
+                [KVNProgress showSuccessWithStatus:user];
+            }else{
+                [KVNProgress dismiss];
+            }
             
         } Failure:^(NSString *error) {
             [KVNProgress dismiss];

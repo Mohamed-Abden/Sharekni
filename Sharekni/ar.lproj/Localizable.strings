@@ -37,7 +37,7 @@
 "quickSearch" = "بحث";
 
 "loading" = "تحميل";
-"Loading..." = "...تحميل";
+"Loading..." = "تحميل...";
 
 "sharkni" = "شاركني";
 
@@ -137,7 +137,7 @@
 "Please select from Emirate first" = "من فضلك اختر الإمارة أولا";
 "Please select to Emirate first" = "من فضلك اختر الإمارة أولا";
 "Please enter a valid to region name" = "من فضلك أدخل اسم المنطقة بطريقة صحيحة";
-"invalid start date or time" = "تاريخ البدء أو وقت البدء غير صحيح";
+"invalid start date or time" = "خطأ في تاريخ البدء أو وقت البدء";
 
 "Drivers :" = "السائقين :";
 "Passengers :" = "الركاب :";
@@ -181,3 +181,42 @@
 "Select date of birth" = "اختر تاريخ الميلاد";
 "Verification Code is wrong" = "كود التفعيل غير صحيح";
 "Mobile Verified" = "تم تفعيل رقم الجوال";
+
+"Please select start point" = "من فضلك اختر نقطة البداية";
+"Directions can't be edited." = "الطرق لايمكن تعديلها";
+"Please set startpoint and destination." = "من فضلك اختر نقطة الانطلاق ونقطة الوصول";
+"Please select Vehicle" = "يرجي اختيار المركبة";
+"Please enter ride name" = "من فضلك ادخل اسم الرحلة";
+"Please select start date" = "يرجي اختيار تاريخ البدء";
+"Please select start time" = "يرجي اختيار وقت البدء";
+"Please select number of available seats." = "يرجي اختيار عدد المقاعد المتاحة";
+"Please select days of week." = "يرجي اختيار أيام الاسبوع";
+"Ride edited successfully" = "تم تعديل بيانات الرحلة بنجاح";
+"Ride created successfully" = "تم إنشاء الرحلة بنجاح";
+"An error happend when trying to create ride" = "حدث خطأ عند إنشاء الرحلة";
+"You cannot create more than two rides." = "غير مسموح بانشاء أكثر من رحلتين";
+"Select Pickup Time" = "اخر وقت الإنطلاق";
+"Select Pickup Date" = "اختر تاريخ الإنطلاق";
+"Rating added successfully" = "تم التقييم بنجاح";
+"Unable to add Rating" = "لا يمكن إضافة التقييم الآن";
+
+
+"Ride Delete successfully." = "تم حذف الرحلة بنجاح";
+"An error occured when deleting ride" = "تم حدوث خطأ عند حذف الرحلة";
+"Passenger removed successfully" = "تم حذف الراكب بنجاح";
+"Unable to remove the passenger" = "لا تستطيع حذف الراكب";
+"Mobile Number not available" = "رقم الجوال غير متاح";
+"Do you want to delete this passenger ?" = "هل تريد حذف الراكب ؟";
+
+"No history" = "لا يوجد اي تواريخ";
+"Do you want to leave this ride" = "هل تريد مغادرة هذه الرحلة";
+"An error occured when leaving ride" = "تم حدوث خطأ اثناء مغادرة الرحلة";
+"Permit added successfully." = "تم إضافة التصريح بنجاح";
+"Invalid birthdate" = "تاريخ الميلاد غير صحيح";
+
+"Male" = "ذكر";
+"Female" = "أنثي";
+"Both" = "كلاهما";
+"Yes" = "نعم";
+"No" = "لا";
+"Dubai" = "دبي";

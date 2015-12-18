@@ -53,6 +53,9 @@
                                     <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="cbe-wI-KfY"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                             <animations/>
@@ -79,6 +82,9 @@
                                     <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="jb9-Pk-LR0"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                             <animations/>
@@ -139,6 +145,9 @@
                                     <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="qm1-Sh-C7f"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                             <animations/>
@@ -165,6 +174,9 @@
                                     <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="vfc-0c-p3x"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                             <animations/>
@@ -191,6 +203,9 @@
                                     <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="eBX-Lm-gOf"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                             <animations/>
@@ -260,7 +275,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="23g-tx-aaL">
-                                    <rect key="frame" x="117" y="4" width="60" height="35"/>
+                                    <rect key="frame" x="117" y="3" width="60" height="38"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <animations/>
                                     <state key="normal" backgroundImage="select_Left">

@@ -40,19 +40,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = NSLocalizedString(@"rideDetails", nil);
+    self.title = GET_STRING(@"rideDetails");
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn", nil)] forState:UIControlStateNormal];
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
 
+    self.fromLbl.text = GET_STRING(@"From");
+    self.toLbl.text = GET_STRING(@"To");
+    
     if (KIS_ARABIC)
     {
         _FromRegionName.text = [NSString stringWithFormat:@"%@ : %@",_ride.FromEmirateNameAr,_ride.FromRegionNameAr] ;
         _ToRegionName.text = [NSString stringWithFormat:@"%@ : %@",_ride.ToEmirateNameAr,_ride.ToRegionNameAr] ;
+        self.fromLbl.textAlignment = NSTextAlignmentRight ;
+        self.toLbl.textAlignment = NSTextAlignmentRight ;
+        _FromRegionName.textAlignment = NSTextAlignmentRight ;
+        _ToRegionName.textAlignment = NSTextAlignmentRight ;
     }
     else
     {
@@ -71,7 +78,7 @@
 - (void)getRideDetails
 {
     __block MostRideDetailsViewController *blockSelf = self;
-    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     [[MasterDataManager sharedMasterDataManager] getRideDetails:@"0" FromEmirateID:_ride.FromEmirateId FromRegionID:_ride.FromRegionId ToEmirateID:_ride.ToEmirateId ToRegionID:_ride.ToRegionId WithSuccess:^(NSMutableArray *array) {
         
         blockSelf.rides = array;
@@ -119,7 +126,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MostRideDetails *ride = self.rides[indexPath.row];
-    DriverDetailsViewController *driverDetails = [[DriverDetailsViewController alloc] initWithNibName:@"DriverDetailsViewController" bundle:nil];
+    DriverDetailsViewController *driverDetails = [[DriverDetailsViewController alloc] initWithNibName:(KIS_ARABIC)?@"DriverDetailsViewController_ar":@"DriverDetailsViewController" bundle:nil];
     driverDetails.mostRideDetails = ride ;
     [self.navigationController pushViewController:driverDetails animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

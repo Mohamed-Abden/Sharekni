@@ -82,11 +82,11 @@
     
     self.navigationController.navigationBarHidden = NO ;
     
-    self.title = NSLocalizedString(@"Edit Profile", nil);
+    self.title = GET_STRING(@"Edit Profile");
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn", nil)] forState:UIControlStateNormal];
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
@@ -142,12 +142,12 @@
     if ([self.firstNametxt respondsToSelector:@selector(setAttributedPlaceholder:)])
     {
         UIColor *color = [UIColor add_colorWithRGBHexString:Red_HEX];
-        self.firstNametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"firstName",nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.lastNametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"lastName", nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.mobileNumberTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"mobile", nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.usernameTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"username", nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.nationalityTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"nationality", nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.preferredLanguageTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"pLanguage", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.firstNametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"firstName") attributes:@{NSForegroundColorAttributeName: color}];
+        self.lastNametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"lastName") attributes:@{NSForegroundColorAttributeName: color}];
+        self.mobileNumberTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"mobile") attributes:@{NSForegroundColorAttributeName: color}];
+        self.usernameTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"username") attributes:@{NSForegroundColorAttributeName: color}];
+        self.nationalityTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"nationality") attributes:@{NSForegroundColorAttributeName: color}];
+        self.preferredLanguageTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"pLanguage") attributes:@{NSForegroundColorAttributeName: color}];
     } else {
         NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
         // TODO: Add fall-back code to set placeholder color.
@@ -192,7 +192,7 @@
     self.firstNametxt.text = self.firstName ;
     self.lastName = self.sharedUser.LastName ;
     self.lastNametxt.text = self.lastName ;
-    self.mobileNumberTxt.text = self.sharedUser.Mobile ;
+    self.mobileNumberTxt.text = [self.sharedUser.Mobile stringByReplacingOccurrencesOfString:@"+971" withString:@""] ;
     self.usernameTxt.text = self.sharedUser.Username ;
     self.nationalityTxt.text = (KIS_ARABIC)?self.sharedUser.NationalityArName:self.sharedUser.NationalityEnName ;
    
@@ -206,11 +206,15 @@
     {
         self.isMale = YES;
         [self.switchBtn setSelected:NO];
+        self.maleLabel.textColor = Red_UIColor;
+        self.femaleLabel.textColor = [UIColor darkGrayColor];
     }
     else
     {
         self.isMale = NO;
         [self.switchBtn setSelected:YES];
+        self.maleLabel.textColor =  [UIColor darkGrayColor];
+        self.femaleLabel.textColor = Red_UIColor;
     }
 
     __block EditProfileViewController*blockSelf = self;
@@ -406,7 +410,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 
 #pragma Pickers
 - (void) showPickerWithTextFieldType:(TextFieldType)type{
-    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select", nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction *selectAction = [RMAction actionWithTitle:GET_STRING(@"Select") style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         UIPickerView *picker = ((RMPickerViewController *)controller).picker;
         NSInteger selectedRow = [picker selectedRowInComponent:0];
         switch (picker.tag) {
@@ -443,7 +447,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     }];
     
     
-    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel", @"") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:GET_STRING(@"Cancel") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         NSLog(@"Row selection was canceled");
     }];
     
@@ -480,14 +484,14 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 {
     [self.view endEditing:YES];
     __block EditProfileViewController *blockSelf = self;
-    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select", nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {        
+    RMAction *selectAction = [RMAction actionWithTitle:GET_STRING(@"Select") style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
         blockSelf.dateFormatter.dateFormat = @"dd, MMM, yyyy";
         NSString * dateString = [self.dateFormatter stringFromDate:date];
         self.dateLabel.text = dateString;
         blockSelf.date = date;
         if (([[HelpManager sharedHelpManager] yearsBetweenDate:[NSDate date] andDate:blockSelf.date] < 18)){
-            UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"You should be older than 18 Years", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
+            UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:GET_STRING(@"Error") message:GET_STRING(@"You should be older than 18 Years") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
             [alertView show];
             self.date = nil;
             [self configureBorders];
@@ -495,13 +499,13 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     }];
     
     //Create cancel action
-    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel", @"") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:GET_STRING(@"Cancel") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         
     }];
     
     //Create date selection view controller
     RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
-    dateSelectionController.title = NSLocalizedString(@"Select date of birth", nil);
+    dateSelectionController.title = GET_STRING(@"Select date of birth");
     dateSelectionController.datePicker.datePickerMode = UIDatePickerModeDate;
     dateSelectionController.datePicker.date = self.date;
     
@@ -523,38 +527,39 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     
     if(self.firstName.length == 0 || self.lastName.length == 0 || !self.date)
     {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please fill all fields", nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please fill all fields")];
         [self configureBorders];
     }
     else if (![self isValidFirstName])
     {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"First name mustn't have numbers", nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"First name mustn't have numbers")];
     }
     else if (![self isValidLastName])
     {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Last name mustn't have numbers", nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Last name mustn't have numbers")];
     }
     else if (([[HelpManager sharedHelpManager] yearsBetweenDate:[NSDate date] andDate:self.date] < 18))
     {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"You should be older than 18 Years", nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"You should be older than 18 Years")];
         self.date = nil;
         [self configureBorders];
     }
     else if (!validNationality)
     {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please Choose a valid nationality.", nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please Choose a valid nationality.")];
     }
     else
     {
         self.dateFormatter.dateFormat = @"dd/MM/yyyy";
         NSString *dateString = [self.dateFormatter stringFromDate:self.date];
-        [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+        [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
        
-        [[MobAccountManager sharedMobAccountManager] updateUserProfileWithAccountID:[NSString stringWithFormat:@"%@",self.sharedUser.ID] firstName:self.firstName lastName:self.lastName gender:self.isMale ? @"M":@"F" imagePath:@"" birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId Mobile:self.sharedUser.Mobile WithSuccess:^(NSString *user) {
+        [[MobAccountManager sharedMobAccountManager] updateUserProfileWithAccountID:[NSString stringWithFormat:@"%@",self.sharedUser.ID] firstName:self.firstName lastName:self.lastName gender:self.isMale ? @"M":@"F" imagePath:@"" birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId Mobile:[self.sharedUser.Mobile stringByReplacingOccurrencesOfString:@"+971" withString:@""] WithSuccess:^(NSString *user) {
         
             [KVNProgress dismiss];
-            [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Edit profile info success", nil)];
-            
+            [KVNProgress showSuccessWithStatus:GET_STRING(@"Edit profile info success")];
+            [self performSelector:@selector(popViewController) withObject:nil afterDelay:1.0f];
+
         } Failure:^(NSString *error)
         {
             [KVNProgress dismiss];
@@ -579,7 +584,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         self.isMale = NO;
         self.switchBtn.selected = YES ;
         self.maleLabel.textColor =  [UIColor darkGrayColor];
-        self.femaleLabel.textColor = Red_UIColor;;
+        self.femaleLabel.textColor = Red_UIColor;
     }
 }
 
@@ -763,7 +768,7 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
 
 - (REFrostedViewController *) homeViewController {
     
-    HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
+    HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar":@"HomeViewController" bundle:nil];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeViewControlle];
     SideMenuTableViewController  *menuController = [[SideMenuTableViewController alloc] initWithNavigationController:navigationController];
     

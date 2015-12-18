@@ -87,20 +87,22 @@
 
 @implementation RideDetailsViewController
 
-- (void) viewWillAppear:(BOOL)animated{
+- (void) viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setTranslucent:NO];
 }
 
-- (void) viewDidLoad{
+- (void) viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.alreadyJoined = NO;
-    self.title = NSLocalizedString(@"rideDetails", nil);
+    self.title = GET_STRING(@"rideDetails");
 
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn", nil)] forState:UIControlStateNormal];
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
@@ -110,7 +112,6 @@
     
     [preferenceLbl addRightBorderWithColor:Red_UIColor];
     [preferenceLbl addLeftBorderWithColor:Red_UIColor];
-//    preferenceLbl.layer.
     [preferenceLbl setTextColor:Red_UIColor];
     
     [reviewLbl addRightBorderWithColor:Red_UIColor];
@@ -150,8 +151,10 @@
     [self configureData];
 }
 
-- (HCSStarRatingView *) driverRatingsView{
-    if (!_driverRatingsView) {
+- (HCSStarRatingView *) driverRatingsView
+{
+    if (!_driverRatingsView)
+    {
         _driverRatingsView = [[HCSStarRatingView alloc] initWithFrame:placeholderRatingView.frame];
         _driverRatingsView.maximumValue = 5;
         _driverRatingsView.minimumValue = 0;
@@ -167,7 +170,8 @@
     return _driverRatingsView;
 }
 
-- (void) didChangeValue:(HCSStarRatingView *)sender {
+- (void) didChangeValue:(HCSStarRatingView *)sender
+{
  //Rate Driver
     __block RideDetailsViewController *blockSelf = self;
     NSString *driverID = self.driverDetails ? self.driverDetails.ID : self.joinedRide.Account.stringValue;
@@ -184,13 +188,13 @@
     self.navigationItem.rightBarButtonItem = self.loadingBarButton;
     [[MobAccountManager sharedMobAccountManager] addDriverRatingWithDriverID:driverID inRouteID:routeID noOfStars:sender.value WithSuccess:^(NSString *response) {
         blockSelf.navigationItem.rightBarButtonItem = nil;
-        [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Rating added successfully", nil)];
+        [KVNProgress showSuccessWithStatus:GET_STRING(@"Rating added successfully")];
         [blockSelf performBlock:^{
             [KVNProgress dismiss];
         } afterDelay:3];
         
     } Failure:^(NSString *error) {
-        [KVNProgress showErrorWithStatus:NSLocalizedString(@"Unable to add Rating now", nil)];
+        [KVNProgress showErrorWithStatus:GET_STRING(@"Unable to add Rating")];
         [blockSelf performBlock:^{
             [KVNProgress dismiss];
         } afterDelay:3];
@@ -207,13 +211,13 @@
     
     ToRegionName.text = [NSString stringWithFormat:@"%@ : %@",(KIS_ARABIC)?self.routeDetails.ToEmirateArName:self.routeDetails.ToEmirateEnName,(KIS_ARABIC)?self.routeDetails.ToRegionArName:self.routeDetails.ToRegionEnName];
     
-    startingTime.text = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"From", nil),self.routeDetails.StartFromTime];
+    startingTime.text = [NSString stringWithFormat:@"%@ %@",GET_STRING(@"From"),self.routeDetails.StartFromTime];
     
-    availableDays.text = [NSString stringWithFormat:@"%@ : %@",NSLocalizedString(@"Ride Days", nil),[self getAvailableDays]];
+    availableDays.text = [NSString stringWithFormat:@"%@ : %@",GET_STRING(@"Ride Days"),[self getAvailableDays]];
     
     if ([NSStringEmpty isNullOrEmpty:(KIS_ARABIC)?self.routeDetails.NationalityArName:self.routeDetails.NationalityEnName])
     {
-        nationality.text = NSLocalizedString(@"Not Set", nil);
+        nationality.text = GET_STRING(@"Not Set");
     }
     else
     {
@@ -222,7 +226,7 @@
     
     if ([NSStringEmpty isNullOrEmpty:self.routeDetails.AgeRange])
     {
-        ageRange.text = NSLocalizedString(@"Not Set", nil);
+        ageRange.text = GET_STRING(@"Not Set");
     }
     else
     {
@@ -230,21 +234,21 @@
     }
     
     if (self.routeDetails.IsSmoking.boolValue) {
-        smoking.text = @"Yes";
+        smoking.text = GET_STRING(@"Yes");
     }else{
-        smoking.text = @"No";
+        smoking.text = GET_STRING(@"No");
     }
     
     if ([NSStringEmpty isNullOrEmpty:(KIS_ARABIC)?self.routeDetails.PrefLanguageArName:self.routeDetails.PrefLanguageEnName])
     {
-        language.text = NSLocalizedString(@"Not Set", nil);
+        language.text = GET_STRING(@"Not Set");
     }
     else
     {
         language.text = (KIS_ARABIC)?self.routeDetails.PrefLanguageArName:self.routeDetails.PrefLanguageEnName;
     }
     
-    gender.text = self.routeDetails.PreferredGender;
+    gender.text = GET_STRING(self.routeDetails.PreferredGender);
 }
 
 - (void) configureData
@@ -252,11 +256,12 @@
     __block RideDetailsViewController *blockSelf = self;
     __block UITableView *blockPassengersList = passengersList;
     __block UITableView *blockReviewsList = reviewList;
-    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
     
     NSString *routeID;
     NSString *accountID ;
-    if (self.driverDetails) {
+    if (self.driverDetails)
+    {
         routeID = self.driverDetails.RouteId;
         accountID = self.driverDetails.ID;
     }
@@ -279,7 +284,8 @@
        [[MasterDataManager sharedMasterDataManager] getReviewList:routeDetails.AccountId.stringValue andRoute:routeDetails.ID.stringValue withSuccess:^(NSMutableArray *array) {
            blockSelf.reviews = array;
            
-           if (array.count == 0) {
+           if (array.count == 0)
+           {
                reviewLbl.alpha = 0 ;
                reviewList.alpha = 0 ;
                reviewsView.alpha = 0 ;
@@ -341,13 +347,13 @@
 - (void) configureActionsButtons{
     
     if (self.createdRide) {
-        [firstButton setTitle:NSLocalizedString(@"Delete", nil) forState:UIControlStateNormal];
+        [firstButton setTitle:GET_STRING(@"Delete") forState:UIControlStateNormal];
         [firstButton addTarget:self action:@selector(deleteRideAction) forControlEvents:UIControlEventTouchUpInside];
         
-        [secondButton setTitle:NSLocalizedString(@"Edit", nil) forState:UIControlStateNormal];
+        [secondButton setTitle:GET_STRING(@"Edit") forState:UIControlStateNormal];
         [secondButton addTarget:self action:@selector(editRideAction) forControlEvents:UIControlEventTouchUpInside];
         
-        [thirdButton setTitle:NSLocalizedString(@"Permit", nil) forState:UIControlStateNormal];
+        [thirdButton setTitle:GET_STRING(@"Permit") forState:UIControlStateNormal];
         [thirdButton addTarget:self action:@selector(permitRideAction) forControlEvents:UIControlEventTouchUpInside];
         
         firstButton.alpha = 1;
@@ -360,7 +366,7 @@
         }
     }
     else{
-        [firstButton setTitle:NSLocalizedString(@"Review", nil) forState:UIControlStateNormal];
+        [firstButton setTitle:GET_STRING(@"Review") forState:UIControlStateNormal];
         [firstButton addTarget:self action:@selector(addReviewAction) forControlEvents:UIControlEventTouchUpInside];
         firstButton.alpha = 1;
         secondButton.alpha = 0;
@@ -453,7 +459,7 @@
 - (void) handleResponseError{
     NSLog(@"Error in Best Drivers");
     [KVNProgress dismiss];
-    [KVNProgress showErrorWithStatus:@"Error"];
+    [KVNProgress showErrorWithStatus:GET_STRING(@"Error")];
     [self performBlock:^{
         [KVNProgress dismiss];
     } afterDelay:3];
@@ -463,27 +469,25 @@
     NSMutableString *str = [[NSMutableString alloc] init];
     
     if (self.routeDetails.Saturday.boolValue) {
-        [str appendString:NSLocalizedString(@"Sat ", nil)];
+        [str appendString:GET_STRING(@"Sat ")];
     }
     if (self.routeDetails.Sunday.boolValue) {
-        [str appendString:NSLocalizedString(@"Sun ", nil)];
+        [str appendString:GET_STRING(@"Sun ")];
     }
     if (self.routeDetails.Monday.boolValue) {
-        [str appendString:NSLocalizedString(@"Mon ", nil)];
+        [str appendString:GET_STRING(@"Mon ")];
     }
     if (self.routeDetails.Tuesday.boolValue) {
-        [str appendString:NSLocalizedString(@"Tue ", nil)];
+        [str appendString:GET_STRING(@"Tue ")];
     }
     if (self.routeDetails.Wendenday.boolValue) {
-        [str appendString:NSLocalizedString(@"Wed ", nil)];
-        
+        [str appendString:GET_STRING(@"Wed ")];
     }
     if (self.routeDetails.Thrursday.boolValue) {
-        [str appendString:NSLocalizedString(@"Thu ", nil)];
-        
+        [str appendString:GET_STRING(@"Thu ")];
     }
     if (self.routeDetails.Friday.boolValue) {
-        [str appendString:NSLocalizedString(@"Fri ", nil)];
+        [str appendString:GET_STRING(@"Fri ")];
     }
     
     return str ;
@@ -507,14 +511,15 @@
     }
 }
 
-- (void) deleteRideAction{
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Confirm", nil) message:NSLocalizedString(@"Do you want to delete this ride", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Delete", nil), nil];
+- (void) deleteRideAction
+{
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:GET_STRING(@"Confirm") message:GET_STRING(@"Do you want to delete this ride") delegate:self cancelButtonTitle:GET_STRING(@"Cancel") otherButtonTitles:GET_STRING(@"Delete"), nil];
         alertView.tag = DELETE_RIDE_ALERT_TAG;
         [alertView show];
 }
 
 - (void) editRideAction{
-    CreateRideViewController *editRideViewController = [[CreateRideViewController alloc] initWithNibName:@"CreateRideViewController" bundle:nil];
+    CreateRideViewController *editRideViewController = [[CreateRideViewController alloc] initWithNibName:(KIS_ARABIC)?@"CreateRideViewController_ar":@"CreateRideViewController" bundle:nil];
     editRideViewController.routeDetails = self.routeDetails;
     __block RideDetailsViewController *blockSelf = self;
     [editRideViewController setEditHandler:^{
@@ -524,7 +529,7 @@
 }
 
 - (void) permitRideAction{
-    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
     __block RideDetailsViewController *blockSelf = self;
     NSMutableArray *passengersIDS = [NSMutableArray array];
     for (Passenger *passenger in self.passengers) {
@@ -533,13 +538,13 @@
     
     [[MobAccountManager sharedMobAccountManager] addPermitForRouteID:self.routeDetails.ID.stringValue vehicleId:self.routeDetails.VehicelId.stringValue passengerIDs:passengersIDS withSuccess:^(NSString *addedSuccessfully) {
         [KVNProgress dismiss];
-        [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Permit added successfully.", nil)];
+        [KVNProgress showSuccessWithStatus:GET_STRING(@"Permit added successfully.")];
         [blockSelf performBlock:^{
             [KVNProgress dismiss];
             [blockSelf configureData];
         } afterDelay:3];
     } Failure:^(NSString *error) {
-        [KVNProgress showErrorWithStatus:NSLocalizedString(@"an error occured when permit this ride", nil)];
+        [KVNProgress showErrorWithStatus:GET_STRING(@"an error occured when permit this ride")];
         [blockSelf configureData];
         [blockSelf performBlock:^{
             [KVNProgress dismiss];
@@ -580,18 +585,18 @@
 }
 
 - (void) deleteRide{
-    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
     __block RideDetailsViewController *blockSelf = self;
     [[MobAccountManager sharedMobAccountManager] deleteRideWithID:self.routeDetails.ID.stringValue withSuccess:^(BOOL deletedSuccessfully) {
         [KVNProgress dismiss];
-        [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Ride Delete successfully.", nil)];
+        [KVNProgress showSuccessWithStatus:GET_STRING(@"Ride Delete successfully.")];
         [blockSelf performBlock:^{
             [KVNProgress dismiss];
             [blockSelf configureData];
         } afterDelay:3];
         
     } Failure:^(NSString *error) {
-        [KVNProgress showErrorWithStatus:NSLocalizedString(@"an error occured when deleting ride", nil)];
+        [KVNProgress showErrorWithStatus:GET_STRING(@"An error occured when deleting ride")];
         [blockSelf configureData];
         [blockSelf performBlock:^{
             [KVNProgress dismiss];
@@ -602,18 +607,18 @@
 - (void) deletePassenger:(Passenger *)passenger{
     __block RideDetailsViewController *blockSelf = self;
     
-    [KVNProgress showWithStatus:NSLocalizedString(@"loading...", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     [[MasterDataManager sharedMasterDataManager] deletePassengerWithID:passenger.ID.stringValue withSuccess:^(NSString *response) {
         [KVNProgress dismiss];
         if([response containsString:@"1"]){
-            [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Passenger removed successfully", nil)];
+            [KVNProgress showSuccessWithStatus:GET_STRING(@"Passenger removed successfully")];
             [blockSelf performBlock:^{
                 [KVNProgress dismiss];
             } afterDelay:3];
             [blockSelf refreshPassengers];
         }
         else{
-            [KVNProgress showErrorWithStatus:NSLocalizedString(@"Unable to remover passenger", nil)];
+            [KVNProgress showErrorWithStatus:GET_STRING(@"Unable to remove the passenger")];
             [blockSelf performBlock:^{
                 [KVNProgress dismiss];
             } afterDelay:3];
@@ -671,7 +676,7 @@
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",blockPasseger.AccountMobile]]];
             }
             else{
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"Account Mobile Number not avialable",nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:nil, nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:GET_STRING(@"Mobile Number not available") delegate:self cancelButtonTitle:GET_STRING(@"Cancel") otherButtonTitles:nil, nil];
                 [alertView show];
             }
         }];
@@ -680,13 +685,13 @@
                 [blockSelf sendSMSFromPhone:blockPasseger.AccountMobile];
             }
             else{
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"Account Mobile Number not avialable",nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:nil, nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:GET_STRING(@"Mobile Number not available") delegate:self cancelButtonTitle:GET_STRING(@"Cancel") otherButtonTitles:nil, nil];
                 [alertView show];
             }
         }];
         [passengerCell setDeleteHandler:^{
             blockSelf.toBeDeletedpassenger = passenger;
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"do you want to delete this passenger ?",nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:@"Delete", nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:GET_STRING(@"Do you want to delete this passenger ?") delegate:self cancelButtonTitle:GET_STRING(@"Cancel") otherButtonTitles:@"Delete", nil];
             alertView.tag = PASSENGER_ALERT_TAG;
             [alertView show];
         }];
@@ -773,13 +778,13 @@
     self.navigationItem.rightBarButtonItem = self.loadingBarButton;
 [[MobAccountManager sharedMobAccountManager] addPassengerRatingWithPassengerID:passenger.ID.stringValue inRouteID:self.routeDetails.ID.stringValue noOfStars:noOfStars WithSuccess:^(NSString *response) {
     blockSelf.navigationItem.rightBarButtonItem = nil;
-    [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Rating added successfully", nil)];
+    [KVNProgress showSuccessWithStatus:GET_STRING(@"Rating added successfully")];
     [blockSelf performBlock:^{
         [KVNProgress dismiss];
     } afterDelay:3];
 
 } Failure:^(NSString *error) {
-    [KVNProgress showErrorWithStatus:NSLocalizedString(@"Unable to add Rating now", nil)];
+    [KVNProgress showErrorWithStatus:GET_STRING(@"Unable to add Rating")];
     [blockSelf performBlock:^{
         [KVNProgress dismiss];
     } afterDelay:3];
@@ -838,7 +843,7 @@
 - (void) refreshReviews{
     __block RideDetailsViewController *blockSelf = self;
     __block UITableView *blockReviewsList = reviewList;
-    [KVNProgress showWithStatus:NSLocalizedString(@"loading...", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     [[MasterDataManager sharedMasterDataManager] getReviewList:self.routeDetails.AccountId.stringValue andRoute:self.routeDetails.ID.stringValue withSuccess:^(NSMutableArray *array) {
         [KVNProgress dismiss];
         blockSelf.reviews = array;
@@ -862,12 +867,14 @@
     }];
 }
 
-- (void) refreshPassengers{
+- (void) refreshPassengers
+{
     __block RideDetailsViewController *blockSelf = self;
     __block UITableView *blockPassengersList = passengersList;
-    [KVNProgress showWithStatus:NSLocalizedString(@"loading...", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     
-    if (blockSelf.createdRide) {
+    if (blockSelf.createdRide)
+    {
         [[MasterDataManager sharedMasterDataManager] getPassengersByRouteId:self.routeDetails.ID.stringValue withSuccess:^(NSMutableArray *array) {
             blockSelf.passengers = array;
             [blockPassengersList reloadData];
@@ -889,7 +896,7 @@
 
 - (void) refreshInfo{
     __block RideDetailsViewController *blockSelf = self;
-    [KVNProgress showWithStatus:NSLocalizedString(@"loading...", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     
     NSString *routeID;
     NSString *accountID ;

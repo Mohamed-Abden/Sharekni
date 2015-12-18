@@ -101,7 +101,6 @@
 #define Red_UIColor [UIColor add_colorWithRGBHexString:Red_HEX]
 #define Yellow_UIColor [UIColor add_colorWithRGBHexString:Yellow_HEX]
 
-
 #pragma ENUMS
 
 typedef enum RoadType : NSUInteger {
@@ -164,12 +163,14 @@ typedef enum TextFieldType : NSUInteger {
 #define GoogleMaps_ProjectNumber @"308520536406"
 #define GoogleMaps_ApplicationID @"sharekni-1121"
 
-#define KIS_ARABIC ([[KUSER_DEFAULTS valueForKey:KUSER_LANGUAGE_KEY] isEqualToString:@"ar"])
+//#define KIS_ARABIC ([[KUSER_DEFAULTS valueForKey:KUSER_LANGUAGE_KEY] isEqualToString:@"ar"])
 #define KIS_SYS_LANGUAGE_ARABIC ([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"ar"])
 #define KUSER_DEFAULTS ([NSUserDefaults standardUserDefaults])
 #define KUSER_TOKEN_KEY @"KUSER_TOKEN_KEY"
 #define KUSER_LANGUAGE_KEY @"KUSER_LANGUAGE_KEY"
 #define KNEEDS_TO_COMPLETE_PROFILE_KEY @"KNEEDS_TO_COMPLETE_PROFILE_KEY"
+
+#import "Languages.h"
 
 
 #endif

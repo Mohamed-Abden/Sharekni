@@ -12,9 +12,12 @@
 #import <UIColor+Additions/UIColor+Additions.h>
 
 @implementation DriverRideCell
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-    if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self = [[[NSBundle mainBundle] loadNibNamed:@"DriverRideCell" owner:nil options:nil] objectAtIndex:0];
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if ([super initWithStyle:style reuseIdentifier:reuseIdentifier])
+    {
+        self = [[[NSBundle mainBundle] loadNibNamed:@"DriverRideCell" owner:nil options:nil] objectAtIndex:(KIS_ARABIC)?1:0];
         
         [_RouteName addRightBorderWithColor:Red_UIColor];
         [_RouteName addLeftBorderWithColor:Red_UIColor];
@@ -98,9 +101,9 @@
         _ToRegionName.text = [NSString stringWithFormat:@"%@ - %@",joinedRide.ToEmirateEnName,joinedRide.ToRegionEnName];
     }
     
-    [self.firstButton setTitle:NSLocalizedString(@"Details", nil) forState:UIControlStateNormal];
-    [self.secondButton setTitle:NSLocalizedString(@"Driver", nil) forState:UIControlStateNormal];
-    [self.thirdButton setTitle:NSLocalizedString(@"Leave", nil) forState:UIControlStateNormal];
+    [self.firstButton setTitle:GET_STRING(@"Details") forState:UIControlStateNormal];
+    [self.secondButton setTitle:GET_STRING(@"Driver") forState:UIControlStateNormal];
+    [self.thirdButton setTitle:GET_STRING(@"Leave") forState:UIControlStateNormal];
 }
 
 - (void)setCreatedRide:(CreatedRide *)createdRide
@@ -119,9 +122,9 @@
         _ToRegionName.text = [NSString stringWithFormat:@"%@ - %@",createdRide.ToEmirateEnName,createdRide.ToRegionEnName];
     }
     
-    [self.firstButton setTitle:NSLocalizedString(@"Details", nil) forState:UIControlStateNormal];
-    [self.secondButton setTitle:NSLocalizedString(@"Edit", nil) forState:UIControlStateNormal];
-    [self.thirdButton setTitle:NSLocalizedString(@"Delete", nil) forState:UIControlStateNormal];
+    [self.firstButton setTitle:GET_STRING(@"Details") forState:UIControlStateNormal];
+    [self.secondButton setTitle:GET_STRING(@"Edit") forState:UIControlStateNormal];
+    [self.thirdButton setTitle:GET_STRING(@"Delete") forState:UIControlStateNormal];
 }
 
 - (NSString *)getAvailableDays:(DriverDetails *)rideDetails
@@ -129,25 +132,25 @@
     NSMutableString *str = [[NSMutableString alloc] init];
     
     if (rideDetails.Saturday.boolValue) {
-        [str appendString:NSLocalizedString(@"Sat ", nil)];
+        [str appendString:GET_STRING(@"Sat ")];
     }
     if (rideDetails.Sunday.boolValue) {
-        [str appendString:NSLocalizedString(@"Sun ", nil)];
+        [str appendString:GET_STRING(@"Sun ")];
     }
     if (rideDetails.Monday.boolValue) {
-        [str appendString:NSLocalizedString(@"Mon ", nil)];
+        [str appendString:GET_STRING(@"Mon ")];
     }
     if (rideDetails.Tuesday.boolValue) {
-        [str appendString:NSLocalizedString(@"Tue ", nil)];
+        [str appendString:GET_STRING(@"Tue ")];
     }
     if (rideDetails.Wendenday.boolValue) {
-        [str appendString:NSLocalizedString(@"Wed ", nil)];
+        [str appendString:GET_STRING(@"Wed ")];
     }
     if (rideDetails.Thrursday.boolValue) {
-        [str appendString:NSLocalizedString(@"Thu ", nil)];
+        [str appendString:GET_STRING(@"Thu ")];
     }
     if (rideDetails.Friday.boolValue) {
-        [str appendString:NSLocalizedString(@"Fri ", nil)];
+        [str appendString:GET_STRING(@"Fri ")];
     }
     
     return str ;

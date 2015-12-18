@@ -42,11 +42,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = NSLocalizedString(@"driverDetails", nil);
+    self.title = GET_STRING(@"driverDetails");
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn",nil)] forState:UIControlStateNormal];
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
@@ -58,8 +58,8 @@
     [self configureData];
 }
 
-- (void) configureData{
-    
+- (void) configureData
+{
     //configure Image
     NSString *driverID;
     if (self.bestDriver) {
@@ -74,11 +74,13 @@
     else if (self.joinedRide){
         driverID = self.joinedRide.Account.stringValue;
     }
-    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
 
-    self.driverName.textAlignment = NSTextAlignmentNatural ;
-    self.country.textAlignment = NSTextAlignmentNatural ;
-    
+    if (KIS_ARABIC) {
+        self.driverName.textAlignment = NSTextAlignmentRight ;
+        self.country.textAlignment = NSTextAlignmentRight ;
+    }
+   
     if (self.bestDriver) {
         
         self.driverName.text = self.bestDriver.AccountName ;
@@ -168,7 +170,7 @@
 
 - (void)configureDriverData:(NSString *)driverID{
     __block DriverDetailsViewController *blockSelf = self;
-        [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+        [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
         NSString *accountID = driverID;
         [[MasterDataManager sharedMasterDataManager] getDriverRideDetails:accountID WithSuccess:^(NSMutableArray *array)
          {
@@ -257,7 +259,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DriverDetails *driver = self.driverRides[indexPath.row];
-    RideDetailsViewController *rideDetails = [[RideDetailsViewController alloc] initWithNibName:@"RideDetailsViewController" bundle:nil];
+    RideDetailsViewController *rideDetails = [[RideDetailsViewController alloc] initWithNibName:(KIS_ARABIC)?@"RideDetailsViewController_ar":@"RideDetailsViewController" bundle:nil];
     rideDetails.driverDetails = driver ;
     [self.navigationController pushViewController:rideDetails animated:YES];
 }

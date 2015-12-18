@@ -40,7 +40,7 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = NO ;
     
-    self.title = NSLocalizedString(@"bestDrivers", nil);
+    self.title = GET_STRING(@"bestDrivers");
     [self getBestDrivers];
 }
 
@@ -53,7 +53,7 @@
 - (void)getBestDrivers
 {
     __block BestDriversViewController *blockSelf = self;
-    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     [[MasterDataManager sharedMasterDataManager] GetBestDrivers:^(NSMutableArray *array) {
         blockSelf.bestDrivers = array;
         [KVNProgress dismiss];
@@ -89,7 +89,7 @@
     static NSString *driverIdentifier = @"BestDriverCell";
     BestDriverCell *driverCell = (BestDriverCell*)[tableView dequeueReusableCellWithIdentifier:driverIdentifier];
     if (driverCell == nil) {
-        driverCell = (BestDriverCell *)[[[NSBundle mainBundle] loadNibNamed:@"BestDriverCell" owner:nil options:nil] objectAtIndex:0];
+        driverCell = (BestDriverCell *)[[[NSBundle mainBundle] loadNibNamed:@"BestDriverCell" owner:nil options:nil] objectAtIndex:(KIS_ARABIC)?1:0];
 
         driverCell.contentView.backgroundColor = [UIColor clearColor];
     }
@@ -107,7 +107,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BestDriver *driver = self.bestDrivers[indexPath.row];
-    DriverDetailsViewController *driverDetails = [[DriverDetailsViewController alloc] initWithNibName:@"DriverDetailsViewController" bundle:nil];
+    DriverDetailsViewController *driverDetails = [[DriverDetailsViewController alloc] initWithNibName:(KIS_ARABIC)?@"DriverDetailsViewController_ar":@"DriverDetailsViewController" bundle:nil];
     driverDetails.isBestDriver = YES ;
     driverDetails.bestDriver = driver;
     [self.navigationController pushViewController:driverDetails animated:YES];

@@ -13,4 +13,7 @@
 
 @property (nonatomic ,strong) MostRide *ride ;
 
+@property (nonatomic ,weak) IBOutlet UILabel *fromLbl ;
+@property (nonatomic ,weak) IBOutlet UILabel *toLbl ;
+
 @end

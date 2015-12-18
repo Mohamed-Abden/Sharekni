@@ -61,12 +61,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = NSLocalizedString(@"Vehicles", nil);
+    self.title = GET_STRING(@"Vehicles");
     
     if (self.enableBackButton) {
         UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _backBtn.frame = CGRectMake(0, 0, 22, 22);
-        [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn",nil)] forState:UIControlStateNormal];
+        [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
         [_backBtn setHighlighted:NO];
         [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
@@ -122,7 +122,7 @@
     
     if ([self.traficFileNo respondsToSelector:@selector(setAttributedPlaceholder:)]) {
         UIColor *color = [UIColor add_colorWithRGBHexString:Red_HEX];
-        self.traficFileNo.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Traffic File No.", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.traficFileNo.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"Traffic File No.") attributes:@{NSForegroundColorAttributeName: color}];
     } else {
         NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
         
@@ -145,7 +145,7 @@
 {
     __block VehiclesViewController *blockSelf = self;
     
-    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     
@@ -171,7 +171,7 @@
 - (void) handleResponseError{
     NSLog(@"Error in Best Drivers");
     [KVNProgress dismiss];
-    [KVNProgress showErrorWithStatus:@"Error"];
+    [KVNProgress showErrorWithStatus:GET_STRING(@"Error")];
     [self performBlock:^{
         [KVNProgress dismiss];
     } afterDelay:3];
@@ -180,7 +180,7 @@
 #pragma mark - Event Handler
 - (IBAction)submit:(id)sender
 {
-    [KVNProgress showWithStatus:@"Loading..."];
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
     
     User *sharedUser = [[MobAccountManager sharedMobAccountManager] applicationUser];
 
@@ -230,14 +230,14 @@
         self.dateLabel.text = dateString;
         blockSelf.date = date;
         if (([[HelpManager sharedHelpManager] yearsBetweenDate:[NSDate date] andDate:blockSelf.date] < 18)){
-            UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"invalid birthdate", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:GET_STRING(@"Error") message:GET_STRING(@"Invalid birthdate") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
             [alertView show];
             self.date = nil;
         }
     }];
     
     //Create cancel action
-    RMAction *cancelAction = [RMAction actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:GET_STRING(@"Cancel") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         
     }];
     
@@ -269,7 +269,7 @@
     }
     
     Vehicle *vehicle = self.vehiclesArray[indexPath.row];
-    vehicleCell.countryLbl.text = @"Dubai";
+    vehicleCell.countryLbl.text = GET_STRING(@"Dubai");
     vehicleCell.numberLbl.text = [NSString stringWithFormat:@"%@ %@",(vehicle.PlateCode)?vehicle.PlateCode:@"",(vehicle.PlateNumber)?vehicle.PlateNumber:@""];
     
     return vehicleCell ;

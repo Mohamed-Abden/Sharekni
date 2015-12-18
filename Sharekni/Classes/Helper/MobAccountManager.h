@@ -30,7 +30,7 @@
 
 - (void) deleteRideWithID:(NSString *)rideID withSuccess:(void (^)(BOOL deletedSuccessfully))success Failure:(void (^)(NSString *error))failure;
 
-- (void) forgetPassword:(NSString *)number andEmail:(NSString *)email WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;
+- (void) forgetPassword:(NSString *)number andEmail:(NSString *)email WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure ;
 
 +(MobAccountManager *)sharedMobAccountManager;
 

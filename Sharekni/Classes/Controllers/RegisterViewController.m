@@ -96,11 +96,11 @@
     
     self.navigationController.navigationBarHidden = NO ;
     
-    self.title = NSLocalizedString(@"registration", nil);
+    self.title = GET_STRING(@"registration");
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn", nil)] forState:UIControlStateNormal];
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
@@ -170,13 +170,13 @@
 
     if ([self.firstNametxt respondsToSelector:@selector(setAttributedPlaceholder:)]) {
         UIColor *color = [UIColor add_colorWithRGBHexString:Red_HEX];
-        self.firstNametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"firstName",nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.lastNametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"lastName", nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.mobileNumberTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"mobile", nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.usernameTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"username", nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.passwordTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Password", nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.nationalityTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"nationality", nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.preferredLanguageTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"pLanguage", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.firstNametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"firstName") attributes:@{NSForegroundColorAttributeName: color}];
+        self.lastNametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"lastName") attributes:@{NSForegroundColorAttributeName: color}];
+        self.mobileNumberTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"mobile") attributes:@{NSForegroundColorAttributeName: color}];
+        self.usernameTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"username") attributes:@{NSForegroundColorAttributeName: color}];
+        self.passwordTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"Password") attributes:@{NSForegroundColorAttributeName: color}];
+        self.nationalityTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"nationality") attributes:@{NSForegroundColorAttributeName: color}];
+        self.preferredLanguageTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"pLanguage") attributes:@{NSForegroundColorAttributeName: color}];
     } else {
         NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
         // TODO: Add fall-back code to set placeholder color.
@@ -383,7 +383,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 
 #pragma Pickers
 - (void) showPickerWithTextFieldType:(TextFieldType)type{
-    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select", nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction *selectAction = [RMAction actionWithTitle:GET_STRING(@"Select") style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         UIPickerView *picker = ((RMPickerViewController *)controller).picker;
         NSInteger selectedRow = [picker selectedRowInComponent:0];
         switch (picker.tag) {
@@ -420,7 +420,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     }];
     
     
-    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel", @"") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:GET_STRING(@"Cancel") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         NSLog(@"Row selection was canceled");
     }];
     
@@ -457,7 +457,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     
     [self.view endEditing:YES];
     __block RegisterViewController *blockSelf = self;
-    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select", nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction *selectAction = [RMAction actionWithTitle:GET_STRING(@"Select") style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
         
         blockSelf.dateFormatter.dateFormat = @"dd, MMM, yyyy";
@@ -465,7 +465,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         self.dateLabel.text = dateString;
         blockSelf.date = date;
         if (([[HelpManager sharedHelpManager] yearsBetweenDate:[NSDate date] andDate:blockSelf.date] < 18)){
-            UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"You should be older than 18 Years", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
+            UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:GET_STRING(@"Error") message:GET_STRING(@"You should be older than 18 Years") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
             [alertView show];
             self.date = nil;
             [self configureBorders];
@@ -473,7 +473,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     }];
     
     //Create cancel action
-    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel", @"") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:GET_STRING(@"Cancel") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         
     }];
     
@@ -488,7 +488,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 }
 
 #pragma Actions
-- (IBAction)registerAction:(id)sender {
+- (IBAction)registerAction:(id)sender
+{
     self.userName = self.usernameTxt.text;
     self.password = self.passwordTxt.text;
     self.firstName = self.firstNametxt.text;
@@ -501,48 +502,48 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     }
     
     if(self.accountType == AccountTypeNone){
-        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"Please Choose accout type.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"Please Choose accout type.") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
         [alertView show];
     }
     else if(self.firstName.length == 0 || self.lastName.length == 0 || self.userName.length == 0 || self.mobileNumber.length == 0 || !self.date){
-        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"Please fill all fields", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"Please fill all fields") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
         [alertView show];
         [self configureBorders];
     }
     else if (![self isValidFirstName]){
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"First name mustn't have numbers", nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"First name mustn't have numbers")];
     }
     else if (![self isValidLastName]){
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Last name mustn't have numbers", nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Last name mustn't have numbers")];
     }
     else if (![self isValidMobileNumber]){
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Mobile Number should be only 9 and should start with [50 – 55 – 56 – 52]", nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Mobile Number should be only 9 and should start with [50 – 55 – 56 – 52]")];
     }
     else if (![self IsValidEmail:self.userName]){
-        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"Please enter a valid email address", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"Please enter a valid email address") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
         self.userName = @"";
         [alertView show];
         [self configureBorders];
     }
     else if (([[HelpManager sharedHelpManager] yearsBetweenDate:[NSDate date] andDate:self.date] < 18)){
-        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"You should be older than 18 Years", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"You should be older than 18 Years") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
         [alertView show];
         self.date = nil;
         [self configureBorders];
     }
     else if ([[HelpManager sharedHelpManager] isDateBefor1900:self.date]){
-        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"You cannot choose year before 1900", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"You cannot choose year before 1900") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
         [alertView show];
         self.date = nil;
         [self configureBorders];
     }
     else if (!validNationality){
-        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"Please Choose a valid nationality.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"Please Choose a valid nationality.") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
         [alertView show];
     }
     else{
         if (self.profileImage) {
-            [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+            [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
             UploadImageManager *imageManager = [[UploadImageManager alloc] initWithImage:self.profileImage Success:^(NSString *fileName) {
                 if (self.accountType == AccountTypeDriver ||self.accountType == AccountTypeBoth){
                     [self registerDriverWithPhotoName:fileName];
@@ -575,10 +576,10 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 - (void) registerDriverWithPhotoName:(NSString *)photoName{
     self.dateFormatter.dateFormat = @"dd/MM/yyyy";
     NSString *dateString = [self.dateFormatter stringFromDate:self.date];
-    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
     [[MobAccountManager sharedMobAccountManager] registerDriverWithFirstName:self.firstName lastName:self.lastName mobile:self.mobileNumber username:self.userName password:self.password gender:self.isMale ? @"M":@"F" imagePath:photoName birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId WithSuccess:^(NSMutableArray *array) {
         [KVNProgress dismiss];
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Registration done successfully",nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Registration done successfully")];
         [self loginAfterRegisteration];
     } Failure:^(NSString *error) {
         [KVNProgress dismiss];
@@ -589,10 +590,10 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 - (void) registerPassengerWithPhotoName:(NSString *)photoName{
     self.dateFormatter.dateFormat = @"dd/MM/yyyy";
     NSString *dateString = [self.dateFormatter stringFromDate:self.date];
-    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];    
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
     [[MobAccountManager sharedMobAccountManager] registerPassengerWithFirstName:self.firstName lastName:self.lastName mobile:self.mobileNumber username:self.userName password:self.password gender:self.isMale ? @"M":@"F" imagePath:photoName birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId WithSuccess:^(NSMutableArray *array) {
         [KVNProgress dismiss];
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Registration done successfully",nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Registration done successfully")];
         [self loginAfterRegisteration];
     } Failure:^(NSString *error) {
         [KVNProgress dismiss];
@@ -665,7 +666,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 }
 
 - (void) loginAfterRegisteration{
-    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
     [[MobAccountManager sharedMobAccountManager] checkLoginWithUserName:self.userName andPassword:self.password WithSuccess:^(User *user) {
         [KVNProgress dismiss];
         if (user) {
@@ -791,12 +792,12 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         [self addGreyBorderToView:self.nationalityView];
     }
     
-//    if (!self.selectedLanguage){
-//        [self addRedBorderToView:self.languageView];
-//    }
-//    else{
-//        [self addGreyBorderToView:self.languageView];
-//    }
+    if (!self.selectedLanguage){
+        [self addRedBorderToView:self.languageView];
+    }
+    else{
+        [self addGreyBorderToView:self.languageView];
+    }
     
     if (!self.date){
         [self addRedBorderToView:self.datePickerView];
@@ -836,11 +837,11 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     imageSourceOptions = [[UIActionSheet alloc]
                           initWithTitle:nil
                           delegate:nil
-                          cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
+                          cancelButtonTitle:GET_STRING(@"Cancel")
                           destructiveButtonTitle:nil
                           otherButtonTitles:
-                          NSLocalizedString(@"Photo Library", @""),
-                          NSLocalizedString(@"Camera",@""),nil];
+                          GET_STRING(@"Photo Library"),
+                          GET_STRING(@"Camera"),nil];
     imageSourceOptions.delegate = self;
     [imageSourceOptions showInView:self.view];
 }
@@ -851,11 +852,11 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     imageSourceOptions = [[UIActionSheet alloc]
                           initWithTitle:nil
                           delegate:nil
-                          cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
+                          cancelButtonTitle:GET_STRING(@"Cancel")
                           destructiveButtonTitle:nil
                           otherButtonTitles:
-                          NSLocalizedString(@"Photo Library", @""),
-                          NSLocalizedString(@"Camera",@""),nil];
+                          GET_STRING(@"Photo Library"),
+                          GET_STRING(@"Camera"),nil];
     imageSourceOptions.delegate = self;
     [imageSourceOptions showInView:self.view];
 }
@@ -872,7 +873,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     {
         if(![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
         {
-            [[[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString(@"No camera on device", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil] show];
+            [[[UIAlertView alloc] initWithTitle:nil message:GET_STRING(@"No camera on device") delegate:nil cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil] show];
             return;
         }
         source = UIImagePickerControllerSourceTypeCamera;
@@ -980,7 +981,7 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
     NSString *mobileNumber = self.mobileNumberTxt.text;
     NSString *begin = [mobileNumber substringToIndex:mobileNumber.length > 2 ? 2 : 0];
     
-    if (mobileNumber.length != 7) {
+    if (mobileNumber.length != 9) {
         [self addRedBorderToView:self.mobileNumberView];
         return NO;
     }

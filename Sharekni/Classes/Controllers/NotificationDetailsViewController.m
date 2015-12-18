@@ -34,11 +34,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = NSLocalizedString(@"Notification Details", nil);
+    self.title = GET_STRING(@"Notification Details");
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn",nil)] forState:UIControlStateNormal];
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
@@ -72,7 +72,7 @@
 
 - (IBAction)declineReqquest:(id)sender
 {
-    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
     [[MobAccountManager sharedMobAccountManager] acceptRequest:[NSString stringWithFormat:@"%@",self.notification.RequestId] andIsAccepted:@"0" WithSuccess:^(NSString *response) {
         
         [KVNProgress dismiss];
@@ -88,7 +88,7 @@
 
 - (IBAction)acceptRequest:(id)sender
 {
-    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
     [[MobAccountManager sharedMobAccountManager] acceptRequest:[NSString stringWithFormat:@"%@",self.notification.RequestId] andIsAccepted:@"1" WithSuccess:^(NSString *response) {
         
         [KVNProgress dismiss];

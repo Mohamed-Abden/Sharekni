@@ -15,7 +15,7 @@
 
 
 - (void) showWelcomeNavigationController;
-
+- (void)reloadApp ;
 
 @end
 

@@ -16,6 +16,8 @@
 #import "Constants.h"
 #import "TourViewController.h"
 #import "Constants.h"
+#import "AppDelegate.h"
+#import "Languages.h"
 
 @interface WelcomeViewController ()
 {
@@ -35,6 +37,7 @@
 {
     [super viewWillAppear:animated];
     self.title = NSLocalizedString(@"sharkni", nil);
+    self.title = GET_STRING(@"sharkni");
     self.navigationController.navigationBar.translucent = YES;
     self.navigationController.navigationBarHidden = NO ;
 }
@@ -53,18 +56,12 @@
     return NO;
 }
 
-- (void) configureUI{
-    
+- (void) configureUI
+{
     self.navigationController.navigationBar.translucent = YES;
     
     language = [NSArray new];
     
-//    if (KIS_ARABIC) {
-//        self.arBtn.hidden = YES ;
-//    }else{
-//        self.enBtn.hidden = YES ;
-//    }
-
     self.bestDriversView.layer.cornerRadius = 10;
     self.bestDriversView.layer.borderWidth = 1.5;
     self.bestDriversView.layer.borderColor = Red_UIColor.CGColor;
@@ -80,19 +77,19 @@
 
 - (IBAction)login:(id)sender
 {
-    LoginViewController *loginView = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+    LoginViewController *loginView = [[LoginViewController alloc] initWithNibName:(KIS_ARABIC)?@"LoginViewController_ar":@"LoginViewController" bundle:nil];
     [self.navigationController pushViewController:loginView animated:YES];
 }
 
 - (IBAction)Register:(id)sender
 {
-    RegisterViewController *registerView = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
+    RegisterViewController *registerView = [[RegisterViewController alloc] initWithNibName:(KIS_ARABIC)?@"RegisterViewController_ar":@"RegisterViewController" bundle:nil];
     [self.navigationController pushViewController:registerView animated:YES];
 }
 
 - (IBAction)search:(id)sender
 {
-    SearchViewController *searchView = [[SearchViewController alloc] initWithNibName:@"SearchViewController" bundle:nil];
+    SearchViewController *searchView = [[SearchViewController alloc] initWithNibName:(KIS_ARABIC)?@"SearchViewController_ar":@"SearchViewController" bundle:nil];
     searchView.enableBackButton = YES;
     [self.navigationController pushViewController:searchView animated:YES];
 }
@@ -105,8 +102,7 @@
 
 - (void)mostRidesTapped
 {
-    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    MostRidesViewController *ridesView = [storyboard instantiateViewControllerWithIdentifier:@"MostRidesViewController"];
+    MostRidesViewController *ridesView = [[MostRidesViewController alloc] initWithNibName:@"MostRidesViewController" bundle:nil];
     ridesView.enableBackButton = YES;
     [self.navigationController pushViewController:ridesView animated:YES];
 }
@@ -120,69 +116,45 @@
 
 - (IBAction)selectEnglish:(id)sender
 {
-    if (KIS_SYS_LANGUAGE_ARABIC)
+    language = [NSArray arrayWithObject:@"en"];
+    
+    LanguageType newLanguage;
+    newLanguage = English;
+    if (newLanguage != [Languages sharedLanguageInstance].language)
     {
-        language = [NSArray arrayWithObject:@"en"];
-        [self userDidFinishSelectingLanguage];
+        [[Languages sharedLanguageInstance] setLanguage:newLanguage];
+        [[NSNotificationCenter defaultCenter] postNotificationName:LANGUAGE_CHANGE_NOTIFICATION object:self];
+        [appDelegate reloadApp];
     }
 }
 
 - (IBAction)selectArabic:(id)sender
 {
-    if (!KIS_SYS_LANGUAGE_ARABIC)
+    language = [NSArray arrayWithObject:@"ar"];
+    LanguageType newLanguage;
+    newLanguage = Arabic;
+    if (newLanguage != [Languages sharedLanguageInstance].language)
     {
-        language = [NSArray arrayWithObject:@"ar"];
-        [self userDidFinishSelectingLanguage];
+        [[Languages sharedLanguageInstance] setLanguage:newLanguage];
+        [[NSNotificationCenter defaultCenter] postNotificationName:LANGUAGE_CHANGE_NOTIFICATION object:self];
+        [appDelegate reloadApp];
     }
 }
 
--(void) userDidFinishSelectingLanguage {
-    
-    UIAlertView * al = [[UIAlertView alloc] initWithTitle:nil
-                                                  message:NSLocalizedString(@"In order to change language you have to re-open the application", nil)
-                                                 delegate:self
-                                        cancelButtonTitle:NSLocalizedString(@"No", nil)
-                                        otherButtonTitles: NSLocalizedString(@"Close Now", nil), nil];
-    [al show];
-}
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    
-    if (buttonIndex != alertView.cancelButtonIndex) {
-        
-       [self updateUser:language];
-    }
-}
-
-- (void)updateUser:(NSArray *)lang
+- (void)didReceiveMemoryWarning
 {
-    if ([lang[0] isEqualToString:@"ar"]) {
-        [KUSER_DEFAULTS setObject:@"ar"
-                           forKey:KUSER_LANGUAGE_KEY];
-        [KUSER_DEFAULTS synchronize];
-    }else{
-        [KUSER_DEFAULTS setObject:@"en"
-                           forKey:KUSER_LANGUAGE_KEY];
-        [KUSER_DEFAULTS synchronize];
-    }
-    [KUSER_DEFAULTS setObject:lang forKey:@"AppleLanguages"];
-    [KUSER_DEFAULTS synchronize];
-    exit(0);
-}
-
-
-- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

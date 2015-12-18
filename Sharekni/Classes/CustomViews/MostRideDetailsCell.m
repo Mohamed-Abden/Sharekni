@@ -19,7 +19,7 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])
     {
-        self = (MostRideDetailsCell *)[[[NSBundle mainBundle] loadNibNamed:@"MostRideDetailsCell" owner:nil options:nil] objectAtIndex:0];
+        self = (MostRideDetailsCell *)[[[NSBundle mainBundle] loadNibNamed:@"MostRideDetailsCell" owner:nil options:nil] objectAtIndex:(KIS_ARABIC)?1:0];
         self.driverImage.layer.cornerRadius = self.driverImage.frame.size.width / 2.0f ;
         self.driverImage.clipsToBounds = YES ;
     }
@@ -31,11 +31,6 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
     // Initialization code
     self.driverImage.layer.cornerRadius = self.driverImage.frame.size.width / 2.0f ;
     self.driverImage.clipsToBounds = YES ;
-    
-    self.driverName.textAlignment = NSTextAlignmentNatural ;
-    self.country.textAlignment = NSTextAlignmentNatural ;
-    self.startingTime.textAlignment = NSTextAlignmentNatural ;
-    self.availableDays.textAlignment = NSTextAlignmentNatural ;
 }
 
 - (void)setMostRide:(MostRideDetails *)mostRide
@@ -44,7 +39,7 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
     self.driverName.text = mostRide.DriverName ;
     self.country.text = (KIS_ARABIC)?mostRide.NationalityArName:mostRide.NationlityEnName ;
     self.driverImage.image = mostRide.driverImage;
-    self.startingTime.text = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"Starting Time :", nil),mostRide.StartTime];
+    self.startingTime.text = [NSString stringWithFormat:@"%@ %@",GET_STRING(@"Starting Time :"),mostRide.StartTime];
     self.availableDays.text = [self getAvailableDays:mostRide];
     self.rate.text = mostRide.Rating;
     self.phone = mostRide.DriverMobile ;
@@ -59,29 +54,29 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
     self.driverName.text = driver.AccountName;
     self.country.text = (KIS_ARABIC)?driver.Nationality_ar:driver.Nationality_en;
     self.phone = driver.AccountMobile ;
-    self.startingTime.text = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"Starting Time :", nil),driver.SDG_Route_Start_FromTime];
+    self.startingTime.text = [NSString stringWithFormat:@"%@ %@",GET_STRING(@"Starting Time :"),driver.SDG_Route_Start_FromTime];
     
     NSString *daysText = @"";
     if (driver.SDG_RouteDays_Sunday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Sun ", nil)];
+        daysText = [daysText stringByAppendingString:GET_STRING(@"Sun ")];
     }
     if (driver.SDG_RouteDays_Monday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Mon ", nil)];
+        daysText = [daysText stringByAppendingString:GET_STRING(@"Mon ")];
     }
     if (driver.SDG_RouteDays_Tuesday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Tue ", nil)];
+        daysText = [daysText stringByAppendingString:GET_STRING(@"Tue ")];
     }
     if (driver.SDG_RouteDays_Wednesday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Wed ", nil)];
+        daysText = [daysText stringByAppendingString:GET_STRING(@"Wed ")];
     }
     if (driver.SDG_RouteDays_Thursday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Thu ", nil)];
+        daysText = [daysText stringByAppendingString:GET_STRING(@"Thu ")];
     }
     if (driver.SDG_RouteDays_Friday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Fri ", nil)];
+        daysText = [daysText stringByAppendingString:GET_STRING(@"Fri ")];
     }
     if (driver.Saturday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Sat ", nil)];
+        daysText = [daysText stringByAppendingString:GET_STRING(@"Sat ")];
     }
     if (daysText.length > 0) {
         self.availableDays.text = daysText;
@@ -122,27 +117,27 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
     NSMutableString *str = [[NSMutableString alloc] init];
     
     if (mostRide.Saturday.boolValue) {
-        [str appendString:NSLocalizedString(@"Sat ", nil)];
+        [str appendString:GET_STRING(@"Sat ")];
     }
     if (mostRide.Sunday.boolValue) {
-        [str appendString:NSLocalizedString(@"Sun ", nil)];
+        [str appendString:GET_STRING(@"Sun ")];
     }
     if (mostRide.Monday.boolValue) {
-        [str appendString:NSLocalizedString(@"Mon ", nil)];
+        [str appendString:GET_STRING(@"Mon ")];
     }
     if (mostRide.Tuesday.boolValue) {
-        [str appendString:NSLocalizedString(@"Tue ", nil)];
+        [str appendString:GET_STRING(@"Tue ")];
     }
     if (mostRide.Wendenday.boolValue) {
-        [str appendString:NSLocalizedString(@"Wed ", nil)];
+        [str appendString:GET_STRING(@"Wed ")];
 
     }
     if (mostRide.Thrursday.boolValue) {
-        [str appendString:NSLocalizedString(@"Thu ", nil)];
+        [str appendString:GET_STRING(@"Thu ")];
 
     }
     if (mostRide.Friday.boolValue) {
-        [str appendString:NSLocalizedString(@"Fri ", nil)];
+        [str appendString:GET_STRING(@"Fri ")];
     }
     
     return str ;
