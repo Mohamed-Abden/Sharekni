@@ -28,13 +28,17 @@
     self.container.layer.cornerRadius = 4;
     
     [verificationCodeTxt becomeFirstResponder];
-    verificationCodeTxt.textAlignment = NSTextAlignmentNatural ;
+    if (KIS_ARABIC)
+    {
+        verificationCodeTxt.textAlignment = NSTextAlignmentRight ;
+        self.headerTitle2.textAlignment = NSTextAlignmentRight ;
+    }
     
-    verificationCodeTxt.placeholder = NSLocalizedString(@"Enter verification code", nil);
-    [self.headerTitle setText:NSLocalizedString(@"Write Your Code", nil)];
-    [self.headerTitle2 setText:NSLocalizedString(@"Your Code", nil)];
-    [self.submitBtn setTitle:NSLocalizedString(@"Submit", nil) forState:UIControlStateNormal];
-    [self.resendBtn setTitle:NSLocalizedString(@"Resend verification code", nil) forState:UIControlStateNormal];
+    verificationCodeTxt.placeholder = GET_STRING(@"Enter verification code");
+    [self.headerTitle setText:GET_STRING(@"Write Your Code")];
+    [self.headerTitle2 setText:GET_STRING(@"Your Code")];
+    [self.submitBtn setTitle:GET_STRING(@"Submit") forState:UIControlStateNormal];
+    [self.resendBtn setTitle:GET_STRING(@"Resend verification code") forState:UIControlStateNormal];
 }
 
 - (void)HideKeyboard
@@ -45,18 +49,18 @@
 - (IBAction)closePopup:(id)sender
 {
     if (verificationCodeTxt.text.length == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attention", nil) message:NSLocalizedString(@"Please write your verification code", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:GET_STRING(@"Attention") message:GET_STRING(@"Please write your verification code") delegate:nil cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
         [alert show];
         return ;
     }
     
-    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
     
-    [[MobAccountManager sharedMobAccountManager] confirmMobileNumber:self.accountID andCode:verificationCodeTxt.text WithSuccess:^(NSString *user) {
-        
+    [[MobAccountManager sharedMobAccountManager] confirmMobileNumber:self.accountID andCode:verificationCodeTxt.text WithSuccess:^(NSString *user)
+    {
         [KVNProgress dismiss];
         
-        [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Mobile Verified", nil)];
+        [KVNProgress showSuccessWithStatus:GET_STRING(@"Mobile Verified")];
 
         if ([user containsString:@"1"])
         {
@@ -64,7 +68,7 @@
                 [self.delegate dismissButtonClicked:self];
             }
         }else{
-            [KVNProgress showErrorWithStatus:NSLocalizedString(@"Verification Code is wrong", nil)];
+            [KVNProgress showErrorWithStatus:GET_STRING(@"Verification Code is wrong")];
         }
 
     } Failure:^(NSString *error){
@@ -77,11 +81,11 @@
     [[MobAccountManager sharedMobAccountManager] verifyMobileNumber:self.accountID WithSuccess:^(NSString *user)
      {
          if ([user isEqualToString:@"1"]) {
-             [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Mobile verification code has been sent to your mobile", nil)];
+             [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Mobile verification code has been sent to your mobile")];
          }
          else
          {
-             [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please check your mobile number", nil)];
+             [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please check your mobile number")];
          }
      } Failure:^(NSString *error)
     {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
@@ -19,25 +19,20 @@
             <rect key="frame" x="0.0" y="0.0" width="290" height="305"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write Your Review" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7YZ-F6-4nO">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write Your Review" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7YZ-F6-4nO">
                     <rect key="frame" x="0.0" y="0.0" width="290" height="63"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <animations/>
                     <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="63" id="I4O-y9-PC7"/>
-                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DGH-FA-56r">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="DGH-FA-56r">
                     <rect key="frame" x="66" y="218" width="157" height="38"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <animations/>
                     <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="157" id="IqD-WF-K8k"/>
-                        <constraint firstAttribute="height" constant="38" id="Xhy-bO-c04"/>
-                    </constraints>
                     <state key="normal" title="Submit"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -48,24 +43,19 @@
                         <action selector="closePopup:" destination="-1" eventType="touchUpInside" id="Jun-8x-AuC"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Review" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uKT-Tm-e1S">
-                    <rect key="frame" x="8" y="71" width="160" height="22"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Review" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uKT-Tm-e1S">
+                    <rect key="frame" x="8" y="71" width="274" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <animations/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="22" id="KnN-3s-fPo"/>
-                        <constraint firstAttribute="width" constant="160" id="glc-k0-IxY"/>
-                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" red="0.90196078430000004" green="0.0" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NsS-TU-tFr">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="NsS-TU-tFr">
                     <rect key="frame" x="8" y="101" width="274" height="103"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="103" id="vkG-kQ-YaR"/>
-                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no"/>
                     <userDefinedRuntimeAttributes>
@@ -80,19 +70,6 @@
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="7YZ-F6-4nO" firstAttribute="top" secondItem="1" secondAttribute="top" id="0oS-BG-PjG"/>
-                <constraint firstAttribute="trailing" secondItem="7YZ-F6-4nO" secondAttribute="trailing" id="JEy-6M-SwE"/>
-                <constraint firstItem="DGH-FA-56r" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="Xfs-WK-dp2"/>
-                <constraint firstItem="DGH-FA-56r" firstAttribute="top" secondItem="NsS-TU-tFr" secondAttribute="bottom" constant="14" id="Y5a-rj-9zK"/>
-                <constraint firstAttribute="bottom" secondItem="DGH-FA-56r" secondAttribute="bottom" constant="49" id="aE9-wK-xQW"/>
-                <constraint firstAttribute="trailing" secondItem="NsS-TU-tFr" secondAttribute="trailing" constant="8" id="edW-bJ-cLr"/>
-                <constraint firstItem="NsS-TU-tFr" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8" id="fJK-KL-tmc"/>
-                <constraint firstItem="NsS-TU-tFr" firstAttribute="top" secondItem="uKT-Tm-e1S" secondAttribute="bottom" constant="8" id="gpy-dP-z2t"/>
-                <constraint firstItem="7YZ-F6-4nO" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="jfZ-og-Xzg"/>
-                <constraint firstItem="uKT-Tm-e1S" firstAttribute="top" secondItem="7YZ-F6-4nO" secondAttribute="bottom" constant="8" id="rWl-MY-hfF"/>
-                <constraint firstItem="uKT-Tm-e1S" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8" id="tTE-1l-vlf"/>
-            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="388" y="195.5"/>
