@@ -101,7 +101,7 @@
     
     if (permitCell == nil)
     {
-        permitCell = (PermitCell *)[[[NSBundle mainBundle] loadNibNamed:@"PermitCell" owner:nil options:nil] objectAtIndex:0];
+        permitCell = (PermitCell *)[[[NSBundle mainBundle] loadNibNamed:@"PermitCell" owner:nil options:nil] objectAtIndex:(KIS_ARABIC)?1:0];
     }
     
     Permit *permit = self.permits[indexPath.row];

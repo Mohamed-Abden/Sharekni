@@ -62,6 +62,8 @@
 @property (strong,nonatomic) Language *selectedLanguage;
 @property (strong,nonatomic) NSString *firstName;
 @property (strong,nonatomic) NSString *lastName;
+@property (strong,nonatomic) NSString *mobileNumber ;
+
 @property (strong,nonatomic) NSDate *date;
 @property (strong,nonatomic) NSDateFormatter *dateFormatter;
 @property (assign,nonatomic) BOOL isMale;
@@ -398,8 +400,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         for (UIGestureRecognizer* recognizer in view.gestureRecognizers) {
             [recognizer addTarget:self action:@selector(touchEvent:)];
         }
-        
-        //        [self.view endEditing:YES];
+                [self.view endEditing:YES];
     }
 }
 
@@ -518,7 +519,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 {
     self.firstName = self.firstNametxt.text;
     self.lastName = self.lastNametxt.text;
-    
+    self.mobileNumber = self.mobileNumberTxt.text;
+
     BOOL validNationality = [self.nationaltiesStringsArray containsObject:self.nationalityTxt.text];
     if (validNationality)
     {
@@ -537,6 +539,9 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     else if (![self isValidLastName])
     {
         [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Last name mustn't have numbers")];
+    }
+    else if (![self isValidMobileNumber]){
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Mobile Number should be only 9 and should start with [50 – 55 – 56 – 52]")];
     }
     else if (([[HelpManager sharedHelpManager] yearsBetweenDate:[NSDate date] andDate:self.date] < 18))
     {
@@ -766,8 +771,29 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
     return YES;
 }
 
-- (REFrostedViewController *) homeViewController {
+- (BOOL) isValidMobileNumber
+{
+    NSArray *begins = @[@"50",@"55",@"56",@"52"];
+    NSString *mobileNumber = self.mobileNumberTxt.text;
+    NSString *begin = [mobileNumber substringToIndex:mobileNumber.length > 2 ? 2 : 0];
     
+    if (mobileNumber.length != 9) {
+        [self addRedBorderToView:self.mobileNumberView];
+        return NO;
+    }
+    else if (![begins containsObject:begin]){
+        [self addRedBorderToView:self.mobileNumberView];
+        return NO;
+    }
+    else{
+        [self addGreyBorderToView:self.mobileNumberView];
+        return YES;
+    }
+    return YES;
+}
+
+- (REFrostedViewController *) homeViewController
+{
     HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar":@"HomeViewController" bundle:nil];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeViewControlle];
     SideMenuTableViewController  *menuController = [[SideMenuTableViewController alloc] initWithNavigationController:navigationController];

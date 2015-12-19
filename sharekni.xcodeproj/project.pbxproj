@@ -66,6 +66,8 @@
 		140B97D91C1686C30030E266 /* touren_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 140B97D31C1686C30030E266 /* touren_3.png */; };
 		140B97DA1C1686C30030E266 /* touren_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 140B97D41C1686C30030E266 /* touren_4.png */; };
 		140B97DB1C1686C30030E266 /* touren_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 140B97D51C1686C30030E266 /* touren_5.png */; };
+		141352161C24E2A5003064DB /* PermitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141352151C24E2A5003064DB /* PermitCell.xib */; };
+		141352181C24E2B0003064DB /* MapInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141352171C24E2B0003064DB /* MapInfoWindow.xib */; };
 		1425F8031BFF11A200AD086B /* VehiclesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425F8011BFF11A200AD086B /* VehiclesViewController.m */; };
 		1425F8081BFF11B300AD086B /* SavedSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425F8061BFF11B300AD086B /* SavedSearchViewController.m */; };
 		1425F8091BFF11B300AD086B /* SavedSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1425F8071BFF11B300AD086B /* SavedSearchViewController.xib */; };
@@ -105,7 +107,6 @@
 		14C3F39F1C029A8300CEF11C /* RideHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C3F39D1C029A8200CEF11C /* RideHistoryCell.m */; };
 		14C8CB761C14483900AA16DF /* BestDriverCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C8CB751C14483900AA16DF /* BestDriverCell.xib */; };
 		14C8CB781C1448C000AA16DF /* BestDriversViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C8CB771C1448C000AA16DF /* BestDriversViewController.xib */; };
-		14C8CB7F1C14F07E00AA16DF /* MapInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C8CB811C14F07E00AA16DF /* MapInfoWindow.xib */; };
 		14D3E93A1C06A2290047F415 /* TourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3E9381C06A2290047F415 /* TourViewController.m */; };
 		14D3E93B1C06A2290047F415 /* TourViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14D3E9391C06A2290047F415 /* TourViewController.xib */; };
 		14D3E9491C06AD1B0047F415 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3E9481C06AD1B0047F415 /* QuartzCore.framework */; };
@@ -161,7 +162,6 @@
 		14E5D7C71C0283890089054A /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D7C51C0283890089054A /* HistoryViewController.m */; };
 		14E692651BE8B7180041A999 /* DriverDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E692631BE8B7180041A999 /* DriverDetailsViewController.m */; };
 		14ECD2431C1AAF170013FE1D /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ECD2411C1AAF170013FE1D /* EditProfileViewController.m */; };
-		14F251EA1C130AC800D8184E /* PermitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14F251EC1C130AC800D8184E /* PermitCell.xib */; };
 		87196D461BF0A30500A94370 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87196D451BF0A30500A94370 /* Launch Screen.storyboard */; };
 		873E4C611BED30E4006C42F8 /* MapInfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 873E4C601BED30E4006C42F8 /* MapInfoWindow.m */; };
 		873E7BF31C12C8C000B9A68D /* NSObject+RZDataBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 873E7BEC1C12C8C000B9A68D /* NSObject+RZDataBinding.m */; };
@@ -318,6 +318,8 @@
 		140B97D31C1686C30030E266 /* touren_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touren_3.png; sourceTree = "<group>"; };
 		140B97D41C1686C30030E266 /* touren_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touren_4.png; sourceTree = "<group>"; };
 		140B97D51C1686C30030E266 /* touren_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touren_5.png; sourceTree = "<group>"; };
+		141352151C24E2A5003064DB /* PermitCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PermitCell.xib; sourceTree = "<group>"; };
+		141352171C24E2B0003064DB /* MapInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapInfoWindow.xib; sourceTree = "<group>"; };
 		1425F8001BFF11A200AD086B /* VehiclesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VehiclesViewController.h; sourceTree = "<group>"; };
 		1425F8011BFF11A200AD086B /* VehiclesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VehiclesViewController.m; sourceTree = "<group>"; };
 		1425F8051BFF11B300AD086B /* SavedSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedSearchViewController.h; sourceTree = "<group>"; };
@@ -386,8 +388,6 @@
 		14C3F39D1C029A8200CEF11C /* RideHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideHistoryCell.m; sourceTree = "<group>"; };
 		14C8CB751C14483900AA16DF /* BestDriverCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BestDriverCell.xib; sourceTree = "<group>"; };
 		14C8CB771C1448C000AA16DF /* BestDriversViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BestDriversViewController.xib; sourceTree = "<group>"; };
-		14C8CB801C14F07E00AA16DF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MapInfoWindow.xib; sourceTree = "<group>"; };
-		14C8CB841C14F09500AA16DF /* ar */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ar; path = ar.lproj/MapInfoWindow.xib; sourceTree = "<group>"; };
 		14D3E9371C06A2290047F415 /* TourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TourViewController.h; sourceTree = "<group>"; };
 		14D3E9381C06A2290047F415 /* TourViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TourViewController.m; sourceTree = "<group>"; };
 		14D3E9391C06A2290047F415 /* TourViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TourViewController.xib; sourceTree = "<group>"; };
@@ -456,8 +456,6 @@
 		14E692631BE8B7180041A999 /* DriverDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriverDetailsViewController.m; sourceTree = "<group>"; };
 		14ECD2401C1AAF170013FE1D /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		14ECD2411C1AAF170013FE1D /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
-		14F251EB1C130AC800D8184E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PermitCell.xib; sourceTree = "<group>"; };
-		14F251EF1C130AD400D8184E /* ar */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ar; path = ar.lproj/PermitCell.xib; sourceTree = "<group>"; };
 		33EF369DCE24017837965426 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		87196D451BF0A30500A94370 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		873E4C5F1BED30E4006C42F8 /* MapInfoWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapInfoWindow.h; sourceTree = "<group>"; };
@@ -733,6 +731,7 @@
 			children = (
 				87B58B5F1BD38DD700E73E55 /* MapItemView.h */,
 				87B58B601BD38DD700E73E55 /* MapItemView.m */,
+				141352171C24E2B0003064DB /* MapInfoWindow.xib */,
 				143BE6C21BB68F1D009F6496 /* BestDriverCell.h */,
 				143BE6C31BB68F1D009F6496 /* BestDriverCell.m */,
 				14C8CB751C14483900AA16DF /* BestDriverCell.xib */,
@@ -756,7 +755,6 @@
 				148795DA1BEA9CF900B940D8 /* ReviewCell.xib */,
 				873E4C5F1BED30E4006C42F8 /* MapInfoWindow.h */,
 				873E4C601BED30E4006C42F8 /* MapInfoWindow.m */,
-				14C8CB811C14F07E00AA16DF /* MapInfoWindow.xib */,
 				146815511BFBB61000A78430 /* SideMenuCell.h */,
 				146815521BFBB61000A78430 /* SideMenuCell.m */,
 				146815531BFBB61000A78430 /* SideMenuCell.xib */,
@@ -771,7 +769,7 @@
 				14E5D79E1C01A6F10089054A /* NotificationCell.xib */,
 				14E5D7BA1C0271090089054A /* PermitCell.h */,
 				14E5D7BB1C0271090089054A /* PermitCell.m */,
-				14F251EC1C130AC800D8184E /* PermitCell.xib */,
+				141352151C24E2A5003064DB /* PermitCell.xib */,
 				14C3F39C1C029A8200CEF11C /* RideHistoryCell.h */,
 				14C3F39D1C029A8200CEF11C /* RideHistoryCell.m */,
 				14DFCBC51C24CD4300EE87CA /* RideHistoryCell.xib */,
@@ -1187,18 +1185,17 @@
 			files = (
 				14DFCBAF1C24925300EE87CA /* RideDetailsViewController_ar.xib in Resources */,
 				140B97CF1C1686B90030E266 /* tourar_5.png in Resources */,
-				14F251EA1C130AC800D8184E /* PermitCell.xib in Resources */,
 				8787E1F21BF7534100CCD53B /* policy.html in Resources */,
 				047E455C1BC58330000B5151 /* PickupLocationView.xib in Resources */,
 				14DFCB8E1C24756500EE87CA /* Main_ar.storyboard in Resources */,
 				14DFCB981C247CD800EE87CA /* MostRideDetailsViewController.xib in Resources */,
 				0451C3AC1C05B76D009CA1FC /* SplashViewController.xib in Resources */,
-				14C8CB7F1C14F07E00AA16DF /* MapInfoWindow.xib in Resources */,
 				14DFCBB41C24BBFC00EE87CA /* VehiclesViewController.xib in Resources */,
 				1425F80E1BFF48BE00AD086B /* VehicleViewCell.xib in Resources */,
 				14DFCBAB1C24911500EE87CA /* HomeViewController_ar.xib in Resources */,
 				146815551BFBB61000A78430 /* SideMenuCell.xib in Resources */,
 				87196D461BF0A30500A94370 /* Launch Screen.storyboard in Resources */,
+				141352181C24E2B0003064DB /* MapInfoWindow.xib in Resources */,
 				1425F8131BFF9C9F00AD086B /* NotificationsViewController.xib in Resources */,
 				140B97D81C1686C30030E266 /* touren_2.png in Resources */,
 				140B97D61C1686C30030E266 /* touren_0.png in Resources */,
@@ -1269,6 +1266,7 @@
 				14DFCBC31C24BF3300EE87CA /* SearchResultsViewController_ar.xib in Resources */,
 				14E5D7A01C01A6F10089054A /* NotificationCell.xib in Resources */,
 				140B97CD1C1686B90030E266 /* tourar_3.png in Resources */,
+				141352161C24E2A5003064DB /* PermitCell.xib in Resources */,
 				1425F8091BFF11B300AD086B /* SavedSearchViewController.xib in Resources */,
 				14C8CB761C14483900AA16DF /* BestDriverCell.xib in Resources */,
 				879AA9CA1C151E7F005466F5 /* terms_condition_Ar.html in Resources */,
@@ -1462,24 +1460,6 @@
 				143F30F11BC84893006A6A21 /* ar */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		14C8CB811C14F07E00AA16DF /* MapInfoWindow.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				14C8CB801C14F07E00AA16DF /* en */,
-				14C8CB841C14F09500AA16DF /* ar */,
-			);
-			name = MapInfoWindow.xib;
-			sourceTree = "<group>";
-		};
-		14F251EC1C130AC800D8184E /* PermitCell.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				14F251EB1C130AC800D8184E /* en */,
-				14F251EF1C130AD400D8184E /* ar */,
-			);
-			name = PermitCell.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

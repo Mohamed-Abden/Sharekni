@@ -299,7 +299,7 @@
 - (UINavigationController *)searchNavigationController
 {
     if (!_searchNavigationController) {
-        SearchViewController *viewController = [[SearchViewController alloc] initWithNibName:@"SearchViewController" bundle:nil];
+        SearchViewController *viewController = [[SearchViewController alloc] initWithNibName:(KIS_ARABIC)?@"SearchViewController_ar":@"SearchViewController" bundle:nil];
         viewController.enableBackButton = NO;
         _searchNavigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     }

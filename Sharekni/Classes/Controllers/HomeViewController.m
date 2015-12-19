@@ -195,7 +195,8 @@
     }
 }
 
-- (void) configureUI{
+- (void) configureUI
+{
     self.navigationItem.title = GET_STRING(@"Home Page");
     self.notificationCountLabel.text = [NSString stringWithFormat:@"%@",self.sharedUser.DriverMyAlertsCount];
     
@@ -274,7 +275,7 @@
 
 #pragma Gestures & Actions
 - (void) searchAction{
-    SearchViewController *searchView = [[SearchViewController alloc] initWithNibName:@"SearchViewController" bundle:nil];
+    SearchViewController *searchView = [[SearchViewController alloc] initWithNibName:(KIS_ARABIC)?@"SearchViewController_ar":@"SearchViewController" bundle:nil];
     searchView.enableBackButton = YES;
     [self.navigationController pushViewController:searchView animated:YES];
 }
@@ -312,7 +313,7 @@
 }
 
 - (IBAction) editAction:(id)sender{
-    EditProfileViewController *profileView = [[EditProfileViewController alloc] initWithNibName:@"EditProfileViewController" bundle:nil];
+    EditProfileViewController *profileView = [[EditProfileViewController alloc] initWithNibName:(KIS_ARABIC)?@"EditProfileViewController_ar":@"EditProfileViewController" bundle:nil];
     [self.navigationController pushViewController:profileView animated:YES];
 }
 

@@ -7,15 +7,20 @@
 */
 
 
+"No" = "No";
+"Take a tour" = "Take a tour";
+
+"Back_icn" = "Back_icn_right";
 "username"  = "Username";
-"password"  = "Password";
+"Username (Your Email)" = "Username (Your Email)";
+"Password"  = "Password";
 "firstName" = "First Name";
 "lastName"  = "Last Name";
 "mobile"    = "Mobile Number";
 "nationality" = "Nationality";
 "pLanguage" = "Preferred Language";
+"Submit" = "Submit";
 
-//Validation
 "nameReq" = "Please enter your username";
 "passReq" = "Please enter password";
 
@@ -29,15 +34,201 @@
 "mostRides" = "Most Rides";
 "advancedSearch" = "Advanced Search";
 "quickSearch" = "Quick Search";
+
+
 "loading" = "Loading";
+"Loading..." = "Loading...";
+
 "sharkni" = "Sharekni";
 
-
-"driversrides" = "Drivers's Rides";
 "driverDetails" = "Driver Details";
 "rideDetails" = "Ride Details";
 
+
 "submit" = "Submit";
 "forget" = "Forget Password";
-
 "preferedLang" = "Preferred Nationality";
+
+
+//Registeration
+"Please Choose a valid nationality." = "Please Choose a valid nationality.";
+"Please Choose acconut type." = "Please Choose acconut type.";
+"Please fill all fields" = "Please fill all fields";
+"First name mustn't have numbers" = "First name mustn't have numbers";
+"Last name mustn't have numbers" = "Last name mustn't have numbers";
+"Mobile Number should be only 9 and should start with [50 – 55 – 56 – 52]" = "Mobile Number should be only 9 and should start with [50 – 55 – 56 – 52]";
+"Please enter a valid email address" = "Please enter a valid email address";
+"You should be older than 18 Years"  = "You should be older than 18 Years";
+"Select" = "Select";
+"Cancel" = "Cancel";
+"Ok" = "Ok";
+"Email already exists" = "Email already exists";
+"Mobile number already exists" = "Mobile number already exists";
+"Registration done successfully" = "Registration done successfully";
+
+"Choose a language" = "Choose a language";
+"Choose age range" = "Choose age range";
+
+//Home
+"Home Page" = "Home Page";
+"Most Rides" = "Most Rides";
+"Best Drivers" = "Best Drivers";
+"Logout" = "Logout";
+"Language" = "Language";
+
+"Rides Created" = "Rides Created";
+"Rides Joined" = "Rides Joined";
+"Vehicles" = "Vehicles";
+"History" = "History";
+"Permits" = "Permits";
+"Permit" = "Permit";
+"Search" = "Search";
+"Saved Search" = "Saved Search";
+"Create Ride"  = "Create Ride";
+
+"No permits found" = "No permits found";
+//Create Rides
+"No rides joined yet" = "No rides joined yet";
+"Do you want to leave this ride?" = "Do you want to leave this ride?";
+"Ride leaved successfully." = "Ride leaved successfully.";
+"Select vehicle" = "Select vehicle";
+"Confirm" = "Confirm";
+"Delete" = "Delete";
+"Edit" = "Edit";
+"Do you want to delete this ride ?" = "Do you want to delete this ride ?";
+"Ride Deleted successfully." = "Ride Deleted successfully.";
+"Saved Search" = "Saved Search";
+"Edit Ride" = "Edit Ride";
+"Please configure your vehicles first" = "Please configure your vehicles first";
+"Days Of Week" = "Days Of Week";
+
+
+"Notifications" = "Notifications";
+"Attention" = "Attention";
+"You must write your review first" = "You must write your review first";
+"You must write your remark first" = "You must write your remark first";
+
+//Driver Ride
+"Details" = "Details";
+"Driver" = "Driver";
+"Leave" = "Leave";
+
+//Add review
+"Write Your Review" = "Write Your Review";
+"Your Review" = "Your Review";
+"Review" = "Review";
+"I’d like to join your ride" = "I’d like to join your ride";
+"Write Your Remarks" = "Write Your Remarks";
+"Your Remarks" = "Your Remarks";
+
+
+"Map Lookup" = "Map Lookup";
+"Starting Time :" = "Starting Time :";
+"Set Direction" = "Set Direction";
+"Please set direction" = "Please set direction";
+"No Rides Found" = "No Rides Found";
+"Please select from Emirate" = "Please select from Emirate";
+"Please Enter from Region" = "Please Enter from Region";
+"Please Enter to Region" = "Please Enter to Region";
+"Please select to Emirate" = "Please select to Emirate";
+
+
+"Select Emirate" = "Select Emirate";
+"Please select from Emirate first" = "Please select from Emirate first";
+"Please select to Emirate first" = "Please select to Emirate first";
+"Please enter a valid to region name" = "Please enter a valid to region name";
+"invalid start date or time" = "invalid start date or time";
+
+"Drivers :" = "Drivers :";
+"Passengers :" = "Passengers :";
+"Coming Rides :" = "Coming Rides :";
+
+"From" = "From";
+"To" = "To";
+"Not Set" = "Not Set";
+"Ride Days" = "Ride Days";
+
+"Sat " = "Sat ";
+"Sun " = "Sun ";
+"Mon " = "Mon ";
+"Tue " = "Tue ";
+"Wed " = "Wed ";
+"Thu " = "Thu ";
+"Fri " = "Fri ";
+
+"Terms And Conditions" = "Terms And Conditions";
+"Accept" = "Accept";
+"Policy" = "Policy";
+"Search Results" = "Search Results";
+"Has Accepted your request" = "Has Accepted your request";
+"Send you a join request" = "Send you a join request";
+"Notification Details" = "Notification Details";
+
+"Mobile verification code has been sent to your mobile" = "Mobile verification code has been sent to your mobile";
+"Please check your mobile number" = "Please check your mobile number";
+
+"Please write your verification code" = "Please write your verification code";
+"Write Your Code" = "Write Your Code";
+"Your Code" = "Your Code";
+"Resend verification code" = "Resend verification code";
+"Enter verification code"  = "Enter verification code";
+"Traffic File No." = "Traffic File No.";
+
+"Edit Profile" = "Edit Profile";
+"Nationalty must be selected" = "Nationalty must be selected";
+"Please check your username and password" = "Please check your username and password";
+"Edit profile info success" = "Edit profile info success";
+"Select date of birth" = "Select date of birth";
+"Verification Code is wrong" = "Verification Code is wrong";
+"Mobile Verified" = "Mobile Verified";
+
+"Please select start point" = "Please select start point";
+"Directions can't be edited." = "Directions can't be edited.";
+"Please set startpoint and destination." = "Please set startpoint and destination.";
+"Please select Vehicle" = "Please select Vehicle";
+"Please enter ride name" = "Please enter ride name";
+"Please select start date" = "Please select start date";
+"Please select start time" = "Please select start time";
+"Please select number of available seats." = "Please select number of available seats.";
+"Please select days of week." = "Please select days of week.";
+"Ride edited successfully" = "Ride edited successfully";
+"Ride created successfully" = "Ride created successfully";
+"An error happend when trying to create ride" = "An error happend when trying to create ride";
+"You cannot create more than two rides." = "You cannot create more than two rides.";
+"Select Pickup Time" = "Select Pickup Time";
+"Select Pickup Date" = "Select Pickup Date";
+"Rating added successfully" = "Rating added successfully";
+"Unable to add Rating" = "Unable to add Rating";
+
+
+"Ride Delete successfully." = "Ride Delete successfully.";
+"An error occured when deleting ride" = "An error occured when deleting ride";
+"Passenger removed successfully" = "Passenger removed successfully";
+"Unable to remove the passenger" = "Unable to remove the passenger";
+"Mobile Number not available" = "Mobile Number not available";
+"Do you want to delete this passenger ?" = "Do you want to delete this passenger ?";
+
+"No history" = "No history";
+"Do you want to leave this ride" = "Do you want to leave this ride";
+"An error occured when leaving ride" = "An error occured when leaving ride";
+"Permit added successfully." = "Permit added successfully.";
+"Invalid birthdate" = "Invalid birthdate";
+
+"Male" = "Male";
+"Female" = "Female";
+"Both" = "Both";
+"Yes" = "Yes";
+"No" = "No";
+"Dubai" = "Dubai";
+
+"Please Choose accout type." = "Please Choose accout type.";
+"No camera on device" = "No camera on device";
+"You cannot choose year before 1900" = "You cannot choose year before 1900";
+"Photo Library" = "Photo Library";
+"Camera" = "Camera";
+
+
+
+
+
+
