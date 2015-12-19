@@ -52,7 +52,7 @@
     userImage.layer.cornerRadius = userImage.frame.size.width / 2.0f ;
     userImage.clipsToBounds = YES ;
     
-    passengerName.text = self.notification.DriverName ;
+    passengerName.text = self.notification.DriverName.length > 0 ? self.notification.DriverName : self.notification.PassengerName ;
     nationality.text = self.notification.NationalityEnName ;
     passengerPhone.text = self.notification.PassengerMobile ;
     routeName.text = self.notification.RouteName ;

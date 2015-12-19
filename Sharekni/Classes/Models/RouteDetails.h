@@ -101,5 +101,6 @@
 @property (nonatomic,strong) NSString *EndLng;
 @property (nonatomic,strong) NSString *AgeRangeID;
 @property (nonatomic,strong) NSString *AgeRange;
+@property (nonatomic,strong) NSString *AccountRating;
 
 @end

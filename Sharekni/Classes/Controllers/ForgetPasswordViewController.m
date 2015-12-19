@@ -17,6 +17,7 @@
 #import "HomeViewController.h"
 #import <REFrostedViewController.h>
 #import "SideMenuTableViewController.h"
+#import "NSObject+Blocks.h"
 
 @interface ForgetPasswordViewController ()<UITextFieldDelegate,REFrostedViewControllerDelegate>
 {
@@ -92,6 +93,7 @@
     {
         [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
         
+        __block ForgetPasswordViewController *blockSelf = self;
         [[MobAccountManager sharedMobAccountManager] forgetPassword:self.mobileTextField.text andEmail:self.emailTextField.text WithSuccess:^(NSString *user) {
             [KVNProgress dismiss];
             if (user) {
@@ -102,6 +104,10 @@
             
         } Failure:^(NSString *error) {
             [KVNProgress dismiss];
+            [KVNProgress showErrorWithStatus:error];
+            [blockSelf performBlock:^{
+                [KVNProgress dismiss];
+            } afterDelay:3];
         }];
     }
 }

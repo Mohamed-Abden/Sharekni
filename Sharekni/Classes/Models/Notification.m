@@ -21,6 +21,7 @@
     mapping[@"Remarks"] = @"Remarks";
     mapping[@"RequestDate"] = @"RequestDate";
     mapping[@"PassengerMobile"] = @"PassengerMobile";
+    mapping[@"PassengerName"] = @"PassengerName";    
     mapping[@"AccountPhoto"] = @"AccountPhoto";
     mapping[@"NationalityEnName"] = @"AccountGender";
     mapping[@"NationalityFrName"] = @"AccountGenderAr";
@@ -31,6 +32,7 @@
     mapping[@"NationalityChName"] = @"NationalityFrName";
     mapping[@"NationalityUrName"] = @"NationalityChName";
     mapping[@"NationalityUrName"] = @"NationalityUrName";
+    
 
     return mapping;
 }

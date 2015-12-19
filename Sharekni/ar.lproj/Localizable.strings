@@ -241,3 +241,6 @@
 "Cannot delete Review" = "لا يمكن حذف التعليق";
 "Password must be at least 5 characters" = "كلمة المرور يجب أن لا تقل عن ٥ أحرف";
 
+
+"data are not matching" = "البيانات غير صحيحة";
+

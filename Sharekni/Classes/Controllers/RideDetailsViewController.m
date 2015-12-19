@@ -155,7 +155,7 @@
         _driverRatingsView = [[HCSStarRatingView alloc] initWithFrame:placeholderRatingView.frame];
         _driverRatingsView.maximumValue = 5;
         _driverRatingsView.minimumValue = 0;
-        _driverRatingsView.value = 0;
+        _driverRatingsView.value = (self.routeDetails.AccountRating) ? self.routeDetails.AccountRating.integerValue : 0 ;
         _driverRatingsView.tintColor = [UIColor whiteColor];
         _driverRatingsView.backgroundColor = [UIColor clearColor];
         [_driverRatingsView addTarget:self action:@selector(didChangeValue:) forControlEvents:UIControlEventValueChanged];
@@ -665,15 +665,25 @@
         Review *review = self.reviews[indexPath.row];
         if (self.createdRide)  {
             [reviewCell  showHideDelete:YES];
+            [reviewCell showHideEdit:NO];
         }
-        else{
+        else if ([review.AccountId.stringValue containsString:applicationUserID]) {
+            [reviewCell showHideEdit:YES];
+            [reviewCell showHideDelete:YES];
+        }
+        else
+        {
             [reviewCell  showHideDelete:NO];
+            [reviewCell showHideEdit:NO];
         }
+        
         if ([review.AccountId.stringValue containsString:applicationUserID]) {
             [reviewCell showHideEdit:YES];
+            [reviewCell showHideDelete:YES];
         }
         else{
             [reviewCell showHideEdit:NO];
+            [reviewCell showHideDelete:NO];
         }
         [reviewCell setReview:review];
         __block RideDetailsViewController *blockSelf = self;
@@ -792,6 +802,7 @@
     endItem.rides = self.routeDetails.NoOfSeats.stringValue;
     endMarker.userData = endItem;
     endMarker.title = (KIS_ARABIC)?self.routeDetails.ToEmirateArName:self.routeDetails.ToEmirateEnName;
+    endMarker.snippet = (KIS_ARABIC)?self.routeDetails.ToRegionArName:self.routeDetails.ToRegionEnName;
     endMarker.icon = [UIImage imageNamed:@"Location"];
     endMarker.map = _mapView;
     [self.markers addObject:endMarker];
@@ -809,7 +820,7 @@
 - (void) addRatingForPassenger:(Passenger *)passenger noOfStars:(NSInteger)noOfStars{
     __block RideDetailsViewController *blockSelf = self;
     self.navigationItem.rightBarButtonItem = self.loadingBarButton;
-[[MobAccountManager sharedMobAccountManager] addPassengerRatingWithPassengerID:passenger.ID.stringValue inRouteID:self.routeDetails.ID.stringValue noOfStars:noOfStars WithSuccess:^(NSString *response) {
+[[MobAccountManager sharedMobAccountManager] addPassengerRatingWithPassengerID:passenger.AccountId.stringValue inRouteID:self.routeDetails.ID.stringValue noOfStars:noOfStars WithSuccess:^(NSString *response) {
     blockSelf.navigationItem.rightBarButtonItem = nil;
     [KVNProgress showSuccessWithStatus:GET_STRING(@"Rating added successfully")];
     [blockSelf performBlock:^{

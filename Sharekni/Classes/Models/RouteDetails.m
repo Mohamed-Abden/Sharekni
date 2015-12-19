@@ -107,6 +107,7 @@
     mapping[@"EndLng"] = @"EndLng";
     mapping[@"AgeRangeID"] = @"AgeRangeID";
     mapping[@"AgeRange"] = @"AgeRange";
+    mapping[@"AccountRating"] = @"AccountRating";    
     return mapping;
 }
 
