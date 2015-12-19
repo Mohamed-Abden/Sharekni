@@ -26,5 +26,6 @@
 
 
 - (void)setReview:(Review *)review ;
-- (void) showHideIcons:(BOOL)show;
+- (void) showHideDelete:(BOOL)show;
+- (void) showHideEdit:(BOOL)show;
 @end

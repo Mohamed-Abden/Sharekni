@@ -663,16 +663,28 @@
         NSString *applicationUserID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
 
         Review *review = self.reviews[indexPath.row];
-        if (self.createdRide || [review.AccountId.stringValue containsString:applicationUserID])  {
-            [reviewCell  showHideIcons:YES];
+        if (self.createdRide)  {
+            [reviewCell  showHideDelete:YES];
         }
         else{
-            [reviewCell  showHideIcons:NO];
+            [reviewCell  showHideDelete:NO];
+        }
+        if ([review.AccountId.stringValue containsString:applicationUserID]) {
+            [reviewCell showHideEdit:YES];
+        }
+        else{
+            [reviewCell showHideEdit:NO];
         }
         [reviewCell setReview:review];
         __block RideDetailsViewController *blockSelf = self;
         [reviewCell setEditHandler:^{
+            AddReviewViewController *addReview = [[AddReviewViewController alloc] initWithNibName:@"AddReviewViewController" bundle:nil];
+            addReview.isEdit = YES;
+            addReview.review = review;
             
+            addReview.routeDetails = self.routeDetails ;
+            addReview.delegate = self;
+            [self presentPopupViewController:addReview animationType:MJPopupViewAnimationSlideBottomBottom];
         }];
         [reviewCell setDeleteHandler:^{
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:GET_STRING(@"Do you want to delete this review ?") delegate:self cancelButtonTitle:GET_STRING(@"Cancel") otherButtonTitles:GET_STRING(@"Delete"), nil];

@@ -54,13 +54,20 @@
     // Configure the view for the selected state
 }
 
-- (void) showHideIcons:(BOOL)show{
+
+- (void) showHideDelete:(BOOL)show{
     if (show) {
         self.deleteBtn.alpha = 1;
-        self.editBtn.alpha = 1;
     }
     else{
         self.deleteBtn.alpha = 0;
+    }
+}
+- (void) showHideEdit:(BOOL)show{
+    if (show) {
+        self.editBtn.alpha = 1;
+    }
+    else{
         self.editBtn.alpha = 0;
     }
 }
