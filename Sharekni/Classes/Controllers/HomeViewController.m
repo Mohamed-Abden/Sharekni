@@ -281,8 +281,13 @@
 }
 
 - (void) createRideAction{
-    CreateRideViewController *createRideViewController = [[CreateRideViewController alloc] initWithNibName:(KIS_ARABIC)?@"CreateRideViewController_ar":@"CreateRideViewController" bundle:nil];
-    [self.navigationController pushViewController:createRideViewController animated:YES];
+    if (self.sharedUser.DriverMyRidesCount.integerValue < 2) {
+        CreateRideViewController *createRideViewController = [[CreateRideViewController alloc] initWithNibName:(KIS_ARABIC)?@"CreateRideViewController_ar":@"CreateRideViewController" bundle:nil];
+        [self.navigationController pushViewController:createRideViewController animated:YES];
+    }
+    else{
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Sorry, It's not allowed to create more than 2 rides")];
+    }
 }
 
 - (void) historyAction
