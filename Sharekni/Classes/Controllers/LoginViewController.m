@@ -216,9 +216,9 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     
 }
 
-- (REFrostedViewController *) mainViewController {
-    
-    HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
+- (REFrostedViewController *) mainViewController
+{
+    HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar":@"HomeViewController" bundle:nil];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeViewControlle];
     SideMenuTableViewController  *menuController = [[SideMenuTableViewController alloc] initWithNavigationController:navigationController];
     

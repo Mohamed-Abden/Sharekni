@@ -41,7 +41,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = NSLocalizedString(@"Saved Search", nil);
+    self.title = GET_STRING(@"Saved Search");
     self.noResultLabel.textColor = Red_UIColor;
     self.noResultLabel.alpha = 0;
     [self getRideDetails];
@@ -57,7 +57,7 @@
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     
     __block SavedSearchViewController *blockSelf = self;
-    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     [[MasterDataManager sharedMasterDataManager] getSavedSearch:[NSString stringWithFormat:@"%@",user.ID] withSuccess:^(NSMutableArray *array) {
         
         blockSelf.savedData = array;
@@ -125,7 +125,7 @@
                 [blockSelf.navigationController pushViewController:resultViewController animated:YES];
             }
             else{
-                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"No Rides Found ",nil)];
+                [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"No Rides Found")];
             }
         } Failure:^(NSString *error) {
             [KVNProgress dismiss];

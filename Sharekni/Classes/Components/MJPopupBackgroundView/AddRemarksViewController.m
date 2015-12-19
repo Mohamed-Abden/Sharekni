@@ -24,11 +24,17 @@
     // Do any additional setup after loading the view from its nib.
     
     [viewText becomeFirstResponder];
-    viewText.text = NSLocalizedString(@"I’d like to join your ride", nil);
-    viewText.textAlignment = NSTextAlignmentNatural ;
-    [self.headerTitle setText:NSLocalizedString(@"Write Your Remarks", nil)];
-    [self.headerTitle2 setText:NSLocalizedString(@"Your Remarks", nil)];
-    [self.submitBtn setTitle:NSLocalizedString(@"Submit", nil) forState:UIControlStateNormal];
+    viewText.text = GET_STRING(@"I’d like to join your ride");
+    
+    if (KIS_ARABIC)
+    {
+        viewText.textAlignment = NSTextAlignmentRight ;
+        self.headerTitle2.textAlignment = NSTextAlignmentRight;
+    }
+    
+    [self.headerTitle setText:GET_STRING(@"Write Your Remarks")];
+    [self.headerTitle2 setText:GET_STRING(@"Your Remarks")];
+    [self.submitBtn setTitle:GET_STRING(@"Submit") forState:UIControlStateNormal];
 }
 
 - (void)HideKeyboard
@@ -39,12 +45,12 @@
 - (IBAction)closePopup:(id)sender
 {
     if (viewText.text.length == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attention", nil) message:NSLocalizedString(@"You must write your remark first", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:GET_STRING(@"Attention") message:GET_STRING(@"You must write your remark first") delegate:nil cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
         [alert show];
         return ;
     }
     
-    [KVNProgress showWithStatus:@"Loading...."];
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
     
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     

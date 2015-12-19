@@ -52,25 +52,25 @@
     
     NSString *daysText = @"";
     if (item.SDG_RouteDays_Sunday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Sun,", nil)];
+        daysText = [daysText stringByAppendingString:GET_STRING(@"Sun ")];
     }
     if (item.SDG_RouteDays_Monday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Mon,", nil)];
+        daysText = [daysText stringByAppendingString:GET_STRING(@"Mon ")];
     }
     if (item.SDG_RouteDays_Tuesday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Tue,", nil)];
+        daysText = [daysText stringByAppendingString:GET_STRING(@"Tue ")];
     }
     if (item.SDG_RouteDays_Wednesday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Wed,", nil)];
+        daysText = [daysText stringByAppendingString:GET_STRING(@"Wed ")];
     }
     if (item.SDG_RouteDays_Thursday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Thu,", nil)];
+        daysText = [daysText stringByAppendingString:GET_STRING(@"Thu ")];
     }
     if (item.SDG_RouteDays_Friday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Fri,", nil)];
+        daysText = [daysText stringByAppendingString:GET_STRING(@"Fri ")];
     }
     if (item.Saturday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Sat,", nil)];
+        daysText = [daysText stringByAppendingString:GET_STRING(@"Sat ")];
     }
     self.daysLabel.text = daysText;
 }

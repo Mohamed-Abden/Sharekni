@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -15,48 +14,37 @@
                 <rect key="frame" x="0.0" y="0.0" width="304" height="84.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mostafa farouk" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.65000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="FeK-t7-y45">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mostafa farouk" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.65000000000000002" id="FeK-t7-y45">
                         <rect key="frame" x="8" y="9" width="103" height="33"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <animations/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="33" id="PTd-UB-yxY"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGm-Qm-YL9">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gGm-Qm-YL9">
                         <rect key="frame" x="256" y="8" width="32" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <animations/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="32" id="8QB-wb-fTc"/>
-                            <constraint firstAttribute="width" constant="32" id="vbf-Av-DuD"/>
-                        </constraints>
                         <state key="normal" image="Delete_ICON"/>
                         <connections>
                             <action selector="deleteHandler:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="CGn-pq-sVm"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="etE-5c-ETb">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="etE-5c-ETb">
                         <rect key="frame" x="167" y="8" width="32" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <animations/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="32" id="ahn-aI-dE9"/>
-                            <constraint firstAttribute="width" constant="32" id="bQ1-MK-LWV"/>
-                        </constraints>
                         <state key="normal" backgroundImage="Call_Btn"/>
                         <connections>
                             <action selector="callHandler:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="jl2-Cb-PiE"/>
                         </connections>
                     </button>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c8Y-im-Rqt">
+                    <view contentMode="scaleToFill" id="c8Y-im-Rqt">
                         <rect key="frame" x="8" y="48" width="160" height="31"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="160" id="lDA-E7-ooQ"/>
-                            <constraint firstAttribute="height" constant="31" id="tB1-K5-uCf"/>
-                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="value">
                                 <real key="value" value="3"/>
@@ -74,13 +62,10 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYc-F1-WvY">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pYc-F1-WvY">
                         <rect key="frame" x="207" y="8" width="43" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <animations/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="32" id="ejv-qZ-ghu"/>
-                            <constraint firstAttribute="width" constant="43" id="lEZ-w9-hpN"/>
-                        </constraints>
                         <state key="normal" backgroundImage="Msg_Btn"/>
                         <connections>
                             <action selector="messageHandler:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="rQN-zA-Rf3"/>
@@ -88,18 +73,6 @@
                     </button>
                 </subviews>
                 <animations/>
-                <constraints>
-                    <constraint firstItem="gGm-Qm-YL9" firstAttribute="leading" secondItem="pYc-F1-WvY" secondAttribute="trailing" constant="6" id="5rP-Oj-yl5"/>
-                    <constraint firstAttribute="topMargin" secondItem="etE-5c-ETb" secondAttribute="top" id="FEx-D2-wAg"/>
-                    <constraint firstItem="FeK-t7-y45" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="1" id="FUU-TX-15Q"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="gGm-Qm-YL9" secondAttribute="trailing" constant="8" id="KyS-Ek-NuI"/>
-                    <constraint firstAttribute="leadingMargin" secondItem="c8Y-im-Rqt" secondAttribute="leading" id="LcX-RZ-TJl"/>
-                    <constraint firstItem="pYc-F1-WvY" firstAttribute="leading" secondItem="etE-5c-ETb" secondAttribute="trailing" constant="8" id="Tdn-f8-5je"/>
-                    <constraint firstAttribute="topMargin" secondItem="pYc-F1-WvY" secondAttribute="top" id="Xpm-Je-R2a"/>
-                    <constraint firstAttribute="leadingMargin" secondItem="FeK-t7-y45" secondAttribute="leading" id="iZl-Gg-swM"/>
-                    <constraint firstAttribute="topMargin" secondItem="gGm-Qm-YL9" secondAttribute="top" id="lE6-QM-Srs"/>
-                    <constraint firstItem="c8Y-im-Rqt" firstAttribute="top" secondItem="FeK-t7-y45" secondAttribute="bottom" constant="6" id="zu0-hz-5S7"/>
-                </constraints>
             </tableViewCellContentView>
             <animations/>
             <connections>
@@ -107,6 +80,80 @@
                 <outlet property="placeholderView" destination="c8Y-im-Rqt" id="Ilu-Tr-JrV"/>
             </connections>
             <point key="canvasLocation" x="333" y="286.5"/>
+        </tableViewCell>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PassengerCell" rowHeight="80" id="QT2-Iq-cb4" customClass="PassengerCell">
+            <rect key="frame" x="0.0" y="0.0" width="304" height="85"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QT2-Iq-cb4" id="vYA-rY-ekN">
+                <rect key="frame" x="0.0" y="0.0" width="304" height="84.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mostafa farouk" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.64999997615814209" id="OCT-WT-cXK">
+                        <rect key="frame" x="193" y="9" width="103" height="33"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GTb-Fd-Hfh">
+                        <rect key="frame" x="16" y="8" width="32" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <animations/>
+                        <state key="normal" image="Delete_ICON"/>
+                        <connections>
+                            <action selector="deleteHandler:" destination="QT2-Iq-cb4" eventType="touchUpInside" id="irw-DY-2E4"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EiV-zb-Rr0">
+                        <rect key="frame" x="105" y="8" width="32" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <animations/>
+                        <state key="normal" backgroundImage="Call_Btn"/>
+                        <connections>
+                            <action selector="callHandler:" destination="QT2-Iq-cb4" eventType="touchUpInside" id="6e7-m3-nx5"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" id="NAD-BL-QRA">
+                        <rect key="frame" x="136" y="48" width="160" height="31"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                <real key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="allowsHalfStars" value="NO"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="accurateHalfStars" value="YES"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="continuous" value="YES"/>
+                            <userDefinedRuntimeAttribute type="image" keyPath="emptyStarImage" value="star-empty"/>
+                            <userDefinedRuntimeAttribute type="image" keyPath="filledStarImage" value="star-filled"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                                <integer key="value" value="0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="V4R-T3-FsM">
+                        <rect key="frame" x="54" y="8" width="43" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <animations/>
+                        <state key="normal" backgroundImage="Msg_Btn"/>
+                        <connections>
+                            <action selector="messageHandler:" destination="QT2-Iq-cb4" eventType="touchUpInside" id="lAw-fQ-KoU"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <animations/>
+            </tableViewCellContentView>
+            <animations/>
+            <connections>
+                <outlet property="nameLabel" destination="OCT-WT-cXK" id="YVr-HU-h6L"/>
+                <outlet property="placeholderView" destination="NAD-BL-QRA" id="dKK-oF-eKF"/>
+            </connections>
+            <point key="canvasLocation" x="333" y="429.5"/>
         </tableViewCell>
     </objects>
     <resources>

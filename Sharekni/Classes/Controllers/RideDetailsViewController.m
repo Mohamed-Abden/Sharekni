@@ -302,8 +302,8 @@
                    blockSelf.passengers = array;
                    [blockPassengersList reloadData];
                    [KVNProgress dismiss];
-
-                   if(blockSelf.driverDetails || self.joinedRide){
+                   [blockSelf configureActionsButtons];
+                   if(blockSelf.driverDetails){
                        NSString * applicationUserID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
                        if (applicationUserID.length > 0) {
                            for (Passenger *passenger in array) {
@@ -311,8 +311,8 @@
                                    blockSelf.alreadyJoined = YES;
                                    break;
                                }
-                        }
-                        [blockSelf configureActionsButtons];
+                            }
+                           
                        }
                    }
                    if (blockSelf.driverDetails) {
@@ -366,20 +366,13 @@
         }
     }
     else{
-        if (self.alreadyJoined) {
-            [firstButton setTitle:GET_STRING(@"Review") forState:UIControlStateNormal];
-            [firstButton addTarget:self action:@selector(addReviewAction) forControlEvents:UIControlEventTouchUpInside];
-            firstButton.alpha = 1;
-            secondButton.alpha = 0;
-            thirdButton.alpha = 0;
-            if (self.joinedRide) {
-                [locationsView addSubview:self.driverRatingsView];
-            }
-        }
-        else{
-            firstButton.alpha  =  0;
-            secondButton.alpha =  0;
-            thirdButton.alpha  =  0;
+        [firstButton setTitle:GET_STRING(@"Review") forState:UIControlStateNormal];
+        [firstButton addTarget:self action:@selector(addReviewAction) forControlEvents:UIControlEventTouchUpInside];
+        firstButton.alpha = 1;
+        secondButton.alpha = 0;
+        thirdButton.alpha = 0;
+        if (self.joinedRide) {
+            [locationsView addSubview:self.driverRatingsView];
         }
     }
 }
@@ -736,7 +729,7 @@
         frame =  CGRectMake(_MKmapView.frame.origin.x, _MKmapView.frame.origin.y, 320.0f, 280);
     }
     _mapView = [GMSMapView mapWithFrame:frame camera:camera];
-    _mapView.myLocationEnabled = NO;
+    _mapView.myLocationEnabled = YES;
     _mapView.delegate = self;
     [contentView addSubview:_mapView];
     [_MKmapView removeFromSuperview];
@@ -874,7 +867,8 @@
     }];
 }
 
-- (void) refreshPassengers{
+- (void) refreshPassengers
+{
     __block RideDetailsViewController *blockSelf = self;
     __block UITableView *blockPassengersList = passengersList;
     [KVNProgress showWithStatus:GET_STRING(@"loading")];

@@ -174,7 +174,7 @@
     
     //Create date selection view controller
     RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
-    dateSelectionController.title = @"select Pickup Date";
+    dateSelectionController.title = GET_STRING(@"Select Pickup Date");
     dateSelectionController.datePicker.datePickerMode = UIDatePickerModeDate;
     dateSelectionController.datePicker.date = self.pickupDate ? self.pickupDate : [NSDate date];
     
@@ -203,7 +203,7 @@
     
     //Create date selection view controller
     RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
-    dateSelectionController.title = @"select Pickup Time";
+    dateSelectionController.title = GET_STRING(@"Select Pickup Time");
     dateSelectionController.datePicker.datePickerMode = UIDatePickerModeTime;
     dateSelectionController.datePicker.date = self.pickupDate ? self.pickupDate : [NSDate date];
     
@@ -296,8 +296,8 @@
 }
 
 - (IBAction) topRides:(id)sender{
-//    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    MostRidesViewController *mostRides = [[MostRidesViewController alloc] initWithNibName:@"MostRidesViewController" bundle:nil];
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    MostRidesViewController *mostRides = [storyboard instantiateViewControllerWithIdentifier:@"MostRidesViewController"];
     mostRides.enableBackButton = YES;
     [self.navigationController pushViewController:mostRides animated:YES];
 }

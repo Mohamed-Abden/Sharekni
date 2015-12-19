@@ -40,18 +40,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     currentLocationEnabled = NO;
-    self.title = NSLocalizedString(@"Map Lookup", nil);
+    self.title = GET_STRING(@"Map Lookup");
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn",nil)] forState:UIControlStateNormal];
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"user-Location"] style:UIBarButtonItemStylePlain target:self action:@selector(currentLocationHanlder)];
     [self configureMapView];
     [self configureData];
-//    mapView_.myLocationEnabled = YES;
+
 }
 
 - (void) currentLocationHanlder{
@@ -146,7 +146,7 @@
 
 - (void) showDetailsForMapItem:(MapItemView *)mapitem{
     __block MapLookupViewController *blockSelf = self;
-    [KVNProgress showWithStatus:@"Loading..."];
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
     MapLookUp *lookup = mapitem.lookup;
     [[MobDriverManager sharedMobDriverManager] findRidesFromEmirateID:lookup.FromEmirateId.stringValue andFromRegionID:lookup.FromRegionId.stringValue toEmirateID:@"0" andToRegionID:@"0" PerfferedLanguageID:@"0" nationalityID:@"" ageRangeID:@"0" date:nil isPeriodic:nil saveSearch:nil WithSuccess:^(NSArray *searchResults) {
         
@@ -161,7 +161,7 @@
             [blockSelf.navigationController pushViewController:resultViewController animated:YES];
         }
         else{
-            [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"No Rides Found ",nil)];
+            [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"No Rides Found")];
         }
     } Failure:^(NSString *error) {
         [KVNProgress dismiss];

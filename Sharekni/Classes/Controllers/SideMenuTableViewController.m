@@ -59,53 +59,53 @@
     self.items = [NSMutableArray array];
     NSDictionary *dictionary;
     if ([self.applicationUser.AccountStatus containsString:@"D"] || [self.applicationUser.AccountStatus containsString:@"B"]) {
-        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Home Page", nil),@"Side_Home"] forKeys:@[Title_Key,Image_Key]];
+        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Home Page"),@"Side_Home"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
-        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Vehicles", nil),@"Side_vehicles"] forKeys:@[Title_Key,Image_Key]];
+        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Vehicles"),@"Side_vehicles"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
-        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Most Rides", nil),@"Side_mostrides"] forKeys:@[Title_Key,Image_Key]];
+        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Most Rides"),@"Side_mostrides"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
-        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Best Drivers", nil),@"Side_bestdriver"] forKeys:@[Title_Key,Image_Key]];
+        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Best Drivers"),@"Side_bestdriver"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
-        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Search", nil),@"Side_search"] forKeys:@[Title_Key,Image_Key]];
+        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Search"),@"Side_search"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
-        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Notifications", nil),@"Side_notifications"] forKeys:@[Title_Key,Image_Key]];
+        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Notifications"),@"Side_notifications"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
-        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Language", nil),(KIS_ARABIC)?@"Language_En":@"Language_Ar"] forKeys:@[Title_Key,Image_Key]];
+        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Language"),(KIS_ARABIC)?@"Language_En":@"Language_Ar"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
 
-        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Logout", nil),@"Side_Logout"] forKeys:@[Title_Key,Image_Key]];
+        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Logout"),@"Side_Logout"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
     }
     else{
-        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Home Page", nil),@"Side_Home"] forKeys:@[Title_Key,Image_Key]];
+        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Home Page"),@"Side_Home"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
-        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Saved Search", nil),@"Side_vehicles"] forKeys:@[Title_Key,Image_Key]];
+        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Saved Search"),@"Side_vehicles"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
-        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Most Rides", nil),@"Side_mostrides"] forKeys:@[Title_Key,Image_Key]];
+        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Most Rides"),@"Side_mostrides"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
-        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Best Drivers", nil),@"Side_bestdriver"] forKeys:@[Title_Key,Image_Key]];
+        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Best Drivers"),@"Side_bestdriver"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
-        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Search", nil),@"Side_search"] forKeys:@[Title_Key,Image_Key]];
+        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Search"),@"Side_search"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
-        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Notifications", nil),@"Side_notifications"] forKeys:@[Title_Key,Image_Key]];
+        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Notifications"),@"Side_notifications"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
-        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Language", nil),(KIS_ARABIC)?@"Language_En":@"Language_Ar"] forKeys:@[Title_Key,Image_Key]];
+        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Language"),(KIS_ARABIC)?@"Language_En":@"Language_Ar"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
 
-        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Logout", nil),@"Side_Logout"] forKeys:@[Title_Key,Image_Key]];
+        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Logout"),@"Side_Logout"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
     }
 }
@@ -196,45 +196,45 @@
     NSDictionary *dictionary = [self.items objectAtIndex:indexPath.row];
     NSString *title = [dictionary valueForKey:Title_Key];
     
-        if ([title isEqualToString:NSLocalizedString(@"Home Page", nil)])
+        if ([title isEqualToString:GET_STRING(@"Home Page")])
         { //Home
             [self.frostedViewController setContentViewController:self.homeNavigationController];
             [self.frostedViewController hideMenuViewController];
         }
-        else if ([title isEqualToString:NSLocalizedString(@"Most Rides", nil)])
+        else if ([title isEqualToString:GET_STRING(@"Most Rides")])
         { //Most Rides
             [self.frostedViewController setContentViewController:self.mostRidesNavigationController];
             [self.frostedViewController hideMenuViewController];
         }
-        else if ([title isEqualToString:NSLocalizedString(@"Best Drivers", nil)]){
+        else if ([title isEqualToString:GET_STRING(@"Best Drivers")]){
             [self.frostedViewController setContentViewController:self.bestDriversNavigationController];
             [self.frostedViewController hideMenuViewController];
         }
-        else if ([title isEqualToString:NSLocalizedString(@"Search", nil)]){
+        else if ([title isEqualToString:GET_STRING(@"Search")]){
             [self.frostedViewController setContentViewController:self.searchNavigationController];
             [self.frostedViewController hideMenuViewController];
         }
-        else if ([title isEqualToString:NSLocalizedString(@"Notificationsrivers", nil)]){
+        else if ([title isEqualToString:GET_STRING(@"Notificationsrivers")]){
             [self.frostedViewController setContentViewController:self.searchNavigationController];
             [self.frostedViewController hideMenuViewController];
         }
-        else if ([title isEqualToString:NSLocalizedString(@"Saved Search", nil)]){
+        else if ([title isEqualToString:GET_STRING(@"Saved Search")]){
             [self.frostedViewController setContentViewController:self.savedSearchNavigationController];
             [self.frostedViewController hideMenuViewController];
         }
-        else if ([title isEqualToString:NSLocalizedString(@"Notifications", nil)]){
+        else if ([title isEqualToString:GET_STRING(@"Notifications")]){
             [self.frostedViewController setContentViewController:self.notificationsNavigationController];
             [self.frostedViewController hideMenuViewController];
         }
-        else if ([title isEqualToString:NSLocalizedString(@"Vehicles", nil)]){
+        else if ([title isEqualToString:GET_STRING(@"Vehicles")]){
             [self.frostedViewController setContentViewController:self.vehiclesNavigationController];
             [self.frostedViewController hideMenuViewController];
         }
-        else if ([title isEqualToString:NSLocalizedString(@"Logout", nil)]){
+        else if ([title isEqualToString:GET_STRING(@"Logout")]){
             [[HelpManager sharedHelpManager] deleteUserFromUSerDefaults];
             [MobAccountManager sharedMobAccountManager].applicationUser = nil;
             [self presentViewController:self.welcomeNavigationController animated:YES completion:nil];
-        }else if ([title isEqualToString:NSLocalizedString(@"Language", nil)]){
+        }else if ([title isEqualToString:GET_STRING(@"Language")]){
 
             if (KIS_ARABIC)
             {
@@ -247,64 +247,40 @@
 
 - (void)selectLangaugeEn
 {
-    if (KIS_SYS_LANGUAGE_ARABIC)
+    language = [NSArray arrayWithObject:@"en"];
+    
+    LanguageType newLanguage;
+    newLanguage = English;
+    if (newLanguage != [Languages sharedLanguageInstance].language)
     {
-        language = [NSArray arrayWithObject:@"en"];
-        [self userDidFinishSelectingLanguage];
+        [[Languages sharedLanguageInstance] setLanguage:newLanguage];
+        [[NSNotificationCenter defaultCenter] postNotificationName:LANGUAGE_CHANGE_NOTIFICATION object:self];
+        [appDelegate reloadApp];
     }
 }
 
 - (void)selectLangaugeAr
 {
-    if (!KIS_SYS_LANGUAGE_ARABIC)
+    language = [NSArray arrayWithObject:@"ar"];
+    LanguageType newLanguage;
+    newLanguage = Arabic;
+    if (newLanguage != [Languages sharedLanguageInstance].language)
     {
-        language = [NSArray arrayWithObject:@"ar"];
-        [self userDidFinishSelectingLanguage];
+        [[Languages sharedLanguageInstance] setLanguage:newLanguage];
+        [[NSNotificationCenter defaultCenter] postNotificationName:LANGUAGE_CHANGE_NOTIFICATION object:self];
+        [appDelegate reloadApp];
     }
 }
 
-- (void) userDidFinishSelectingLanguage
-{
-    UIAlertView * al = [[UIAlertView alloc] initWithTitle:nil
-                                                  message:NSLocalizedString(@"In order to change language you have to re-open the application", nil)
-                                                 delegate:self
-                                        cancelButtonTitle:NSLocalizedString(@"No", nil)
-                                        otherButtonTitles: NSLocalizedString(@"Close Now", nil), nil];
-    [al show];
-}
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    
-    if (buttonIndex != alertView.cancelButtonIndex) {
-        
-        [self updateUser:language];
-    }
-}
-
-- (void)updateUser:(NSArray *)lang
-{
-    if ([lang[0] isEqualToString:@"ar"]) {
-        [KUSER_DEFAULTS setObject:@"ar"
-                           forKey:KUSER_LANGUAGE_KEY];
-        [KUSER_DEFAULTS synchronize];
-    }else{
-        [KUSER_DEFAULTS setObject:@"en"
-                           forKey:KUSER_LANGUAGE_KEY];
-        [KUSER_DEFAULTS synchronize];
-    }
-    [KUSER_DEFAULTS setObject:lang forKey:@"AppleLanguages"];
-    [KUSER_DEFAULTS synchronize];
-    exit(0);
-}
 
 
 
 - (UINavigationController *)homeNavigationController
 {
     if (!_homeNavigationController) {
-        HomeViewController *viewController = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
-        viewController.enableBackButton = NO;
-        _homeNavigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+        HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar":@"HomeViewController" bundle:nil];
+        homeViewControlle.enableBackButton = NO;
+        _homeNavigationController = [[UINavigationController alloc] initWithRootViewController:homeViewControlle];
     }
     return _homeNavigationController;
 }
@@ -333,8 +309,8 @@
 - (UINavigationController *)mostRidesNavigationController
 {
     if (!_mostRidesNavigationController) {
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        MostRidesViewController *viewController = [[MostRidesViewController alloc] initWithNibName:@"MostRidesViewController" bundle:nil];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        MostRidesViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"MostRidesViewController"];
         viewController.enableBackButton = NO;
         _mostRidesNavigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
 

@@ -78,11 +78,13 @@
     [self.operationManager GET:body parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
-        if ([responseString containsString:@"-2"]){
-            failure(NSLocalizedString(@"Mobile number already exists", nil));
+        if ([responseString containsString:@"-2"])
+        {
+            failure(GET_STRING(@"Mobile number already exists"));
         }
-        else if ([responseString containsString:@"-1"]){
-            failure(NSLocalizedString(@"Email already exists",nil));
+        else if ([responseString containsString:@"-1"])
+        {
+            failure(NSLocalizedString(GET_STRING(@"Email already exists"),nil));
         }
         else{
             success(nil);
@@ -127,26 +129,20 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
                 success(blockSelf.applicationUser);
              
             } Failure:^(NSString *error) {
-//                [self GetPhotoWithName:user.PhotoPath withSuccess:^(UIImage *image, NSString *filePath) {
-//                    blockSelf.applicationUser.userImage = image;
-//                    blockSelf.applicationUser.imageLocalPath = filePath;
-//                    success(blockSelf.applicationUser);
-//                } Failure:^(NSString *error) {
-//                    blockSelf.applicationUser.userImage = [UIImage imageNamed:@"Man"];
-//                    blockSelf.applicationUser.imageLocalPath = nil;
-//                    success(blockSelf.applicationUser);
-//                }];
+
             }];
         }
-        else if ([responseString containsString:@"-"]){
-            failure(NSLocalizedString(@"Please check your username and password", nil));
+        else if ([responseString containsString:@"-"])
+        {
+            failure(GET_STRING(@"Please check your username and password"));
         }
         else{
-            failure(NSLocalizedString(@"Please check your username and password", nil));
+            failure(GET_STRING(@"Please check your username and password"));
         }
         
-    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-            failure(NSLocalizedString(@"Please check your username and password", nil));
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error)
+    {
+            failure(GET_STRING(@"Please check your username and password"));
     }];
 }
 

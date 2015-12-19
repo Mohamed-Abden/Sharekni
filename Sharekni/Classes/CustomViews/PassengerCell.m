@@ -14,7 +14,7 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self = (PassengerCell *)[[[NSBundle mainBundle] loadNibNamed:@"PassengerCell" owner:nil options:nil] objectAtIndex:0];
+        self = (PassengerCell *)[[[NSBundle mainBundle] loadNibNamed:@"PassengerCell" owner:nil options:nil] objectAtIndex:(KIS_ARABIC)?1:0];
         self.ratingView = [[HCSStarRatingView alloc] initWithFrame:self.placeholderView.frame];
         self.ratingView.maximumValue = 5;
         self.ratingView.minimumValue = 0;

@@ -29,20 +29,15 @@
     if (self.enableBackButton) {
         UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _backBtn.frame = CGRectMake(0, 0, 22, 22);
-        [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn", nil)] forState:UIControlStateNormal];
+        [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
         [_backBtn setHighlighted:NO];
         [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
     }
     else {
         UIBarButtonItem *menuItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu"] style:UIBarButtonItemStylePlain target:self action:@selector(menuItemTapped)];
-        if (KIS_ARABIC) {
-            self.navigationItem.rightBarButtonItem = menuItem;
 
-        }else{
             self.navigationItem.leftBarButtonItem = menuItem;
-
-        }
     }
 }
 

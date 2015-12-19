@@ -26,7 +26,7 @@
 {
     [super viewDidLoad];
     
-    self.title = NSLocalizedString(@"Take a tour", nil);
+    self.title = GET_STRING(@"Take a tour");
     self.navigationController.navigationBarHidden = YES ;
     
     allImages = [[Tour getInstance] getTourImages];

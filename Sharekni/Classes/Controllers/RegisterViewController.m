@@ -365,6 +365,16 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     return YES;
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if(textField == self.mobileNumberTxt){
+        if (textField.text.length < 9) {
+            return YES;
+        }
+        return NO;
+    }
+    return YES;
+}
+
 #pragma Touches
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     for (UIView* view in self.view.subviews) {
@@ -470,6 +480,15 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
             self.date = nil;
             [self configureBorders];
         }
+        else if ([[HelpManager sharedHelpManager] isDateBefor1900:self.date]){
+            UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"You cannot choose year before 1900") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
+            [alertView show];
+            self.date = nil;
+            [self configureBorders];
+        }
+        else{
+            [self configureBorders];
+        }
     }];
     
     //Create cancel action
@@ -505,7 +524,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"Please Choose accout type.") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
         [alertView show];
     }
-    else if(self.firstName.length == 0 || self.lastName.length == 0 || self.userName.length == 0 || self.mobileNumber.length == 0 || !self.date || !self.selectedLanguage){
+    else if(self.firstName.length == 0 || self.lastName.length == 0 || self.userName.length == 0 || self.mobileNumber.length == 0 || !self.date){
         UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"Please fill all fields") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
         [alertView show];
         [self configureBorders];
@@ -1017,7 +1036,7 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
 
 - (REFrostedViewController *) homeViewController {
     
-    HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
+    HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar":@"HomeViewController" bundle:nil];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeViewControlle];
     SideMenuTableViewController  *menuController = [[SideMenuTableViewController alloc] initWithNavigationController:navigationController];
     

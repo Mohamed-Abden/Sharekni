@@ -163,6 +163,11 @@ typedef enum DirectionType : NSUInteger {
     self.fromRegionTextField.autoCompleteTableAppearsAsKeyboardAccessory = YES;
     [self.fromRegionTextField setTintColor:Red_UIColor];
     self.toRegionTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    if (KIS_ARABIC)
+    {
+        self.fromRegionTextField.textAlignment = NSTextAlignmentRight ;
+        self.toRegionTextField.textAlignment   = NSTextAlignmentRight ;
+    }
     
     self.toRegionTextField.delegate = self;
     self.toRegionTextField.autoCompleteDataSource = self;
@@ -172,7 +177,6 @@ typedef enum DirectionType : NSUInteger {
     self.toRegionTextField.autoCompleteTableBackgroundColor = [UIColor whiteColor];
     self.toRegionTextField.autoCompleteTableAppearsAsKeyboardAccessory = YES;
     [self.toRegionTextField setTintColor:Red_UIColor];
-//    self.toRegionTextField.layer.borderWidth = 1.5;
     self.toRegionTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
     
     UITapGestureRecognizer *dismissGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissHandler)];
@@ -183,7 +187,8 @@ typedef enum DirectionType : NSUInteger {
     [self.DoneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 
-- (void)popViewController{
+- (void)popViewController
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -289,15 +294,20 @@ typedef enum DirectionType : NSUInteger {
 }
 
 #pragma TextFieldDelegate
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    if (textField == self.fromRegionTextField){
-        if (!self.selectedFromEmirate) {
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (textField == self.fromRegionTextField)
+    {
+        if (!self.selectedFromEmirate)
+        {
             [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please select from Emirate first")];
             return NO;
         }
         return YES;
     }
-    if (textField == self.toRegionTextField){
+    
+    if (textField == self.toRegionTextField)
+    {
         if (!self.selectedToEmirate) {
             [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please select to Emirate first")];
             return NO;
@@ -312,11 +322,12 @@ typedef enum DirectionType : NSUInteger {
 #pragma AutoCompelete_Delegate
 - (BOOL)autoCompleteTextField:(MLPAutoCompleteTextField *)textField
 shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
-               forBorderStyle:(UITextBorderStyle)borderStyle{
+               forBorderStyle:(UITextBorderStyle)borderStyle
+{
     return YES;
 }
 
-- (NSArray *)autoCompleteTextField:(MLPAutoCompleteTextField *)textField      possibleCompletionsForString:(NSString *)string{
+- (NSArray *)autoCompleteTextField:(MLPAutoCompleteTextField *)textField possibleCompletionsForString:(NSString *)string{
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[c] %@",string]; // if you need case sensitive search avoid '[c]' in the predicate
     NSArray * dataSourceArray ;
@@ -330,10 +341,13 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
     return results;
 }
 
-- (IBAction)choosFromEmirateHandler:(id)sender {
+- (IBAction)choosFromEmirateHandler:(id)sender
+{
     [self showEmiratePickerForType:DirectionTypeFrom];
 }
-- (IBAction)chooseToEmirateHandler:(id)sender {
+
+- (IBAction)chooseToEmirateHandler:(id)sender
+{
     [self showEmiratePickerForType:DirectionTypeTo];
 }
 
@@ -347,17 +361,21 @@ static const CGFloat MINIMUM_SCROLL_FRACTION = 0.2;
 static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
 static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 220;
 static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
+
 //when clicking the return button in the keybaord
-- (BOOL)textFieldShouldEndEditing:(UITextField*)textField{
+- (BOOL)textFieldShouldEndEditing:(UITextField*)textField
+{
     return [self textSouldEndEditing];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField*)textField{
+- (BOOL)textFieldShouldReturn:(UITextField*)textField
+{
     [textField  resignFirstResponder];
     return YES;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField{
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
     CGRect textFieldRect = [self.view.window convertRect:textField.bounds fromView:textField];
     [self textDidBeginEditing:textFieldRect];
 }
@@ -396,7 +414,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     [UIView commitAnimations];
 }
 
-- (BOOL)textSouldEndEditing{
+- (BOOL)textSouldEndEditing
+{
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y += animatedDistance;
     [UIView beginAnimations:nil context:NULL];
@@ -408,9 +427,12 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     return YES;
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    for (UIView* view in self.view.subviews) {
-        for (UIGestureRecognizer* recognizer in view.gestureRecognizers) {
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for (UIView* view in self.view.subviews)
+    {
+        for (UIGestureRecognizer* recognizer in view.gestureRecognizers)
+        {
             [recognizer addTarget:self action:@selector(touchEvent:)];
         }
         
