@@ -1017,7 +1017,7 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
 
 - (REFrostedViewController *) homeViewController {
     
-    HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
+    HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar":@"HomeViewController" bundle:nil];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeViewControlle];
     SideMenuTableViewController  *menuController = [[SideMenuTableViewController alloc] initWithNavigationController:navigationController];
     

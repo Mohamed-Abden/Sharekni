@@ -47,11 +47,12 @@
 {
     self.layer.cornerRadius = 15.0f;
  
-    self.driverHeader.text = NSLocalizedString(@"Drivers :", nil);
-    self.passengerHeader.text = NSLocalizedString(@"Passengers :", nil);
-    self.ridesHeader.text = NSLocalizedString(@"Coming Rides :", nil);
+    self.driverHeader.text = GET_STRING(@"Drivers :");
+    self.passengerHeader.text = GET_STRING(@"Passengers :");
+    self.ridesHeader.text = GET_STRING(@"Coming Rides :");
     
-        for (UILabel *label in self.headerLabels) {
+        for (UILabel *label in self.headerLabels)
+        {
             label.textColor = Red_UIColor;
         }
         self.arabicNameLabel.text = self.arabicName;

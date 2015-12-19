@@ -31,7 +31,7 @@
         self.comment.layer.cornerRadius = 4.0f;
     }
     
-    self.comment.text = [NSString stringWithFormat:@"  %@  ",review.Review] ;
+    self.comment.text = [NSString stringWithFormat:@"   %@   ",review.Review] ;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

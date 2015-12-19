@@ -36,7 +36,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.title = NSLocalizedString(@"sharkni", nil);
     self.title = GET_STRING(@"sharkni");
     self.navigationController.navigationBar.translucent = YES;
     self.navigationController.navigationBarHidden = NO ;

@@ -50,11 +50,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = NSLocalizedString(@"History", nil);
+    self.title = GET_STRING(@"History");
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn", nil)] forState:UIControlStateNormal];
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
@@ -96,17 +96,18 @@
 - (void) getCreatedRides
 {
     __block HistoryViewController  *blockSelf = self;
-    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
     
-    [[MobAccountManager sharedMobAccountManager] getCreatedRidesWithSuccess:^(NSMutableArray *array) {
-        [KVNProgress dismiss];
+    [[MobAccountManager sharedMobAccountManager] getCreatedRidesWithSuccess:^(NSMutableArray *array)
+    {
         blockSelf.createdRides = array;
 
         [self getJoinedRides];
         
-    } Failure:^(NSString *error) {
+    } Failure:^(NSString *error)
+    {
         [KVNProgress dismiss];
-        [KVNProgress showErrorWithStatus:@"An error occured when getting your created rides."];
+        [KVNProgress showError];
         [blockSelf performBlock:^{
             [KVNProgress dismiss];
         } afterDelay:3];
@@ -147,15 +148,16 @@
         }
         else if (self.joinRides.count > 0)
         {
-            self.joinRidesList.frame = CGRectMake(self.createdRidesList.frame.origin.x, self.createdRidesList.frame.origin.y, self.createdRidesList.frame.size.width, self.createdRides.count *183.0f);
-            [self.joinRidesList reloadData];
+            self.joinRidesList.frame = CGRectMake(13.0f, 26.0f, self.joinRidesList.frame.size.width, self.joinRides.count *183.0f);
             
             joinedView.frame = CGRectMake(createdView.frame.origin.x, createdView.frame.origin.y, createdView.frame.size.width, self.joinRides.count *183.0f + 27.0f);
             
             [self.contentView setContentSize:CGSizeMake(self.contentView.frame.size.width,createdView.frame.origin.y + createdView.frame.size.height)];
 
-            
             joinedLblName.frame = CGRectMake(joinedLblName.frame.origin.x, 10.0f, joinedLblName.frame.size.width, joinedLblName.frame.size.height);
+            
+            [self.joinRidesList reloadData];
+
         }
         else
         {
@@ -173,6 +175,7 @@
         {
             createdView.hidden = NO ;
             createdLblName.hidden = NO ;
+            self.createdRidesList.hidden = NO ;
         }
         
         if (self.joinRides.count == 0)
@@ -182,6 +185,7 @@
         } else {
             joinedLblName.hidden = NO ;
             joinedView.hidden = NO ;
+            self.joinRidesList.hidden = NO ;
         }
 
     } Failure:^(NSString *error) {
@@ -220,7 +224,7 @@
     
     if (rideCell == nil)
     {
-        rideCell = (RideHistoryCell *)[[[NSBundle mainBundle] loadNibNamed:@"RideHistoryCell" owner:nil options:nil] objectAtIndex:0];
+        rideCell = (RideHistoryCell *)[[[NSBundle mainBundle] loadNibNamed:@"RideHistoryCell" owner:nil options:nil] objectAtIndex:(KIS_ARABIC)?1:0];
     }
     
     if (tableView.tag == 0)

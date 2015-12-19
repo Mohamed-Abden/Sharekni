@@ -11,7 +11,8 @@
 
 @implementation NotificationCell
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     // Initialization code
     self.userImage.layer.cornerRadius = self.userImage.frame.size.width / 2.0f ;
     self.userImage.clipsToBounds = YES ;
@@ -22,15 +23,15 @@
 {
     if ([notification.DriverAccept boolValue]) {
         if (notification.PassengerName) {
-            self.notificationLbl.text = [NSString stringWithFormat:@"%@ %@",notification.PassengerName,NSLocalizedString(@"Has Accepted your request", nil)] ;
+            self.notificationLbl.text = [NSString stringWithFormat:@"%@ %@",notification.PassengerName,GET_STRING(@"Has Accepted your request")] ;
         }else{
-            self.notificationLbl.text = NSLocalizedString(@"Has Accepted your request", nil) ;
+            self.notificationLbl.text = GET_STRING(@"Has Accepted your request") ;
         }
     }else{
         if (notification.PassengerName) {
-            self.notificationLbl.text = [NSString stringWithFormat:@"%@ %@",notification.PassengerName,NSLocalizedString(@"Send you a join request", nil)] ;
+            self.notificationLbl.text = [NSString stringWithFormat:@"%@ %@",notification.PassengerName,GET_STRING(@"Send you a join request")] ;
         }else{
-            self.notificationLbl.text = NSLocalizedString(@"Send you a join request", nil);
+            self.notificationLbl.text = GET_STRING(@"Send you a join request");
         }
     }
     self.nationality.text = (KIS_ARABIC)?notification.NationalityArName:notification.NationalityEnName ;

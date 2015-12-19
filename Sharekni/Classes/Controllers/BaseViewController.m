@@ -36,13 +36,8 @@
     }
     else {
         UIBarButtonItem *menuItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu"] style:UIBarButtonItemStylePlain target:self action:@selector(menuItemTapped)];
-        if (KIS_ARABIC) {
-            self.navigationItem.rightBarButtonItem = menuItem;
 
-        }else{
             self.navigationItem.leftBarButtonItem = menuItem;
-
-        }
     }
 }
 
