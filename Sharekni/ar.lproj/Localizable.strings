@@ -230,4 +230,7 @@
 
 "You don't have joined rides yet" = "عفوا لا توجد رحلات مشتركة";
 "You don't have created rides yet" = "عفوا لا توجد رحلات منشأة";
+"Received your request and waiting for approval" = "تم إرسال طلب الإشتراك وفي انتظار موافقة السائق";
 
+"Request deleted successfully" = "تم حذف الطلب بنجاح";
+"Cannot delete Request" = "لا يمكن حذف الطلب";

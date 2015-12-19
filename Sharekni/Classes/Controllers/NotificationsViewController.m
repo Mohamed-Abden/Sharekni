@@ -217,16 +217,20 @@
             [[MasterDataManager sharedMasterDataManager] deleteRequestWithID:self.toBeDeletedNotification.RequestId.stringValue WithSuccess:^(BOOL deleted) {
                 [KVNProgress dismiss];
                 if(deleted){
+<<<<<<< Updated upstream
                     [KVNProgress showSuccessWithStatus:@"Request deleted successfully"];
                     [blockSelf performBlock:^{
                         [KVNProgress dismiss];
                     } afterDelay:3];
+=======
+                    [KVNProgress showSuccessWithStatus:GET_STRING(@"Request deleted successfully")];
+>>>>>>> Stashed changes
                 }
                 else{
 
                     __block NotificationsViewController *blockSelf = self;
                     [KVNProgress dismiss];
-                    [KVNProgress showErrorWithStatus :@"cannot delete Request"];
+                    [KVNProgress showErrorWithStatus :GET_STRING(@"Cannot delete Request")];
                     [blockSelf performBlock:^{
                         [KVNProgress dismiss];
                     } afterDelay:3];
@@ -235,7 +239,7 @@
             } Failure:^(NSString *error) {
                 __block NotificationsViewController *blockSelf = self;
                 [KVNProgress dismiss];
-                [KVNProgress showErrorWithStatus :@"cannot delete Request"];
+                [KVNProgress showErrorWithStatus :GET_STRING(@"Cannot delete Request")];
                 [blockSelf performBlock:^{
                     [KVNProgress dismiss];
                 } afterDelay:3];

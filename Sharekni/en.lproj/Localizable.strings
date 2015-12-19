@@ -229,8 +229,9 @@
 
 "You don't have joined rides yet" = "You don't have joined rides yet";
 "You don't have created rides yet" = "You don't have created rides yet";
-
-
+"Received your request and waiting for approval" = "Received your request and waiting for approval";
+"Request deleted successfully" = "Request deleted successfully";
+"Cannot delete Request" = "Cannot delete Request";
 
 
 
