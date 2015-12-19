@@ -366,13 +366,20 @@
         }
     }
     else{
-        [firstButton setTitle:GET_STRING(@"Review") forState:UIControlStateNormal];
-        [firstButton addTarget:self action:@selector(addReviewAction) forControlEvents:UIControlEventTouchUpInside];
-        firstButton.alpha = 1;
-        secondButton.alpha = 0;
-        thirdButton.alpha = 0;
-        if (self.joinedRide) {
-            [locationsView addSubview:self.driverRatingsView];
+        if (self.alreadyJoined) {
+            [firstButton setTitle:GET_STRING(@"Review") forState:UIControlStateNormal];
+            [firstButton addTarget:self action:@selector(addReviewAction) forControlEvents:UIControlEventTouchUpInside];
+            firstButton.alpha = 1;
+            secondButton.alpha = 0;
+            thirdButton.alpha = 0;
+            if (self.joinedRide) {
+                [locationsView addSubview:self.driverRatingsView];
+            }
+        }
+        else{
+            firstButton.alpha  =  0;
+            secondButton.alpha =  0;
+            thirdButton.alpha  =  0;
         }
     }
 }
@@ -867,8 +874,7 @@
     }];
 }
 
-- (void) refreshPassengers
-{
+- (void) refreshPassengers{
     __block RideDetailsViewController *blockSelf = self;
     __block UITableView *blockPassengersList = passengersList;
     [KVNProgress showWithStatus:GET_STRING(@"loading")];
