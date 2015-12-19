@@ -218,17 +218,19 @@
                 [KVNProgress dismiss];
                 if(deleted){
                     [KVNProgress showSuccessWithStatus:@"Request deleted successfully"];
+                    [blockSelf performBlock:^{
+                        [KVNProgress dismiss];
+                        [blockSelf getNotifications2];
+                    } afterDelay:3];
                 }
                 else{
-
-                    __block NotificationsViewController *blockSelf = self;
                     [KVNProgress dismiss];
                     [KVNProgress showErrorWithStatus :@"cannot delete Request"];
                     [blockSelf performBlock:^{
                         [KVNProgress dismiss];
+                        [blockSelf getNotifications2];
                     } afterDelay:3];
                 }
-                [blockSelf getNotifications2];
             } Failure:^(NSString *error) {
                 __block NotificationsViewController *blockSelf = self;
                 [KVNProgress dismiss];
