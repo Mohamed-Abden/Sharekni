@@ -108,7 +108,7 @@
     return _inputAccessoryView;
 }
 
-- (void) doneTapped{
+- (void) doneTapped {
     [self.view endEditing:YES];
 }
 
