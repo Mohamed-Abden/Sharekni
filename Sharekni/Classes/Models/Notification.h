@@ -13,7 +13,7 @@
 
 @property (nonatomic,strong) NSNumber *RequestId;
 @property (nonatomic,strong) NSNumber *DriverAccept;
-@property (nonatomic,strong) NSString *PassengerName;
+@property (nonatomic,strong) NSString *DriverName;
 @property (nonatomic,strong) NSString *RouteName;
 @property (nonatomic,strong) NSString *Remarks;
 @property (nonatomic,strong) NSString *RequestDate;

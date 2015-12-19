@@ -326,8 +326,10 @@
     return _savedSearchNavigationController;
 }
 
-- (UINavigationController *)notificationsNavigationController{
-    if (!_notificationsNavigationController) {
+- (UINavigationController *)notificationsNavigationController
+{
+    if (!_notificationsNavigationController)
+    {
         NotificationsViewController *notificationsView = [[NotificationsViewController alloc] initWithNibName:@"NotificationsViewController" bundle:nil];
         _notificationsNavigationController = [[UINavigationController alloc] initWithRootViewController:notificationsView];
     }
@@ -344,9 +346,11 @@
     return _vehiclesNavigationController;
 }
 
-- (UINavigationController *)welcomeNavigationController{
-    if (!_welcomeNavigationController) {
-        WelcomeViewController *welcomeViewController = [[WelcomeViewController alloc] initWithNibName:@"WelcomeViewController" bundle:nil];
+- (UINavigationController *)welcomeNavigationController
+{
+    if (!_welcomeNavigationController)
+    {
+        WelcomeViewController *welcomeViewController = [[WelcomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"WelcomeViewController_ar":@"WelcomeViewController" bundle:nil];
      _welcomeNavigationController = [[UINavigationController alloc] initWithRootViewController:welcomeViewController];
     }
     return _welcomeNavigationController;

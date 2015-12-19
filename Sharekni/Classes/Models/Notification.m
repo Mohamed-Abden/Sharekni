@@ -16,7 +16,7 @@
     NSMutableDictionary *mapping = [NSMutableDictionary dictionary];
     mapping[@"RequestId"] = @"RequestId";
     mapping[@"DriverAccept"] = @"DriverAccept";
-    mapping[@"PassengerName"] = @"PassengerName";
+    mapping[@"DriverName"] = @"DriverName";
     mapping[@"RouteName"] = @"RouteName";
     mapping[@"Remarks"] = @"Remarks";
     mapping[@"RequestDate"] = @"RequestDate";

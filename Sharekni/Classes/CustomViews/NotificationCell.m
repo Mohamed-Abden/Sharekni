@@ -22,14 +22,14 @@
 - (void)setNotification:(Notification *)notification
 {
     if ([notification.DriverAccept boolValue]) {
-        if (notification.PassengerName) {
-            self.notificationLbl.text = [NSString stringWithFormat:@"%@ %@",notification.PassengerName,GET_STRING(@"Has Accepted your request")] ;
+        if (notification.DriverName) {
+            self.notificationLbl.text = [NSString stringWithFormat:@"%@ %@",notification.DriverName,GET_STRING(@"Has Accepted your request")] ;
         }else{
             self.notificationLbl.text = GET_STRING(@"Has Accepted your request") ;
         }
     }else{
-        if (notification.PassengerName) {
-            self.notificationLbl.text = [NSString stringWithFormat:@"%@ %@",notification.PassengerName,GET_STRING(@"Send you a join request")] ;
+        if (notification.DriverName) {
+            self.notificationLbl.text = [NSString stringWithFormat:@"%@ %@",notification.DriverName,GET_STRING(@"Send you a join request")] ;
         }else{
             self.notificationLbl.text = GET_STRING(@"Send you a join request");
         }

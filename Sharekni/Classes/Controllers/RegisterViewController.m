@@ -212,6 +212,9 @@
     self.nationalityTxt.autoCompleteTableAppearsAsKeyboardAccessory = YES;
     self.nationalityTxt.autoCompleteTableCellTextColor = [UIColor blackColor];
     [self.nationalityTxt setTintColor:Red_UIColor];
+    if (KIS_ARABIC) {
+        self.nationalityTxt.textAlignment = NSTextAlignmentRight ;
+    }
 }
 
 - (void) configureData{
