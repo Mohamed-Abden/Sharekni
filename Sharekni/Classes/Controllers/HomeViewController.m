@@ -85,6 +85,7 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    self.notificationCount = 0;
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
 
     [Tune measureSession];
@@ -338,7 +339,7 @@
     
     [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] notificationType:NotificationTypeAlert  WithSuccess:^(NSMutableArray *array) {
         
-        self.notificationCount = (int)array.count ;
+        self.notificationCount += (int)array.count ;
        
         [self getAcceptedNotifications];
         
