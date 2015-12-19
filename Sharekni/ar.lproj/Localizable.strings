@@ -194,7 +194,7 @@
 "Ride edited successfully" = "تم تعديل بيانات الرحلة بنجاح";
 "Ride created successfully" = "تم إنشاء الرحلة بنجاح";
 "An error happend when trying to create ride" = "حدث خطأ عند إنشاء الرحلة";
-"You cannot create more than two rides." = "غير مسموح بانشاء أكثر من رحلتين";
+"Sorry, It's not allowed to create more than two rides" = "غير مسموح بانشاء أكثر من رحلتين";
 "Select Pickup Time" = "اخر وقت الإنطلاق";
 "Select Pickup Date" = "اختر تاريخ الإنطلاق";
 "Rating added successfully" = "تم التقييم بنجاح";

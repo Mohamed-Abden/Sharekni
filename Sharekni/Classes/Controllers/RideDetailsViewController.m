@@ -631,11 +631,14 @@
 #pragma mark -
 #pragma mark UITableView Datasource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex{
-    if (tableView == reviewList) {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
+{
+    if (tableView == reviewList)
+    {
         return self.reviews.count;
     }
-    else{
+    else
+    {
         return self.passengers.count;
     }
 
@@ -659,13 +662,8 @@
         return reviewCell ;
     }
     else{
-//        PassengerCell *passengerCell = (PassengerCell *)[tableView dequeueReusableCellWithIdentifier:PASSENGER_CELLID];
-//        
-//        if (passengerCell == nil)
-//        {
             PassengerCell *passengerCell = [[PassengerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PASSENGER_CELLID];
-//        }
-        
+
         Passenger *passenger = self.passengers[indexPath.row];
         passengerCell.nameLabel.text = passenger.AccountName;
         passengerCell.selectionStyle = UITableViewCellSelectionStyleNone;

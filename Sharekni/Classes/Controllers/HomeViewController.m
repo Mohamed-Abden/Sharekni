@@ -287,7 +287,7 @@
         [self.navigationController pushViewController:createRideViewController animated:YES];
     }
     else{
-        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Sorry, It's not allowed to create more than 2 rides")];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Sorry, It's not allowed to create more than two rides")];
     }
 }
 
