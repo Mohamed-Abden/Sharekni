@@ -85,7 +85,6 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    self.notificationCount = 0;
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
 
     [Tune measureSession];
@@ -105,6 +104,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.notificationCount = 0;
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
 
@@ -363,10 +363,10 @@
     
     [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] notificationType:NotificationTypeAccepted WithSuccess:^(NSMutableArray *array) {
         
-        self.notificationCount += (int)array.count ;
-        self.notificationCountTxt = [NSString stringWithFormat:@"%d",self.notificationCount];
-        self.notificationCountLabel.text = self.notificationCountTxt;
-
+        blockSelf.notificationCount += (int)array.count ;
+        blockSelf.notificationCountTxt = [NSString stringWithFormat:@"%d",self.notificationCount];
+        blockSelf.notificationCountLabel.text = self.notificationCountTxt;
+        [blockSelf getPendingNotifications];
         [KVNProgress dismiss];
         
     } Failure:^(NSString *error) {

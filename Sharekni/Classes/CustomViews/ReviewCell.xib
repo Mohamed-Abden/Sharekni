@@ -118,15 +118,6 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <animations/>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="km8-66-seE">
-                        <rect key="frame" x="49" y="7" width="30" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <animations/>
-                        <state key="normal" backgroundImage="Edit_Icon"/>
-                        <connections>
-                            <action selector="edit:" destination="CTy-Zi-q1I" eventType="touchUpInside" id="hIK-bv-V4s"/>
-                        </connections>
-                    </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="POS-aG-NG0">
                         <rect key="frame" x="14" y="7" width="30" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -134,6 +125,15 @@
                         <state key="normal" backgroundImage="Delete_ICON"/>
                         <connections>
                             <action selector="delete:" destination="CTy-Zi-q1I" eventType="touchUpInside" id="fpL-Qu-NVV"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="km8-66-seE">
+                        <rect key="frame" x="49" y="7" width="30" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <animations/>
+                        <state key="normal" backgroundImage="Edit_Icon"/>
+                        <connections>
+                            <action selector="edit:" destination="CTy-Zi-q1I" eventType="touchUpInside" id="hIK-bv-V4s"/>
                         </connections>
                     </button>
                 </subviews>

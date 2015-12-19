@@ -11,16 +11,14 @@
 
 @implementation NotificationCell
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib{
     // Initialization code
     self.userImage.layer.cornerRadius = self.userImage.frame.size.width / 2.0f ;
     self.userImage.clipsToBounds = YES ;
     self.notificationLbl.textAlignment = NSTextAlignmentNatural ;
 }
 
-- (void)setNotification:(Notification *)notification
-{
+- (void)setNotification:(Notification *)notification{
     if ([notification.DriverAccept boolValue]) {
         if (notification.DriverName) {
             self.notificationLbl.text = [NSString stringWithFormat:@"%@ %@",notification.DriverName,GET_STRING(@"Has Accepted your request")] ;
@@ -49,6 +47,9 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+- (IBAction)deleteHandler:(id)sender {
+    
 }
 
 @end
