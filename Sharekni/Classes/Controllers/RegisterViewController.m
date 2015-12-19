@@ -505,7 +505,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"Please Choose accout type.") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
         [alertView show];
     }
-    else if(self.firstName.length == 0 || self.lastName.length == 0 || self.userName.length == 0 || self.mobileNumber.length == 0 || !self.date){
+    else if(self.firstName.length == 0 || self.lastName.length == 0 || self.userName.length == 0 || self.mobileNumber.length == 0 || !self.date || !self.selectedLanguage){
         UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"Please fill all fields") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
         [alertView show];
         [self configureBorders];

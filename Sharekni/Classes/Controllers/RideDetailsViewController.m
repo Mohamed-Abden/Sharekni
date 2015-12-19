@@ -729,7 +729,7 @@
         frame =  CGRectMake(_MKmapView.frame.origin.x, _MKmapView.frame.origin.y, 320.0f, 280);
     }
     _mapView = [GMSMapView mapWithFrame:frame camera:camera];
-    _mapView.myLocationEnabled = YES;
+    _mapView.myLocationEnabled = NO;
     _mapView.delegate = self;
     [contentView addSubview:_mapView];
     [_MKmapView removeFromSuperview];

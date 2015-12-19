@@ -296,8 +296,8 @@
 }
 
 - (IBAction) topRides:(id)sender{
-    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    MostRidesViewController *mostRides = [storyboard instantiateViewControllerWithIdentifier:@"MostRidesViewController"];
+//    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    MostRidesViewController *mostRides = [[MostRidesViewController alloc] initWithNibName:@"MostRidesViewController" bundle:nil];
     mostRides.enableBackButton = YES;
     [self.navigationController pushViewController:mostRides animated:YES];
 }

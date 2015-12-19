@@ -333,8 +333,8 @@
 - (UINavigationController *)mostRidesNavigationController
 {
     if (!_mostRidesNavigationController) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        MostRidesViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"MostRidesViewController"];
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        MostRidesViewController *viewController = [[MostRidesViewController alloc] initWithNibName:@"MostRidesViewController" bundle:nil];
         viewController.enableBackButton = NO;
         _mostRidesNavigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
 

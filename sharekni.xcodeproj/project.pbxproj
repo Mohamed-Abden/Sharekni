@@ -111,7 +111,6 @@
 		14D3E9491C06AD1B0047F415 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3E9481C06AD1B0047F415 /* QuartzCore.framework */; };
 		14D3E94B1C06AD220047F415 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3E94A1C06AD220047F415 /* CoreGraphics.framework */; };
 		14D3E9591C06C0440047F415 /* PHPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3E9581C06C0440047F415 /* PHPageScrollView.m */; };
-		14DD7B341C2459E8006E2418 /* Languages.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DD7B331C2459E8006E2418 /* Languages.m */; };
 		14DFCB741C24619A00EE87CA /* WelcomeViewController_ar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14DFCB721C24619A00EE87CA /* WelcomeViewController_ar.xib */; };
 		14DFCB751C24619A00EE87CA /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14DFCB731C24619A00EE87CA /* WelcomeViewController.xib */; };
 		14DFCB781C24663B00EE87CA /* LoginViewController_ar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14DFCB761C24663B00EE87CA /* LoginViewController_ar.xib */; };
@@ -203,6 +202,7 @@
 		87E5F7681BFB6914004FF688 /* RidesCreatedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E5F7661BFB6914004FF688 /* RidesCreatedViewController.m */; };
 		87E5F7691BFB6914004FF688 /* RidesCreatedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E5F7671BFB6914004FF688 /* RidesCreatedViewController.xib */; };
 		87ED1B331C1221EF00EB58EB /* UploadImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87ED1B321C1221EF00EB58EB /* UploadImageManager.m */; };
+		87FE7E301C24C4CC007308E0 /* Languages.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FE7E2F1C24C4CC007308E0 /* Languages.m */; };
 		87FFDDAE1BFD65040031CE61 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87FFDDAD1BFD65030031CE61 /* MapKit.framework */; };
 		87FFDDB11BFD6A570031CE61 /* RouteDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FFDDB01BFD6A570031CE61 /* RouteDetails.m */; };
 		F0111D2A36E3A2CF7875CF72 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 072E520A66E22BABE4DD7235 /* libPods.a */; };
@@ -395,8 +395,6 @@
 		14D3E94A1C06AD220047F415 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		14D3E9571C06C0440047F415 /* PHPageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHPageScrollView.h; sourceTree = "<group>"; };
 		14D3E9581C06C0440047F415 /* PHPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHPageScrollView.m; sourceTree = "<group>"; };
-		14DD7B321C2459E8006E2418 /* Languages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Languages.h; sourceTree = "<group>"; };
-		14DD7B331C2459E8006E2418 /* Languages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Languages.m; sourceTree = "<group>"; };
 		14DFCB721C24619A00EE87CA /* WelcomeViewController_ar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController_ar.xib; sourceTree = "<group>"; };
 		14DFCB731C24619A00EE87CA /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
 		14DFCB761C24663B00EE87CA /* LoginViewController_ar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController_ar.xib; sourceTree = "<group>"; };
@@ -532,6 +530,8 @@
 		87E5F7671BFB6914004FF688 /* RidesCreatedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RidesCreatedViewController.xib; sourceTree = "<group>"; };
 		87ED1B311C1221EF00EB58EB /* UploadImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadImageManager.h; sourceTree = "<group>"; };
 		87ED1B321C1221EF00EB58EB /* UploadImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadImageManager.m; sourceTree = "<group>"; };
+		87FE7E2E1C24C4CC007308E0 /* Languages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Languages.h; sourceTree = "<group>"; };
+		87FE7E2F1C24C4CC007308E0 /* Languages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Languages.m; sourceTree = "<group>"; };
 		87FFDDAD1BFD65030031CE61 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		87FFDDAF1BFD6A570031CE61 /* RouteDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteDetails.h; sourceTree = "<group>"; };
 		87FFDDB01BFD6A570031CE61 /* RouteDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteDetails.m; sourceTree = "<group>"; };
@@ -792,8 +792,8 @@
 		143BE6AD1BB14BD2009F6496 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				14DD7B321C2459E8006E2418 /* Languages.h */,
-				14DD7B331C2459E8006E2418 /* Languages.m */,
+				87FE7E2E1C24C4CC007308E0 /* Languages.h */,
+				87FE7E2F1C24C4CC007308E0 /* Languages.m */,
 				0429B1C11BB9C84400161222 /* NSObject+Blocks.h */,
 				0429B1C21BB9C84400161222 /* NSObject+Blocks.m */,
 				0429B1C41BB9DC5F00161222 /* HelpManager.h */,
@@ -1344,6 +1344,7 @@
 				143F30F91BC8EF5E006A6A21 /* MostRide.m in Sources */,
 				0453B2EA1BE54EC500007271 /* BaseViewController.m in Sources */,
 				87C571D91BDBD07700EFB618 /* MobVehicleManager.m in Sources */,
+				87FE7E301C24C4CC007308E0 /* Languages.m in Sources */,
 				047E45501BC0960F000B5151 /* SearchViewController.m in Sources */,
 				873E4C611BED30E4006C42F8 /* MapInfoWindow.m in Sources */,
 				87ED1B331C1221EF00EB58EB /* UploadImageManager.m in Sources */,
@@ -1370,7 +1371,6 @@
 				873E7BF31C12C8C000B9A68D /* NSObject+RZDataBinding.m in Sources */,
 				14022BEA1BE56B8B00585042 /* MostRideDetailsCell.m in Sources */,
 				14E5D79F1C01A6F10089054A /* NotificationCell.m in Sources */,
-				14DD7B341C2459E8006E2418 /* Languages.m in Sources */,
 				044ECE941BC08A6000AF3E2D /* SearchResultsViewController.m in Sources */,
 				048912A11BB922A2005E4E02 /* TermsAndCondition.m in Sources */,
 				87B58B591BD3842800E73E55 /* Base64.m in Sources */,
