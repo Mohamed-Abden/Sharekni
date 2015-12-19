@@ -87,14 +87,12 @@
 
 @implementation RideDetailsViewController
 
-- (void) viewWillAppear:(BOOL)animated
-{
+- (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setTranslucent:NO];
 }
 
-- (void) viewDidLoad
-{
+- (void) viewDidLoad{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.alreadyJoined = NO;
@@ -151,8 +149,7 @@
     [self configureData];
 }
 
-- (HCSStarRatingView *) driverRatingsView
-{
+- (HCSStarRatingView *) driverRatingsView{
     if (!_driverRatingsView)
     {
         _driverRatingsView = [[HCSStarRatingView alloc] initWithFrame:placeholderRatingView.frame];
@@ -170,8 +167,7 @@
     return _driverRatingsView;
 }
 
-- (void) didChangeValue:(HCSStarRatingView *)sender
-{
+- (void) didChangeValue:(HCSStarRatingView *)sender{
  //Rate Driver
     __block RideDetailsViewController *blockSelf = self;
     NSString *driverID = self.driverDetails ? self.driverDetails.ID : self.joinedRide.Account.stringValue;
@@ -251,8 +247,7 @@
     gender.text = GET_STRING(self.routeDetails.PreferredGender);
 }
 
-- (void) configureData
-{
+- (void) configureData{
     __block RideDetailsViewController *blockSelf = self;
     __block UITableView *blockPassengersList = passengersList;
     __block UITableView *blockReviewsList = reviewList;
@@ -518,8 +513,7 @@
     }
 }
 
-- (void) deleteRideAction
-{
+- (void) deleteRideAction{
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:GET_STRING(@"Confirm") message:GET_STRING(@"Do you want to delete this ride ?") delegate:self cancelButtonTitle:GET_STRING(@"Cancel") otherButtonTitles:GET_STRING(@"Delete"), nil];
         alertView.tag = DELETE_RIDE_ALERT_TAG;
         [alertView show];
@@ -638,8 +632,7 @@
 #pragma mark -
 #pragma mark UITableView Datasource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex{
     if (tableView == reviewList)
     {
         return self.reviews.count;
@@ -653,7 +646,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (tableView == reviewList) {
+    if (tableView == reviewList)
+    {
         static NSString *CellIdentifier  = @"ReviewCell";
         
         ReviewCell *reviewCell = (ReviewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -700,6 +694,9 @@
             alertView.tag = PASSENGER_ALERT_TAG;
             [alertView show];
         }];
+        
+        passengerCell.ratingView.value = [passenger.PassenegerRateByDriver floatValue];
+        
         [passengerCell setRatingHandler:^(float rating) {
             [blockSelf addRatingForPassenger:blockPasseger noOfStars:rating];
             NSLog(@"Rating handler");
@@ -740,8 +737,7 @@
     [_MKmapView removeFromSuperview];
 }
 
-- (void) configurePins
-{
+- (void) configurePins{
     [_mapView clear];
     self.markers = [NSMutableArray array];
         CLLocationCoordinate2D startPosition = CLLocationCoordinate2DMake(self.routeDetails.StartLat.doubleValue, self.routeDetails.StartLng.doubleValue);
@@ -872,8 +868,7 @@
     }];
 }
 
-- (void) refreshPassengers
-{
+- (void) refreshPassengers{
     __block RideDetailsViewController *blockSelf = self;
     __block UITableView *blockPassengersList = passengersList;
     [KVNProgress showWithStatus:GET_STRING(@"loading")];

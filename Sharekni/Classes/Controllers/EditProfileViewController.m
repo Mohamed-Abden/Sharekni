@@ -400,7 +400,9 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         for (UIGestureRecognizer* recognizer in view.gestureRecognizers) {
             [recognizer addTarget:self action:@selector(touchEvent:)];
         }
-                [self.view endEditing:YES];
+        [self.view endEditing:YES];
+        [self.container endEditing:YES];
+        [self.mobileNumberTxt resignFirstResponder];
     }
 }
 
