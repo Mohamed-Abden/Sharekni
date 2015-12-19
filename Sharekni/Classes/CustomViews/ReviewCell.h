@@ -17,6 +17,11 @@
 @property (nonatomic ,weak) IBOutlet UILabel *nationality ;
 @property (nonatomic ,weak) IBOutlet UILabel *comment ;
 @property (nonatomic ,weak) IBOutlet UIView *bgView ;
+
+@property (nonatomic ,weak) IBOutlet UIButton *editBtn ;
+@property (nonatomic ,weak) IBOutlet UIButton *deleteBtn ;
+
+
 - (void)setReview:(Review *)review ;
 
 @end

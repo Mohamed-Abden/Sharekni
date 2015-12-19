@@ -34,6 +34,16 @@
     self.comment.text = [NSString stringWithFormat:@"   %@   ",review.Review] ;
 }
 
+- (IBAction)edit:(id)sender
+{
+
+}
+
+- (IBAction)delete:(id)sender
+{
+
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
