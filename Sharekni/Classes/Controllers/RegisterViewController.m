@@ -547,6 +547,11 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         [alertView show];
         [self configureBorders];
     }
+    else if (![self isValidPassword]){
+        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"Password must be at least 5 characters ") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
+        [alertView show];
+        [self configureBorders];
+    }
     else if (([[HelpManager sharedHelpManager] yearsBetweenDate:[NSDate date] andDate:self.date] < 18)){
         UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"You should be older than 18 Years") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
         [alertView show];
@@ -563,6 +568,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"Please Choose a valid nationality.") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
         [alertView show];
     }
+
     else{
         if (self.profileImage) {
             [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
@@ -827,6 +833,13 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     else{
         [self addGreyBorderToView:self.datePickerView];
     }
+    
+    if (![self isValidPassword]){
+        [self addRedBorderToView:self.passwordView];
+    }
+    else{
+        [self addGreyBorderToView:self.passwordView];
+    }
 }
 
 - (void) addRedBorderToView :(UIView *)view{
@@ -1034,6 +1047,13 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
         return NO;
     }
     [self addGreyBorderToView:self.nationalityView];
+    return YES;
+}
+
+- (BOOL) isValidPassword{
+    if (self.passwordTxt.text.length < 5) {
+        return NO;
+    }
     return YES;
 }
 
