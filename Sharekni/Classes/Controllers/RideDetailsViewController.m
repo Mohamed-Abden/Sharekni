@@ -83,6 +83,7 @@
 @property (nonatomic ,strong) RouteDetails *routeDetails ;
 @property (nonatomic ,strong) UIBarButtonItem *loadingBarButton;
 @property (nonatomic ,assign) BOOL alreadyJoined;
+@property (nonatomic ,strong) Review *toBeDeletedReview;
 @end
 
 @implementation RideDetailsViewController
@@ -671,29 +672,9 @@
             
         }];
         [reviewCell setDeleteHandler:^{
-            [[MasterDataManager sharedMasterDataManager] deleteReviewWithId:review.ReviewId withSuccess:^(BOOL deleted) {
-                [KVNProgress dismiss];
-                if(deleted){
-                    [KVNProgress showSuccessWithStatus:@"Review deleted successfully"];
-                    [blockSelf performBlock:^{
-                        [KVNProgress dismiss];
-                    } afterDelay:3];
-                    [blockSelf refreshReviews];
-                }
-                else{
-                    [KVNProgress dismiss];
-                    [KVNProgress showErrorWithStatus :@"cannot delete Review"];
-                    [blockSelf performBlock:^{
-                        [KVNProgress dismiss];
-                    } afterDelay:3];
-                }
-            } Failure:^(NSString *error) {
-                [KVNProgress dismiss];
-                [KVNProgress showErrorWithStatus :@"cannot delete Review"];
-                [blockSelf performBlock:^{
-                    [KVNProgress dismiss];
-                } afterDelay:3];
-            }];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Do you want to delete this review ?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
+            alertView.tag = 1010;
+            [alertView show];
         }];
         return reviewCell ;
     }
@@ -871,8 +852,35 @@
     if (alertView.tag == PASSENGER_ALERT_TAG && buttonIndex == 1) {
         [self deletePassenger:self.toBeDeletedpassenger];
     }
-    if (alertView.tag == DELETE_RIDE_ALERT_TAG && buttonIndex == 1) {
+    else if (alertView.tag == DELETE_RIDE_ALERT_TAG && buttonIndex == 1) {
         [self deleteRide];
+    }
+    else if (alertView.tag == 1010)
+    {
+        __block RideDetailsViewController *blockSelf = self;
+        [[MasterDataManager sharedMasterDataManager] deleteReviewWithId:self.toBeDeletedReview.ReviewId withSuccess:^(BOOL deleted) {
+         [KVNProgress dismiss];
+            if(deleted){
+                [KVNProgress showSuccessWithStatus:@"Review deleted successfully"];
+                [blockSelf performBlock:^{
+                    [KVNProgress dismiss];
+                } afterDelay:3];
+                [blockSelf refreshReviews];
+            }
+            else{
+                [KVNProgress dismiss];
+                [KVNProgress showErrorWithStatus :@"cannot delete Review"];
+                [blockSelf performBlock:^{
+                    [KVNProgress dismiss];
+                } afterDelay:3];
+            }
+        } Failure:^(NSString *error) {
+            [KVNProgress dismiss];
+            [KVNProgress showErrorWithStatus :@"cannot delete Review"];
+            [blockSelf performBlock:^{
+                [KVNProgress dismiss];
+            } afterDelay:3];
+        }];
     }
 
 }
