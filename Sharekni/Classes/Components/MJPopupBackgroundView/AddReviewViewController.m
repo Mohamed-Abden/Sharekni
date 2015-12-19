@@ -33,7 +33,7 @@
     
     if(self.isEdit){
         viewText.text = self.review.Review;
-        [self.submitBtn setTitle:@"Edit Review" forState:UIControlStateNormal];
+        [self.submitBtn setTitle:GET_STRING(@"Edit Review") forState:UIControlStateNormal];
     }
 }
 
