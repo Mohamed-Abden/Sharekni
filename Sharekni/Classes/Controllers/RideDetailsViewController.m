@@ -653,7 +653,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (tableView == reviewList) {
+    if (tableView == reviewList)
+    {
         static NSString *CellIdentifier  = @"ReviewCell";
         
         ReviewCell *reviewCell = (ReviewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -700,6 +701,9 @@
             alertView.tag = PASSENGER_ALERT_TAG;
             [alertView show];
         }];
+        
+        passengerCell.ratingView.value = [passenger.PassenegerRateByDriver floatValue];
+        
         [passengerCell setRatingHandler:^(float rating) {
             [blockSelf addRatingForPassenger:blockPasseger noOfStars:rating];
             NSLog(@"Rating handler");

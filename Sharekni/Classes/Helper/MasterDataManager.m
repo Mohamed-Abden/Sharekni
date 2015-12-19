@@ -628,16 +628,20 @@
     }
 }
 
-- (void) setRegions:(NSArray *)regions forEmirateWithID:(NSString *)ID{
-    if(!self.regionsDictionary){
+- (void) setRegions:(NSArray *)regions forEmirateWithID:(NSString *)ID
+{
+    if(!self.regionsDictionary)
+    {
         self.regionsDictionary = [NSMutableDictionary dictionary];
     }
     [self.regionsDictionary setObject:regions forKey:ID];
 }
 
-- (NSArray *) getRegionsForEmirateID:(NSString *)ID{
+- (NSArray *) getRegionsForEmirateID:(NSString *)ID
+{
     NSArray *regions;
-    if(self.regionsDictionary){
+    if(self.regionsDictionary)
+    {
          regions = [self.regionsDictionary objectForKey:ID];
     }
     return regions;
