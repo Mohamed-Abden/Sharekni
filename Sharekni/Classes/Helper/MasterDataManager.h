@@ -13,7 +13,7 @@
 #import <UIKit/UIKit.h>
 #import "RouteDetails.h"
 #import "Region.h"
-
+#import "Constants.h"
 @interface MasterDataManager : BaseAPIManager
 
 +(MasterDataManager *) sharedMasterDataManager;
@@ -52,7 +52,7 @@
 
 - (void)getSavedVehicleById:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;
 
-- (void)getRequestNotifications:(NSString *)accountID isDriver:(BOOL)isDriver WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;
+- (void)getRequestNotifications:(NSString *)accountID notificationType:(NotificationType)type WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;
 
 - (void) getPassengersByRouteId:(NSString *)routeId withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure;
 

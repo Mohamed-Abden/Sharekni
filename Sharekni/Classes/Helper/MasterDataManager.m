@@ -529,14 +529,18 @@
 //    }
 }
 
-- (void)getRequestNotifications:(NSString *)accountID isDriver:(BOOL)isDriver WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
+- (void)getRequestNotifications:(NSString *)accountID notificationType:(NotificationType)type WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;
 {
     NSString *path ;
-    if (isDriver) {
+    if (type == NotificationTypeAlert) {
         path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_AlertsForRequest?d_AccountId=%@",accountID];
-    }else{
+    }else if (type == NotificationTypeAccepted) {
         path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_GetAcceptedRequestsFromDriver?accountId=%@",accountID];
     }
+    else if (type == NotificationTypePending) {
+        path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_GetPendingRequestsFromDriver?accountId=%@",accountID];
+    }
+    
 
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         

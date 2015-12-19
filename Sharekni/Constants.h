@@ -108,6 +108,12 @@ typedef enum RoadType : NSUInteger {
     SingleRideType
 } RoadType;
 
+typedef enum NotificationType : NSUInteger {
+    NotificationTypeAccepted,
+    NotificationTypeAlert,
+    NotificationTypePending
+} NotificationType;
+
 typedef enum WebViewType : NSUInteger {
     WebViewPrivacyType,
     WebViewTermsAndConditionsType
