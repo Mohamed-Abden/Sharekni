@@ -302,8 +302,8 @@
                    blockSelf.passengers = array;
                    [blockPassengersList reloadData];
                    [KVNProgress dismiss];
-                   [blockSelf configureActionsButtons];
-                   if(blockSelf.driverDetails){
+
+                   if(blockSelf.driverDetails || self.joinedRide){
                        NSString * applicationUserID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
                        if (applicationUserID.length > 0) {
                            for (Passenger *passenger in array) {
@@ -311,8 +311,8 @@
                                    blockSelf.alreadyJoined = YES;
                                    break;
                                }
-                            }
-                           
+                        }
+                        [blockSelf configureActionsButtons];
                        }
                    }
                    if (blockSelf.driverDetails) {
