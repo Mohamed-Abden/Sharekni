@@ -41,7 +41,7 @@
     self.title = GET_STRING(@"Notifications");
 
     self.notifications = [NSMutableArray new];
-    [self getNotifications];
+    [self getNotifications2];
 }
 
 - (void)popViewController
@@ -57,7 +57,7 @@
     __block NotificationsViewController *blockSelf = self;
     [KVNProgress showWithStatus:GET_STRING(@"loading")];
     
-    [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] isDriver:YES WithSuccess:^(NSMutableArray *array) {
+    [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] notificationType:NotificationTypeAlert WithSuccess:^(NSMutableArray *array) {
         
         blockSelf.notifications = array;
 
@@ -82,7 +82,7 @@
     __block NotificationsViewController *blockSelf = self;
     [KVNProgress showWithStatus:GET_STRING(@"loading")];
     
-    [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] isDriver:NO WithSuccess:^(NSMutableArray *array) {
+    [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] notificationType:NotificationTypeAccepted WithSuccess:^(NSMutableArray *array) {
         
         [self.notifications addObjectsFromArray:array];
 
@@ -100,9 +100,51 @@
     }];
 }
 
+- (void) getNotifications2{
+    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    
+    __block NotificationsViewController *blockSelf = self;
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
+    
+    [[MasterDataManager sharedMasterDataManager] getRequestNotifications:user.ID.stringValue notificationType:NotificationTypeAlert WithSuccess:^(NSMutableArray *array) {
+        
+        blockSelf.notifications = array;
+        [blockSelf.notificationsList reloadData];
+        
+        [[MasterDataManager sharedMasterDataManager] getRequestNotifications:user.ID.stringValue notificationType:NotificationTypeAccepted WithSuccess:^(NSMutableArray *array) {
+            
+            [blockSelf.notifications addObjectsFromArray:array];
+            [blockSelf.notificationsList reloadData];
+            
+            [[MasterDataManager sharedMasterDataManager] getRequestNotifications:user.ID.stringValue notificationType:NotificationTypePending WithSuccess:^(NSMutableArray *array) {
+                [KVNProgress dismiss];
+                [blockSelf.notifications addObjectsFromArray:array];
+                [blockSelf.notificationsList reloadData];
+            } Failure:^(NSString *error) {
+              [KVNProgress dismiss];                
+//                [blockSelf handleNetworkFailure];
+            }];
+        } Failure:^(NSString *error) {
+            [blockSelf handleNetworkFailure];
+        }];
+    } Failure:^(NSString *error) {
+        [blockSelf handleNetworkFailure];
+    }];
+}
+
+- (void) handleNetworkFailure{
+    __block NotificationsViewController *blockSelf = self;
+    NSLog(@"Error in Notifications");
+    [KVNProgress dismiss];
+    [KVNProgress showErrorWithStatus:GET_STRING(@"Error")];
+    [blockSelf performBlock:^{
+        [KVNProgress dismiss];
+    } afterDelay:3];
+}
+
 - (void)reloadNotifications
 {
-    [self getNotifications];
+    [self getNotifications2];
 }
 
 #pragma mark -

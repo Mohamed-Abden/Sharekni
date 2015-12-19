@@ -331,7 +331,7 @@
     __block HomeViewController *blockSelf = self;
     [KVNProgress showWithStatus:GET_STRING(@"loading")];
     
-    [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] isDriver:YES WithSuccess:^(NSMutableArray *array) {
+    [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] notificationType:NotificationTypeAlert  WithSuccess:^(NSMutableArray *array) {
         
         self.notificationCount = (int)array.count ;
        
@@ -355,7 +355,7 @@
     __block HomeViewController *blockSelf = self;
     [KVNProgress showWithStatus:GET_STRING(@"loading")];
     
-    [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] isDriver:NO WithSuccess:^(NSMutableArray *array) {
+    [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] notificationType:NotificationTypeAccepted WithSuccess:^(NSMutableArray *array) {
         
         self.notificationCount += (int)array.count ;
         self.notificationCountTxt = [NSString stringWithFormat:@"%d",self.notificationCount];
