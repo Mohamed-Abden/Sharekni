@@ -691,7 +691,7 @@
         }];
         [passengerCell setDeleteHandler:^{
             blockSelf.toBeDeletedpassenger = passenger;
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:GET_STRING(@"Do you want to delete this passenger ?") delegate:self cancelButtonTitle:GET_STRING(@"Cancel") otherButtonTitles:@"Delete", nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:GET_STRING(@"Do you want to delete this passenger ?") delegate:self cancelButtonTitle:GET_STRING(@"Cancel") otherButtonTitles:GET_STRING(@"Delete"), nil];
             alertView.tag = PASSENGER_ALERT_TAG;
             [alertView show];
         }];
