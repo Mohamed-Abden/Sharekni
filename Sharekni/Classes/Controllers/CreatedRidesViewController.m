@@ -104,6 +104,7 @@
     }];
     
     [rideCell setDeleteHandler:^{
+        
         [blockSelf deleteRide:ride];
     }];
     

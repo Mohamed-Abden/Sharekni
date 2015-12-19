@@ -309,6 +309,9 @@
                        }
                        [blockSelf configureActionsButtons];
                    }
+                   else{
+                       [blockSelf configureActionsButtons];
+                   }
                    if (blockSelf.driverDetails) {
                        blockSelf.passengers = nil ;
                    }
