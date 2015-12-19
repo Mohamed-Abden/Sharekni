@@ -378,6 +378,30 @@
     }];
 }
 
+- (void) getPendingNotifications{
+    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    
+    __block HomeViewController *blockSelf = self;
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
+    
+    [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] notificationType:NotificationTypePending WithSuccess:^(NSMutableArray *array) {
+        
+        self.notificationCount += (int)array.count ;
+        self.notificationCountTxt = [NSString stringWithFormat:@"%d",self.notificationCount];
+        self.notificationCountLabel.text = self.notificationCountTxt;
+        
+        [KVNProgress dismiss];
+        
+    } Failure:^(NSString *error) {
+        NSLog(@"Error in Notifications");
+        [KVNProgress dismiss];
+        [KVNProgress showErrorWithStatus:@"Error"];
+        [blockSelf performBlock:^{
+            [KVNProgress dismiss];
+        } afterDelay:3];
+    }];
+}
+
 - (void) showVeichles:(id)sender
 {
     VehiclesViewController *registerVehicle = [[VehiclesViewController alloc] initWithNibName:(KIS_ARABIC)?@"VehiclesViewController_ar":@"VehiclesViewController" bundle:nil];

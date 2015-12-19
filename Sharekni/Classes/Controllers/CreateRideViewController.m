@@ -1015,7 +1015,7 @@
                 [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Error")];
             }
             else if ([response containsString:@"-2"]){
-                [[HelpManager sharedHelpManager] showAlertWithMessage:self.isEdit ? GET_STRING(@"An error happend when trying to create ride") : GET_STRING(@"You cannot create more than two rides.")];
+                [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"An error happend when trying to create ride")];
             }
         } Failure:^(NSString *error) {
             [KVNProgress dismiss];

@@ -28,6 +28,7 @@
 @property (nonatomic,strong) NSString *NationalityFrName;
 @property (nonatomic,strong) NSString *NationalityChName;
 @property (nonatomic,strong) NSString *NationalityUrName;
+@property (nonatomic,assign) BOOL isPending;
 
 @property (nonatomic ,strong) UIImage *image ;
 @property (nonatomic ,strong) NSString *imagePath ;

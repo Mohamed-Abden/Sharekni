@@ -28,7 +28,10 @@
             self.notificationLbl.text = GET_STRING(@"Has Accepted your request") ;
         }
     }else{
-        if (notification.DriverName) {
+        if  (notification.isPending && notification.DriverName){
+            self.notificationLbl.text = [NSString stringWithFormat:@"%@ %@",notification.DriverName,GET_STRING(@"Received your request and waiting for approval")] ;
+        }
+        else if (notification.DriverName) {
             self.notificationLbl.text = [NSString stringWithFormat:@"%@ %@",notification.DriverName,GET_STRING(@"Send you a join request")] ;
         }else{
             self.notificationLbl.text = GET_STRING(@"Send you a join request");

@@ -557,6 +557,9 @@
         NSMutableArray *notifications = [NSMutableArray array];
         for (NSDictionary *dictionary in resultDictionaries) {
             Notification *notification = [Notification gm_mappedObjectWithJsonRepresentation:dictionary];
+            if(type == NotificationTypePending){
+                notification.isPending = YES;
+            }
             [notifications addObject:notification];
         }
         success(notifications);
