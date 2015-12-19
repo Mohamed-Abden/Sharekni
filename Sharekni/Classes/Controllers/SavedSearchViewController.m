@@ -116,7 +116,7 @@
     
             [KVNProgress dismiss];
             if(searchResults){
-                SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:nil];
+                SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:(KIS_ARABIC)?@"SearchResultsViewController_ar":@"SearchResultsViewController" bundle:nil];
                 resultViewController.results = searchResults;
                 resultViewController.fromEmirate = ride.FromEmirateEnName;
                 resultViewController.toEmirate = ride.ToEmirateEnName;

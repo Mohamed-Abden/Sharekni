@@ -373,7 +373,8 @@
     }];
 }
 
-- (void) showVeichles:(id)sender{
+- (void) showVeichles:(id)sender
+{
     VehiclesViewController *registerVehicle = [[VehiclesViewController alloc] initWithNibName:(KIS_ARABIC)?@"VehiclesViewController_ar":@"VehiclesViewController" bundle:nil];
     registerVehicle.enableBackButton = YES;
         [self.navigationController pushViewController:registerVehicle animated:YES];
@@ -385,17 +386,18 @@
         [self.navigationController pushViewController:createdRideViewController animated:YES];
     }
     else{
-        [[HelpManager sharedHelpManager] showAlertWithMessage:@"you don't have created rides yet"];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"You don't have created rides yet")];
     }
 }
 
-- (void) showJoinedRides{
+- (void) showJoinedRides
+{
     if (self.sharedUser.PassengerJoinedRidesCount.integerValue > 0) {
         RidesJoinedViewController *joinedRidesViewController =  [[RidesJoinedViewController alloc] initWithNibName:@"RidesJoinedViewController" bundle:nil];
         [self.navigationController pushViewController:joinedRidesViewController animated:YES];
     }
     else{
-        [[HelpManager sharedHelpManager] showAlertWithMessage:@"you don't have joined rides yet"];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"You don't have joined rides yet")];
     }
 }
 

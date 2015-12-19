@@ -228,5 +228,6 @@
 "Camera" = "الكاميرا";
 
 
-
+"You don't have joined rides yet" = "عفوا لا توجد رحلات مشتركة";
+"You don't have created rides yet" = "عفوا لا توجد رحلات منشأة";
 

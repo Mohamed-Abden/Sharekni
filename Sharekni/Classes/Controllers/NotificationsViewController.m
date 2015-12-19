@@ -60,7 +60,6 @@
     [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] isDriver:YES WithSuccess:^(NSMutableArray *array) {
         
         blockSelf.notifications = array;
-        [KVNProgress dismiss];
 
         [self.notificationsList reloadData];
         

@@ -119,6 +119,8 @@
     __block HistoryViewController *blockSelf = self;
     [[MobAccountManager sharedMobAccountManager] getJoinedRidesWithSuccess:^(NSMutableArray *array)
     {
+        [KVNProgress dismiss];
+
         blockSelf.joinRides = array;
         
         if (self.createdRides.count > 0)

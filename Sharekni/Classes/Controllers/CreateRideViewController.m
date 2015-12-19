@@ -709,7 +709,7 @@
 #pragma Data
 - (void) configureData{
     __block CreateRideViewController *blockSelf = self;
-    [KVNProgress showWithStatus:@"Loading"];
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     [[MasterDataManager sharedMasterDataManager] getSavedVehicleById:nil WithSuccess:^(NSMutableArray *array) {
         blockSelf.vehicles = array;
         [[MasterDataManager sharedMasterDataManager] GetNationalitiesByID:@"0" WithSuccess:^(NSMutableArray *array) {

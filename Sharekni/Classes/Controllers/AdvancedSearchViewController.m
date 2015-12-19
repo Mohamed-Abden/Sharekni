@@ -150,7 +150,7 @@
 #pragma Data
 - (void) configureData{
     __block AdvancedSearchViewController *blockSelf = self;
-    [KVNProgress showWithStatus:@"Loading"];
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     [[MasterDataManager sharedMasterDataManager] GetNationalitiesByID:@"0" WithSuccess:^(NSMutableArray *array) {
         blockSelf.nationalties = array;
         blockSelf.nationaltiesStringsArray = [NSMutableArray array];
@@ -379,11 +379,11 @@
     }
     else{
         __block AdvancedSearchViewController *blockSelf = self;
-        [KVNProgress showWithStatus:@"Loading..."];
+        [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
         [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:self.selectedLanguage nationality:self.selectedNationality ageRange:self.selectedAgeRange date:self.pickupDate isPeriodic:(self.selectedType == PeriodicType) ?@(YES):@(NO) saveSearch:self.saveSearchEnabled Gender:gender Smoke:acceptSmoke WithSuccess:^(NSArray *searchResults) {
             [KVNProgress dismiss];
             if(searchResults){
-                SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:nil];
+                SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:(KIS_ARABIC)?@"SearchResultsViewController_ar":@"SearchResultsViewController" bundle:nil];
                 resultViewController.results = searchResults;
                 resultViewController.fromEmirate =(KIS_ARABIC)?blockSelf.fromEmirate.EmirateArName:blockSelf.fromEmirate.EmirateEnName;
                 resultViewController.toEmirate = (KIS_ARABIC)? blockSelf.toEmirate.EmirateArName:blockSelf.toEmirate.EmirateEnName;
