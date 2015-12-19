@@ -679,6 +679,17 @@
     }];
 }
 
+- (void)deleteRequestWithID:(NSString *)ID WithSuccess:(void (^)(BOOL deleted))success Failure:(void (^)(NSString *error))failure {
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_RemoveRequest?RoutePassengerId=%@",ID];
+    [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        success([responseString containsString:@"1"]);
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        failure(error.localizedDescription);
+    }];
+}
+
 - (Region *) getRegionByID:(NSString *)regionID inEmirateWithID:(NSString *)emirateID{
     NSArray *regions = [self.regionsDictionary valueForKey:emirateID];
     if (regions.count > 0) {

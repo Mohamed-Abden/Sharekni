@@ -16,6 +16,9 @@
 @property (nonatomic ,weak) IBOutlet UILabel *nationality ;
 @property (weak, nonatomic) IBOutlet UIButton *deleteRequestBtn;
 
+@property (nonatomic, copy) void (^deleteHandler)(void);
+
+
 - (void)setNotification:(Notification *)notification ;
 
 @end

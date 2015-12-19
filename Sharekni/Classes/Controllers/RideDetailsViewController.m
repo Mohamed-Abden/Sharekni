@@ -302,7 +302,6 @@
                    blockSelf.passengers = array;
                    [blockPassengersList reloadData];
                    [KVNProgress dismiss];
-                   [blockSelf configureActionsButtons];
                    if(blockSelf.driverDetails){
                        NSString * applicationUserID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
                        if (applicationUserID.length > 0) {
@@ -312,8 +311,8 @@
                                    break;
                                }
                             }
-                           
                        }
+                       [blockSelf configureActionsButtons];
                    }
                    if (blockSelf.driverDetails) {
                        blockSelf.passengers = nil ;
@@ -366,13 +365,21 @@
         }
     }
     else{
-        [firstButton setTitle:GET_STRING(@"Review") forState:UIControlStateNormal];
-        [firstButton addTarget:self action:@selector(addReviewAction) forControlEvents:UIControlEventTouchUpInside];
-        firstButton.alpha = 1;
-        secondButton.alpha = 0;
-        thirdButton.alpha = 0;
-        if (self.joinedRide) {
+        if (self.alreadyJoined || self.joinedRide) {
+            [firstButton setTitle:GET_STRING(@"Review") forState:UIControlStateNormal];
+            [firstButton addTarget:self action:@selector(addReviewAction) forControlEvents:UIControlEventTouchUpInside];
+            firstButton.alpha = 1;
+            secondButton.alpha = 0;
+            thirdButton.alpha = 0;
             [locationsView addSubview:self.driverRatingsView];
+        }
+        else{
+            firstButton.alpha = 0;
+            secondButton.alpha = 0;
+            thirdButton.alpha = 0;
+            if (self.joinedRide) {
+                [locationsView addSubview:self.driverRatingsView];
+            }
         }
     }
 }
@@ -662,7 +669,7 @@
         return reviewCell ;
     }
     else{
-            PassengerCell *passengerCell = [[PassengerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PASSENGER_CELLID];
+        PassengerCell *passengerCell = [[PassengerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PASSENGER_CELLID];
 
         Passenger *passenger = self.passengers[indexPath.row];
         passengerCell.nameLabel.text = passenger.AccountName;

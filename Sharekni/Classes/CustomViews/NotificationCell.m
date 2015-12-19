@@ -16,6 +16,7 @@
     self.userImage.layer.cornerRadius = self.userImage.frame.size.width / 2.0f ;
     self.userImage.clipsToBounds = YES ;
     self.notificationLbl.textAlignment = NSTextAlignmentNatural ;
+       self.deleteRequestBtn.hidden = YES;
 }
 
 - (void)setNotification:(Notification *)notification{
@@ -42,12 +43,15 @@
         self.userImage.image = [UIImage imageNamed:@"thumbnail.png"];
     }
     
-    if(notification.isPending){
-        self.deleteRequestBtn.alpha = 1;
-    }
-    else{
-        self.deleteRequestBtn.alpha = 0;
-    }
+//    if(notification.isPending){
+//        self.deleteRequestBtn.alpha = 1;
+//    }
+//    else{
+//        self.deleteRequestBtn.alpha = 0;
+//    }
+}
+- (void)prepareForReuse{
+       self.deleteRequestBtn.hidden = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -57,7 +61,9 @@
 }
 
 - (IBAction)deleteHandler:(id)sender {
-    
+    if (self.deleteHandler) {
+        self.deleteHandler();
+    }
 }
 
 @end

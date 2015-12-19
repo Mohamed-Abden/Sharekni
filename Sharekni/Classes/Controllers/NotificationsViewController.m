@@ -19,12 +19,13 @@
 #import "User.h"
 #import "NotificationCell.h"
 #import "NotificationDetailsViewController.h"
+#import "Constants.h"
 
 @interface NotificationsViewController () <ReloadNotificationsDelegate>
 
 @property (nonatomic ,weak) IBOutlet UITableView *notificationsList ;
 @property (nonatomic ,strong) NSMutableArray *notifications;
-
+@property (nonatomic ,strong) Notification *toBeDeletedNotification;
 @end
 
 @implementation NotificationsViewController
@@ -167,7 +168,7 @@
     
     Notification *notification = self.notifications[indexPath.row];
     [notificationCell setNotification:notification];
-    
+
     return notificationCell ;
 }
 
@@ -177,10 +178,20 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Notification *notification = self.notifications[indexPath.row];
-    NotificationDetailsViewController *notificationDetails = [[NotificationDetailsViewController alloc] initWithNibName:(KIS_ARABIC)?@"NotificationDetailsViewController_ar":@"NotificationDetailsViewController" bundle:nil];
-    notificationDetails.delegate = self ;
-    notificationDetails.notification = notification ;
-    [self.navigationController pushViewController:notificationDetails animated:YES];
+
+    if (notification.isPending) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"do you want to delete this request ?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
+        alertView.tag = 1010;
+        [alertView show];
+        self.toBeDeletedNotification = notification;
+
+    }
+    else{
+        NotificationDetailsViewController *notificationDetails = [[NotificationDetailsViewController alloc] initWithNibName:(KIS_ARABIC)?@"NotificationDetailsViewController_ar":@"NotificationDetailsViewController" bundle:nil];
+        notificationDetails.delegate = self ;
+        notificationDetails.notification = notification ;
+        [self.navigationController pushViewController:notificationDetails animated:YES];
+    }
 }
 
 
@@ -198,5 +209,36 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0){
+    if(alertView.tag == 1010){
+        __block NotificationsViewController *blockSelf = self;
+        if(self.toBeDeletedNotification && buttonIndex == 1){
+            [KVNProgress showWithStatus:GET_STRING(@"loading")];
+            [[MasterDataManager sharedMasterDataManager] deleteRequestWithID:self.toBeDeletedNotification.RequestId.stringValue WithSuccess:^(BOOL deleted) {
+                [KVNProgress dismiss];
+                if(deleted){
+                    [KVNProgress showSuccessWithStatus:@"Request deleted successfully"];
+                }
+                else{
+
+                    __block NotificationsViewController *blockSelf = self;
+                    [KVNProgress dismiss];
+                    [KVNProgress showErrorWithStatus :@"cannot delete Request"];
+                    [blockSelf performBlock:^{
+                        [KVNProgress dismiss];
+                    } afterDelay:3];
+                }
+                [blockSelf getNotifications2];
+            } Failure:^(NSString *error) {
+                __block NotificationsViewController *blockSelf = self;
+                [KVNProgress dismiss];
+                [KVNProgress showErrorWithStatus :@"cannot delete Request"];
+                [blockSelf performBlock:^{
+                    [KVNProgress dismiss];
+                } afterDelay:3];
+            }];
+        }
+    }
+}
 
 @end

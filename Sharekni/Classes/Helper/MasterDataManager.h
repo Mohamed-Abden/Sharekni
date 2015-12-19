@@ -60,6 +60,8 @@
 
 - (void)getPermits:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;
 
+- (void)deleteRequestWithID:(NSString *)requestID WithSuccess:(void (^)(BOOL deleted))success Failure:(void (^)(NSString *error))failure ;
+
 - (Region *) getRegionByID:(NSString *)regionID inEmirateWithID:(NSString *)emirateID;
 
 @end
