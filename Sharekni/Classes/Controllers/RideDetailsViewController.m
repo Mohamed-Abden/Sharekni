@@ -672,7 +672,7 @@
             
         }];
         [reviewCell setDeleteHandler:^{
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Do you want to delete this review ?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:GET_STRING(@"Do you want to delete this review ?") delegate:self cancelButtonTitle:GET_STRING(@"Cancel") otherButtonTitles:GET_STRING(@"Delete"), nil];
             alertView.tag = 1010;
             [alertView show];
         }];
@@ -861,7 +861,7 @@
         [[MasterDataManager sharedMasterDataManager] deleteReviewWithId:self.toBeDeletedReview.ReviewId withSuccess:^(BOOL deleted) {
          [KVNProgress dismiss];
             if(deleted){
-                [KVNProgress showSuccessWithStatus:@"Review deleted successfully"];
+                [KVNProgress showSuccessWithStatus:GET_STRING(@"Review deleted successfully")];
                 [blockSelf performBlock:^{
                     [KVNProgress dismiss];
                 } afterDelay:3];
@@ -869,14 +869,14 @@
             }
             else{
                 [KVNProgress dismiss];
-                [KVNProgress showErrorWithStatus :@"cannot delete Review"];
+                [KVNProgress showErrorWithStatus :GET_STRING(@"Cannot delete Review")];
                 [blockSelf performBlock:^{
                     [KVNProgress dismiss];
                 } afterDelay:3];
             }
         } Failure:^(NSString *error) {
             [KVNProgress dismiss];
-            [KVNProgress showErrorWithStatus :@"cannot delete Review"];
+            [KVNProgress showErrorWithStatus :GET_STRING(@"Cannot delete Review")];
             [blockSelf performBlock:^{
                 [KVNProgress dismiss];
             } afterDelay:3];
