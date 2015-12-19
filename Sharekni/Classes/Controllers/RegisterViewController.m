@@ -548,7 +548,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         [self configureBorders];
     }
     else if (![self isValidPassword]){
-        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"Password must be at least 5 characters ") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"Password must be at least 5 characters") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
         [alertView show];
         [self configureBorders];
     }
