@@ -121,8 +121,7 @@
                 [blockSelf.notifications addObjectsFromArray:array];
                 [blockSelf.notificationsList reloadData];
             } Failure:^(NSString *error) {
-              [KVNProgress dismiss];                
-//                [blockSelf handleNetworkFailure];
+                [blockSelf handleNetworkFailure];
             }];
         } Failure:^(NSString *error) {
             [blockSelf handleNetworkFailure];

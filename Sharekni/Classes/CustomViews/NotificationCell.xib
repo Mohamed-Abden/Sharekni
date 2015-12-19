@@ -53,6 +53,7 @@
             <animations/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="deleteRequestBtn" destination="3JH-La-mn7" id="7x2-ag-IK1"/>
                 <outlet property="nationality" destination="Bck-Or-rGd" id="5Le-EJ-L7c"/>
                 <outlet property="notificationLbl" destination="z9g-YG-0yL" id="qFk-Tm-5MD"/>
                 <outlet property="userImage" destination="kM5-kA-i8d" id="M7r-hV-aZG"/>

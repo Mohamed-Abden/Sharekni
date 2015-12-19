@@ -41,6 +41,13 @@
     }else{
         self.userImage.image = [UIImage imageNamed:@"thumbnail.png"];
     }
+    
+    if(notification.isPending){
+        self.deleteRequestBtn.alpha = 1;
+    }
+    else{
+        self.deleteRequestBtn.alpha = 0;
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -48,6 +55,7 @@
 
     // Configure the view for the selected state
 }
+
 - (IBAction)deleteHandler:(id)sender {
     
 }

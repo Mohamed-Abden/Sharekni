@@ -14,6 +14,7 @@
 @property (nonatomic ,weak) IBOutlet UIImageView *userImage ;
 @property (nonatomic ,weak) IBOutlet UILabel *notificationLbl ;
 @property (nonatomic ,weak) IBOutlet UILabel *nationality ;
+@property (weak, nonatomic) IBOutlet UIButton *deleteRequestBtn;
 
 - (void)setNotification:(Notification *)notification ;
 
