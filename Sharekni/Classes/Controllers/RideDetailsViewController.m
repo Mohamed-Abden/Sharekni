@@ -115,7 +115,6 @@
     [reviewLbl addRightBorderWithColor:Red_UIColor];
     [reviewLbl addLeftBorderWithColor:Red_UIColor];
     [reviewLbl setTextColor:Red_UIColor];
-
     
     preferenceView.layer.cornerRadius = 20;
     preferenceView.layer.borderWidth  = 1;
@@ -657,9 +656,45 @@
             reviewCell = (ReviewCell *)[[[NSBundle mainBundle] loadNibNamed:@"ReviewCell" owner:nil options:nil] objectAtIndex:0];
         }
         
+        NSString *applicationUserID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
+
         Review *review = self.reviews[indexPath.row];
+        if (self.createdRide || [review.AccountId.stringValue containsString:applicationUserID])  {
+            [reviewCell  showHideIcons:YES];
+        }
+        else{
+            [reviewCell  showHideIcons:NO];
+        }
         [reviewCell setReview:review];
-        
+        __block RideDetailsViewController *blockSelf = self;
+        [reviewCell setEditHandler:^{
+            
+        }];
+        [reviewCell setDeleteHandler:^{
+            [[MasterDataManager sharedMasterDataManager] deleteReviewWithId:review.ReviewId withSuccess:^(BOOL deleted) {
+                [KVNProgress dismiss];
+                if(deleted){
+                    [KVNProgress showSuccessWithStatus:@"Review deleted successfully"];
+                    [blockSelf performBlock:^{
+                        [KVNProgress dismiss];
+                    } afterDelay:3];
+                    [blockSelf refreshReviews];
+                }
+                else{
+                    [KVNProgress dismiss];
+                    [KVNProgress showErrorWithStatus :@"cannot delete Review"];
+                    [blockSelf performBlock:^{
+                        [KVNProgress dismiss];
+                    } afterDelay:3];
+                }
+            } Failure:^(NSString *error) {
+                [KVNProgress dismiss];
+                [KVNProgress showErrorWithStatus :@"cannot delete Review"];
+                [blockSelf performBlock:^{
+                    [KVNProgress dismiss];
+                } afterDelay:3];
+            }];
+        }];
         return reviewCell ;
     }
     else{
@@ -713,6 +748,7 @@
         return PASSENGER_CELLHEIGHT;
     }
 }
+
 #pragma mark -
 #pragma mark GOOGLE_MAPS
 

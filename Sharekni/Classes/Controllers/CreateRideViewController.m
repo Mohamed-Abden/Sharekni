@@ -991,11 +991,24 @@
             toRegion = [[MasterDataManager sharedMasterDataManager] getRegionByID:toRegionID inEmirateWithID:toEmirateID];
         }
         
-        NSString *startLat = fromRegion.RegionLatitude;
-        NSString *startLng = fromRegion.RegionLongitude;
+        NSString *startLat ;
+        NSString *startLng ;
         
-        NSString *endLat = toRegion.RegionLatitude;
-        NSString *endLng = toRegion.RegionLongitude;
+        NSString *endLat ;
+        NSString *endLng ;
+        
+        if (self.isEdit) {
+            startLat = self.routeDetails.StartLat;
+            startLng = self.routeDetails.StartLng;
+            endLat = self.routeDetails.EndLat;
+            endLng = self.routeDetails.EndLng;
+        }
+        else{
+            startLat = fromRegion.RegionLatitude;
+            startLng = fromRegion.RegionLongitude;
+            endLat = toRegion.RegionLatitude;
+            endLng = toRegion.RegionLongitude;
+        }
         
         
         [[MobDriverManager sharedMobDriverManager] createEditRideWithName:self.rideNameTextField.text fromEmirateID:fromEmirateID fromRegionID:fromRegionID toEmirateID:toEmirateID toRegionID:toRegionID isRounded:isRounded date:self.pickupDate saturday:self.satActive sunday:self.sunActive monday:self.monActive tuesday:self.tueActive wednesday:self.wedActive thursday:self.thrActive friday:self.friActive PreferredGender:gender vehicleID:self.isEdit ? self.routeDetails.VehicelId.stringValue : self.selectedVehicle.ID.stringValue noOfSeats:self.noOfSeats language:self.selectedLanguage nationality:self.selectedNationality  ageRange:self.selectedAgeRange  isEdit:self.isEdit routeID:self.routeDetails.ID.stringValue startLat:startLat startLng:startLng endLat:endLat endLng:endLng Smoke:acceptSmoke WithSuccess:^(NSString *response) {

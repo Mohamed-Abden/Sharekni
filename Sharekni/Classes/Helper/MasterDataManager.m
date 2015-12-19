@@ -419,6 +419,21 @@
     }];
 }
 
+- (void) deleteReviewWithId:(NSString  *)ID withSuccess:(void (^)(BOOL deleted))success Failure:(void (^)(NSString *error))failure{
+    
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_RemoveReview?ReviewId=%@",ID];
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+        
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        
+        responseString = [self jsonStringFromResponse:responseString];
+        BOOL deleted = [responseString containsString:@"1"];
+        success(deleted);
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        failure(error.localizedDescription);
+    }];
+}
+
 - (void) getSavedSearch:(NSString *)accountID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
 {
     NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_GetSavedSearch?AccountId=%@",accountID];

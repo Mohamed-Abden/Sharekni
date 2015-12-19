@@ -46,6 +46,8 @@
 
 - (void) getReviewList:(NSString *)driverID andRoute:(NSString *)routeID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;
 
+- (void) deleteReviewWithId:(NSString  *)ID withSuccess:(void (^)(BOOL deleted))success Failure:(void (^)(NSString *error))failure;
+
 - (void) getSavedSearch:(NSString *)accountID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;
 
 - (void)getVehicleById:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;

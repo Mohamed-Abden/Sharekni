@@ -90,7 +90,7 @@
             success(nil);
         }
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        failure(error.localizedDescription);
+        failure(GET_STRING(@"Sorry ,cannot register now."));
     }];
 }
 
@@ -283,6 +283,27 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
         failure(@"incorrect");
     }];
+}
+
+- (void) EditreviewWithID:(NSString *)reviewID ReviewText:(NSString *)reviewText WithSuccess:(void (^)(BOOL deleted))success Failure:(void (^)(NSString *error))failure{
+    
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/EditReview?ReviewId=%@&ReviewText=%@",reviewID,reviewText];
+    path = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject)
+     {
+         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+         responseString = [self jsonStringFromResponse:responseString];
+         
+         if ([responseString containsString:@"1"]) {
+             success(YES);
+         }
+         else{
+             success(NO);
+         }
+         
+     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+         failure(@"incorrect");
+     }];
 }
 
 - (void) joinRidePassenger:(NSString *)PassengerID RouteID:(NSString *)RouteID DriverID:(NSString *)DriverID Remark:(NSString *)remark WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure

@@ -36,18 +36,33 @@
 
 - (IBAction)edit:(id)sender
 {
-
+    if(self.editHandler){
+        self.editHandler();
+    }
 }
 
 - (IBAction)delete:(id)sender
 {
-
+    if (self.deleteHandler) {
+        self.deleteHandler();
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void) showHideIcons:(BOOL)show{
+    if (show) {
+        self.deleteBtn.alpha = 1;
+        self.editBtn.alpha = 1;
+    }
+    else{
+        self.deleteBtn.alpha = 0;
+        self.editBtn.alpha = 0;
+    }
 }
 
 @end

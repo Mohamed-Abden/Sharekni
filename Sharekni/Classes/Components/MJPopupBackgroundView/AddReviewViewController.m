@@ -30,6 +30,11 @@
     [self.submitBtn setTitle:GET_STRING(@"Submit") forState:UIControlStateNormal];
     
     [viewText becomeFirstResponder];
+    
+    if(self.isEdit){
+        viewText.text = self.review.Review;
+        [self.submitBtn setTitle:@"Edit Review" forState:UIControlStateNormal];
+    }
 }
 
 - (void)HideKeyboard
@@ -50,15 +55,31 @@
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     
     [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
-    [[MobAccountManager sharedMobAccountManager] reviewDriver:self.routeDetails.AccountId.stringValue PassengerId:user.ID.stringValue RouteId:self.routeDetails.ID.stringValue ReviewText:viewText.text WithSuccess:^(NSString *user) {
-        [KVNProgress dismiss];
-        
-        if (self.delegate && [self.delegate respondsToSelector:@selector(cancelButtonClicked:)]) {
-            [self.delegate cancelButtonClicked:self];
-        }
-    } Failure:^(NSString *error) {
-        [KVNProgress dismiss];
-    }];
+
+    
+    
+    if(self.isEdit){
+        [[MobAccountManager sharedMobAccountManager] EditreviewWithID:self.review.ReviewId ReviewText:viewText.text WithSuccess:^(BOOL deleted) {
+            [KVNProgress dismiss];
+            
+            if (self.delegate && [self.delegate respondsToSelector:@selector(cancelButtonClicked:)]) {
+                [self.delegate cancelButtonClicked:self];
+            }
+        } Failure:^(NSString *error) {
+            [KVNProgress dismiss];
+        }];
+    }
+    else{
+        [[MobAccountManager sharedMobAccountManager] reviewDriver:self.routeDetails.AccountId.stringValue PassengerId:user.ID.stringValue RouteId:self.routeDetails.ID.stringValue ReviewText:viewText.text WithSuccess:^(NSString *user) {
+            [KVNProgress dismiss];
+            
+            if (self.delegate && [self.delegate respondsToSelector:@selector(cancelButtonClicked:)]) {
+                [self.delegate cancelButtonClicked:self];
+            }
+        } Failure:^(NSString *error) {
+            [KVNProgress dismiss];
+        }];
+    }
 }
 
 @end

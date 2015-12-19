@@ -13,7 +13,7 @@
 
 @property (nonatomic,strong) NSString *ReviewId;
 @property (nonatomic,strong) NSString *Review;
-@property (nonatomic,strong) NSString *AccountId;
+@property (nonatomic,strong) NSNumber *AccountId;
 @property (nonatomic,strong) NSString *AccountName;
 @property (nonatomic,strong) NSString *AccountPhoto;
 @property (nonatomic,strong) NSString *AccountNationalityAr;

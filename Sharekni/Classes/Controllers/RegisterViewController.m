@@ -478,13 +478,13 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         self.dateLabel.text = dateString;
         blockSelf.date = date;
         if (([[HelpManager sharedHelpManager] yearsBetweenDate:[NSDate date] andDate:blockSelf.date] < 18)){
-            UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:GET_STRING(@"") message:GET_STRING(@"You should be older than 18 Years") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
+            UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:@"" message:GET_STRING(@"You should be older than 18 Years") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
             [alertView show];
             self.date = nil;
             [self configureBorders];
         }
         else if ([[HelpManager sharedHelpManager] isDateBefor1900:self.date]){
-            UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"You cannot choose year before 1900") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
+            UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:@"" message:GET_STRING(@"You cannot choose year before 1900") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
             [alertView show];
             self.date = nil;
             [self configureBorders];
@@ -524,10 +524,10 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     }
     
     if(self.accountType == AccountTypeNone){
-        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"Please Choose accout type.") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"Please Choose account type.") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
         [alertView show];
     }
-    else if(self.firstName.length == 0 || self.lastName.length == 0 || self.userName.length == 0 || self.mobileNumber.length == 0 || !self.date){
+    else if(self.firstName.length == 0 || self.lastName.length == 0 || self.userName.length == 0 || self.mobileNumber.length == 0 || !self.date || !self.selectedLanguage){
         UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"Please fill all fields") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
         [alertView show];
         [self configureBorders];

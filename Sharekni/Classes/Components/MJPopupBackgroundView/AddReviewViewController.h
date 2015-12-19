@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "DriverDetails.h"
 #import "RouteDetails.h"
+#import "Review.h"
+
 @protocol MJDetailPopupDelegate;
 
 @interface AddReviewViewController : UIViewController
@@ -25,6 +27,8 @@
 
 @property (nonatomic ,strong) RouteDetails *routeDetails;
 @property (nonatomic ,strong) NSString *accountID ;
+@property (nonatomic ,assign) BOOL isEdit;
+@property (nonatomic ,strong) Review *review;
 @property (nonatomic, copy) void (^reviewAdded)(void);
 @end
 

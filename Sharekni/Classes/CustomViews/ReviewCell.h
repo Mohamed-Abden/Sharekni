@@ -21,7 +21,10 @@
 @property (nonatomic ,weak) IBOutlet UIButton *editBtn ;
 @property (nonatomic ,weak) IBOutlet UIButton *deleteBtn ;
 
+@property (nonatomic, copy) void (^editHandler)(void);
+@property (nonatomic, copy) void (^deleteHandler)(void);
+
 
 - (void)setReview:(Review *)review ;
-
+- (void) showHideIcons:(BOOL)show;
 @end

@@ -218,6 +218,9 @@
                 [KVNProgress dismiss];
                 if(deleted){
                     [KVNProgress showSuccessWithStatus:@"Request deleted successfully"];
+                    [blockSelf performBlock:^{
+                        [KVNProgress dismiss];
+                    } afterDelay:3];
                 }
                 else{
 
