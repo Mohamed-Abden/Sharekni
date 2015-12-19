@@ -513,7 +513,7 @@
 
 - (void) deleteRideAction
 {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:GET_STRING(@"Confirm") message:GET_STRING(@"Do you want to delete this ride") delegate:self cancelButtonTitle:GET_STRING(@"Cancel") otherButtonTitles:GET_STRING(@"Delete"), nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:GET_STRING(@"Confirm") message:GET_STRING(@"Do you want to delete this ride ?") delegate:self cancelButtonTitle:GET_STRING(@"Cancel") otherButtonTitles:GET_STRING(@"Delete"), nil];
         alertView.tag = DELETE_RIDE_ALERT_TAG;
         [alertView show];
 }

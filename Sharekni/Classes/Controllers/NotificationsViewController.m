@@ -163,7 +163,7 @@
     
     if (notificationCell == nil)
     {
-        notificationCell = (NotificationCell *)[[[NSBundle mainBundle] loadNibNamed:@"NotificationCell" owner:nil options:nil] objectAtIndex:0];
+        notificationCell = (NotificationCell *)[[[NSBundle mainBundle] loadNibNamed:@"NotificationCell" owner:nil options:nil] objectAtIndex:(KIS_ARABIC)?1:0];
     }
     
     Notification *notification = self.notifications[indexPath.row];
@@ -178,7 +178,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Notification *notification = self.notifications[indexPath.row];
-    NotificationDetailsViewController *notificationDetails = [[NotificationDetailsViewController alloc] initWithNibName:@"NotificationDetailsViewController" bundle:nil];
+    NotificationDetailsViewController *notificationDetails = [[NotificationDetailsViewController alloc] initWithNibName:(KIS_ARABIC)?@"NotificationDetailsViewController_ar":@"NotificationDetailsViewController" bundle:nil];
     notificationDetails.delegate = self ;
     notificationDetails.notification = notification ;
     [self.navigationController pushViewController:notificationDetails animated:YES];
