@@ -28,14 +28,15 @@
     self.routeName.text = permit.RouteEnName ;
     self.passengerNo.text = [NSString stringWithFormat:@"%@",permit.CurrentPassengers] ;
     
-    NSDate *issueDate = [self mfDateFromDotNetJSONString:permit.IssueDate] ;
-    self.issueDate.text = [self getDate:issueDate];
+//    NSDate *issueDate = [self mfDateFromDotNetJSONString:permit.IssueDate] ;
+    self.issueDate.text = permit.IssueDate;
 
-    NSDate *expireDate = [self mfDateFromDotNetJSONString:permit.ExpireDate] ;
-    self.expireDate.text = [self getDate:expireDate];
+//    NSDate *expireDate = [self mfDateFromDotNetJSONString:permit.ExpireDate] ;
+    self.expireDate.text = permit.ExpireDate;
 }
 
-- (NSDate *)mfDateFromDotNetJSONString:(NSString *)string {
+- (NSDate *)mfDateFromDotNetJSONString:(NSString *)string
+{
     static NSRegularExpression *dateRegEx = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
