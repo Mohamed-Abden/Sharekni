@@ -31,6 +31,9 @@
 @property (nonatomic ,strong) DriverSearchResult *driver;
 @property (nonatomic ,strong) MostRideDetails *mostRide;
 
+@property (nonatomic, copy) void (^reloadHandler)(void);
+
+
 - (IBAction)call:(id)sender ;
 - (IBAction)sendMail:(id)sender ;
 

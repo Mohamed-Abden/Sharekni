@@ -342,6 +342,7 @@
     //Gender
     self.isFemaleOnly = NO;
     [self configureGenderView];
+    [self configureSmokingView];
     
     //Days Of Week
     [self configureDaysLabels];
@@ -865,12 +866,37 @@
     }
 }
 
-- (void) configureGenderView{
-    if (self.isFemaleOnly) {
-        self.genderLabel.textColor = [UIColor add_colorWithRGBHexString:Red_HEX];
+- (void) configureSmokingView{
+    if (self.routeDetails.IsSmoking.boolValue) {
+        self.acceptBtn.selected = YES;
+        self.notAcceptBtn.selected = NO;
     }
     else{
-        self.genderLabel.textColor = [UIColor darkGrayColor];
+        self.acceptBtn.selected = NO;
+        self.notAcceptBtn.selected = YES;
+    }
+}
+
+- (void) configureGenderView{
+    if ([self.routeDetails.PreferredGender isEqualToString:@"B"]) {
+        self.bothBtn.selected = YES;
+        self.femaleBtn.selected = NO;
+        self.maleBtn.selected = NO;
+    }
+    else if ([self.routeDetails.PreferredGender isEqualToString:@"M"]){
+        self.bothBtn.selected = NO;
+        self.maleBtn.selected = YES;
+        self.femaleBtn.selected = NO;
+    }
+    else if ([self.routeDetails.PreferredGender isEqualToString:@"F"]){
+        self.bothBtn.selected = NO;
+        self.maleBtn.selected = NO;
+        self.femaleBtn.selected = YES;
+    }
+    else{
+        self.bothBtn.selected = NO;
+        self.maleBtn.selected = NO;
+        self.femaleBtn.selected = NO;
     }
 }
 
@@ -961,7 +987,7 @@
        
         NSString *gender ;
         if (self.bothBtn.selected) {
-            gender = @"N";
+            gender = @"B";
         }else if (self.maleBtn.selected){
             gender = @"M";
         }else if (self.femaleBtn.selected){
@@ -1014,7 +1040,7 @@
         [[MobDriverManager sharedMobDriverManager] createEditRideWithName:self.rideNameTextField.text fromEmirateID:fromEmirateID fromRegionID:fromRegionID toEmirateID:toEmirateID toRegionID:toRegionID isRounded:isRounded date:self.pickupDate saturday:self.satActive sunday:self.sunActive monday:self.monActive tuesday:self.tueActive wednesday:self.wedActive thursday:self.thrActive friday:self.friActive PreferredGender:gender vehicleID:self.isEdit ? self.routeDetails.VehicelId.stringValue : self.selectedVehicle.ID.stringValue noOfSeats:self.noOfSeats language:self.selectedLanguage nationality:self.selectedNationality  ageRange:self.selectedAgeRange  isEdit:self.isEdit routeID:self.routeDetails.ID.stringValue startLat:startLat startLng:startLng endLat:endLat endLng:endLng Smoke:acceptSmoke WithSuccess:^(NSString *response) {
             [KVNProgress dismiss];
             
-            if ([response containsString:@"1"]) {
+            if (![response containsString:@"-"]) {
                 [KVNProgress showSuccessWithStatus:self.isEdit ?  GET_STRING(@"Ride edited successfully") : GET_STRING(@"Ride created successfully")];
                 [blockSelf performBlock:^{
                     [KVNProgress dismiss];
@@ -1024,10 +1050,8 @@
                     blockSelf.editHandler();
                 }
             }
-            else if ([response containsString:@"0"]){
-                [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Error")];
-            }
-            else if ([response containsString:@"-2"]){
+            else
+            {
                 [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"An error happend when trying to create ride")];
             }
         } Failure:^(NSString *error) {
@@ -1317,35 +1341,42 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
 
 - (IBAction)selectGenderType:(id)sender
 {
+    NSString *selectedGender;
     switch ([sender tag])
     {
         case 0:
             if (self.bothBtn.selected) {
                 self.bothBtn.selected = NO ;
+                selectedGender = @"";
             }else{
                 self.bothBtn.selected = YES ;
+                selectedGender = @"B";
             }
             self.maleBtn.selected = NO ;
             self.femaleBtn.selected = NO;
             break;
         case 1:
-            self.bothBtn.selected = NO ;
             if (self.maleBtn.selected) {
+                selectedGender = @"";
                 self.maleBtn.selected = NO ;
             }else{
                 self.maleBtn.selected = YES ;
+                selectedGender = @"M";
             }
+            self.bothBtn.selected = NO ;
             self.femaleBtn.selected = NO;
             break;
         case 2:
-            self.bothBtn.selected = NO ;
-            self.maleBtn.selected = NO ;
             if (self.femaleBtn.selected)
             {
+                selectedGender = @"";
                 self.femaleBtn.selected = NO;
             }else{
                 self.femaleBtn.selected = YES;
+                selectedGender = @"F";
             }
+            self.bothBtn.selected = NO ;
+            self.maleBtn.selected = NO ;
             break;
         default:
             break;
