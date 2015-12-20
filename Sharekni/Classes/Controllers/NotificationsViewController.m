@@ -23,6 +23,7 @@
 
 @interface NotificationsViewController () <ReloadNotificationsDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *emptyLabel;
 @property (nonatomic ,weak) IBOutlet UITableView *notificationsList ;
 @property (nonatomic ,strong) NSMutableArray *notifications;
 @property (nonatomic ,strong) Notification *toBeDeletedNotification;
@@ -40,7 +41,8 @@
 {
     [super viewDidLoad];
     self.title = GET_STRING(@"Notifications");
-
+    self.emptyLabel.text = GET_STRING(@"You don't have any norifications");
+    self.notificationsList.tableFooterView = [[UIView alloc] initWithFrame:CGRectNull];
     self.notifications = [NSMutableArray new];
     [self getNotifications2];
 }

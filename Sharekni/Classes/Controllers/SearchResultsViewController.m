@@ -90,6 +90,10 @@
     DriverSearchResult *driver = [self.results objectAtIndex:indexPath.row];
     [cell setDriver:driver];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    __block SearchResultsViewController  *blockSelf = self;
+    [cell setReloadHandler:^{
+        [blockSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }];
     
     return cell;
 }

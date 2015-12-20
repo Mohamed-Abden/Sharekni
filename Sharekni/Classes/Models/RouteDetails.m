@@ -139,7 +139,7 @@
         _PreferredGender = @"Female";
     }
     else{
-        _PreferredGender = @"No Specified";
+        _PreferredGender = @"Not Specified";
     }
 }
 @end
