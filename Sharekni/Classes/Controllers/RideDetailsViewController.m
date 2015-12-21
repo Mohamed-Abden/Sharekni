@@ -61,7 +61,9 @@
 
     __weak IBOutlet UIView *locationsView;
     __weak IBOutlet UILabel *preferenceLbl ;
+    __weak IBOutlet UIView *preferenceLblView ;
     __weak IBOutlet UILabel *reviewLbl ;
+    __weak IBOutlet UIView *reviewLblView ;
     __weak IBOutlet UIView *preferenceView ;
     __weak IBOutlet UIButton *secondButton;
     __weak IBOutlet UIView *reviewsView ;
@@ -111,6 +113,7 @@
     
     [preferenceLbl addRightBorderWithColor:Red_UIColor];
     [preferenceLbl addLeftBorderWithColor:Red_UIColor];
+    
     [preferenceLbl setTextColor:Red_UIColor];
     
     [reviewLbl addRightBorderWithColor:Red_UIColor];
@@ -282,11 +285,13 @@
            if (array.count == 0)
            {
                reviewLbl.alpha = 0 ;
+               reviewLblView.alpha = 0;
                reviewList.alpha = 0 ;
                reviewsView.alpha = 0 ;
            }
            else{
                reviewLbl.alpha = 1 ;
+               reviewLblView.alpha = 1;
                reviewList.alpha = 1 ;
                reviewsView.alpha = 1 ;
            }
@@ -398,35 +403,36 @@
         passengersListFrame.size.height = self.passengers.count *REVIEWS_CELL_HEIGHT;
         passengersList.frame = passengersListFrame;
         
-        CGRect PreferencesLabelFrame = preferenceLbl.frame;
+        CGRect PreferencesLabelFrame = preferenceLblView.frame;
         PreferencesLabelFrame.origin.y = passengersView.frame.origin.y + passengersView.frame.size.height + VERTICAL_SPACE;
-        preferenceLbl.frame = PreferencesLabelFrame;
+        preferenceLblView.frame = PreferencesLabelFrame;
     }
     else{
         passengersHeader.alpha = 0;
         passengersView.alpha = 0;
         
-        CGRect PreferencesLabelFrame = preferenceLbl.frame;
+        CGRect PreferencesLabelFrame = preferenceLblView.frame;
         PreferencesLabelFrame.origin.y = locationsView.frame.origin.y + locationsView.frame.size.height + VERTICAL_SPACE;
-        preferenceLbl.frame = PreferencesLabelFrame;
+        preferenceLblView.frame = PreferencesLabelFrame;
     }
     
     CGRect PreferencesViewFrame = preferenceView.frame;
-    PreferencesViewFrame.origin.y = preferenceLbl.frame.origin.y + VERTICAL_SPACE;
+    PreferencesViewFrame.origin.y = preferenceLblView.frame.origin.y + VERTICAL_SPACE;
     preferenceView.frame = PreferencesViewFrame;
     
     
     if(self.reviews.count > 0){
 
             reviewLbl.alpha = 1 ;
+            reviewLblView.alpha = 1;
             reviewList.alpha = 1 ;
             reviewsView.alpha = 1 ;
-        CGRect reviewsLabelFrame = reviewLbl.frame;
+        CGRect reviewsLabelFrame = reviewLblView.frame;
         reviewsLabelFrame.origin.y = preferenceView.frame.origin.y + preferenceView.frame.size.height + VERTICAL_SPACE;
-        reviewLbl.frame = reviewsLabelFrame;
+        reviewLblView.frame = reviewsLabelFrame;
         
         CGRect reviewsViewFrame = reviewsView.frame;
-        reviewsViewFrame.origin.y = reviewLbl.frame.origin.y + VERTICAL_SPACE;
+        reviewsViewFrame.origin.y = reviewLblView.frame.origin.y + VERTICAL_SPACE;
         reviewsViewFrame.size.height = (self.reviews.count * REVIEWS_CELL_HEIGHT) + 10;
         reviewsView.frame = reviewsViewFrame;
         
@@ -440,6 +446,7 @@
     }
     else{
             reviewLbl.alpha = 0 ;
+            reviewLblView.alpha = 0;
             reviewList.alpha = 0 ;
             reviewsView.alpha = 0 ;
 
@@ -911,11 +918,13 @@
         
         if (array.count == 0) {
             reviewLbl.alpha = 0 ;
+            reviewLblView.alpha = 0;
             reviewList.alpha = 0 ;
             reviewsView.alpha = 0 ;
         }
         else{
             reviewLbl.alpha = 1 ;
+            reviewLblView.alpha = 1 ;
             reviewList.alpha = 1 ;
             reviewsView.alpha = 1 ;
         }

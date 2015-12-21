@@ -24,6 +24,8 @@
 {
     __weak IBOutlet UILabel *createdLblName;
     __weak IBOutlet UILabel *joinedLblName;
+    __weak IBOutlet UIView *createdLblNameView;
+    __weak IBOutlet UIView *joinedLblNameView;
     __weak IBOutlet UIView *createdView;
     __weak IBOutlet UIView *joinedView;
     __weak IBOutlet UILabel *noLbl ;
@@ -73,8 +75,8 @@
     self.createdRidesList.tag = 0 ;
     self.joinRidesList.tag = 1 ;
     
-    createdLblName.hidden = YES ;
-    joinedLblName.hidden = YES ;
+    createdLblNameView.hidden = YES ;
+    joinedLblNameView.hidden = YES ;
     createdView.hidden = YES ;
     joinedView.hidden = YES ;
     
@@ -119,8 +121,6 @@
     __block HistoryViewController *blockSelf = self;
     [[MobAccountManager sharedMobAccountManager] getJoinedRidesWithSuccess:^(NSMutableArray *array)
     {
-        [KVNProgress dismiss];
-
         blockSelf.joinRides = array;
         
         if (self.createdRides.count > 0)
@@ -134,7 +134,7 @@
             
             if (self.joinRides.count > 0)
             {
-                joinedLblName.frame = CGRectMake(joinedLblName.frame.origin.x, createdView.frame.origin.y + createdView.frame.size.height + 9.0f, joinedLblName.frame.size.width, joinedLblName.frame.size.height);
+                joinedLblNameView.frame = CGRectMake(joinedLblNameView.frame.origin.x, createdView.frame.origin.y + createdView.frame.size.height + 9.0f, joinedLblNameView.frame.size.width, joinedLblNameView.frame.size.height);
                 
                 self.joinRidesList.frame = CGRectMake(self.joinRidesList.frame.origin.x, self.joinRidesList.frame.origin.y, self.joinRidesList.frame.size.width, self.joinRides.count *183.0f);
                 
@@ -145,7 +145,7 @@
                 [self.joinRidesList reloadData];
             }else{
                 joinedView.hidden = YES ;
-                joinedLblName.hidden = YES ;
+                joinedLblNameView.hidden = YES ;
             }
         }
         else if (self.joinRides.count > 0)
@@ -156,7 +156,7 @@
             
             [self.contentView setContentSize:CGSizeMake(self.contentView.frame.size.width,createdView.frame.origin.y + createdView.frame.size.height)];
 
-            joinedLblName.frame = CGRectMake(joinedLblName.frame.origin.x, 10.0f, joinedLblName.frame.size.width, joinedLblName.frame.size.height);
+            joinedLblNameView.frame = CGRectMake(joinedLblNameView.frame.origin.x, 10.0f, joinedLblNameView.frame.size.width, joinedLblNameView.frame.size.height);
             
             [self.joinRidesList reloadData];
 
@@ -165,30 +165,32 @@
         {
             noLbl.hidden = NO ;
             joinedView.hidden = YES ;
-            joinedLblName.hidden = YES ;
+            joinedLblNameView.hidden = YES ;
         }
         
         if (self.createdRides.count == 0)
         {
             createdView.hidden = YES ;
-            createdLblName.hidden = YES ;
+            createdLblNameView.hidden = YES ;
         }
         else
         {
             createdView.hidden = NO ;
-            createdLblName.hidden = NO ;
+            createdLblNameView.hidden = NO ;
             self.createdRidesList.hidden = NO ;
         }
         
         if (self.joinRides.count == 0)
         {
-            joinedLblName.hidden = YES ;
+            joinedLblNameView.hidden = YES ;
             joinedView.hidden = YES ;
         } else {
-            joinedLblName.hidden = NO ;
+            joinedLblNameView.hidden = NO ;
             joinedView.hidden = NO ;
             self.joinRidesList.hidden = NO ;
         }
+
+        [KVNProgress dismiss];
 
     } Failure:^(NSString *error) {
         [blockSelf handleManagerFailure];

@@ -35,6 +35,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setTranslucent:NO];
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
 }
 
 - (void)viewDidLoad {
@@ -61,7 +62,6 @@
     [[MasterDataManager sharedMasterDataManager] getSavedSearch:[NSString stringWithFormat:@"%@",user.ID] withSuccess:^(NSMutableArray *array) {
         
         blockSelf.savedData = array;
-        [KVNProgress dismiss];
         [self.driverList reloadData];
         if (array.count == 0) {
             self.noResultLabel.alpha = 1;
@@ -70,6 +70,8 @@
             self.noResultLabel.alpha = 0;
         }
         
+        [KVNProgress dismiss];
+
     } Failure:^(NSString *error) {
         NSLog(@"Error in Best Drivers");
         [KVNProgress dismiss];
@@ -111,7 +113,9 @@
     MostRideDetails *ride = self.savedData[indexPath.row];
 
         __block SavedSearchViewController *blockSelf = self;
-        [KVNProgress showWithStatus:@"Loading..."];
+    
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
+    
         [[MobDriverManager sharedMobDriverManager] findRidesFromEmirateID:ride.FromEmirateId andFromRegionID:ride.FromRegionId toEmirateID:ride.ToEmirateId andToRegionID:ride.ToRegionId PerfferedLanguageID:@"0" nationalityID:@"" ageRangeID:@"0" date:nil isPeriodic:nil saveSearch:nil WithSuccess:^(NSArray *searchResults) {
     
             [KVNProgress dismiss];

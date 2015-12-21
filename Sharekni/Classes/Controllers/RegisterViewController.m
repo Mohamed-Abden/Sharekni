@@ -369,9 +369,15 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    if(textField == self.mobileNumberTxt){
-        if (textField.text.length < 9) {
+    if(textField == self.mobileNumberTxt)
+    {
+        if (textField.text.length <= 8)
+        {
             return YES;
+        }
+        else if(string.length == 0)
+        {
+            return YES ;
         }
         return NO;
     }

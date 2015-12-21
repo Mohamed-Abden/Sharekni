@@ -51,7 +51,8 @@
     [self configureUI];
 }
 
-- (BOOL)prefersStatusBarHidden {
+- (BOOL)prefersStatusBarHidden
+{
     return NO;
 }
 

@@ -28,10 +28,8 @@
     self.routeName.text = permit.RouteEnName ;
     self.passengerNo.text = [NSString stringWithFormat:@"%@",permit.CurrentPassengers] ;
     
-//    NSDate *issueDate = [self mfDateFromDotNetJSONString:permit.IssueDate] ;
     self.issueDate.text = permit.IssueDate;
 
-//    NSDate *expireDate = [self mfDateFromDotNetJSONString:permit.ExpireDate] ;
     self.expireDate.text = permit.ExpireDate;
 }
 

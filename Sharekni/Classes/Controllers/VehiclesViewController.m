@@ -28,12 +28,14 @@
 @interface VehiclesViewController () <UITableViewDataSource ,UITableViewDelegate>
 {
     __weak IBOutlet UILabel *titleLabel ;
+    __weak IBOutlet UIView *titleLabelView ;
     __weak IBOutlet UIView *containerView ;
 }
 
 @property (weak ,nonatomic) IBOutlet UIView  *vehiclesView ;
 @property (weak ,nonatomic) IBOutlet UIView  *vehiclesContainerView ;
 @property (weak ,nonatomic) IBOutlet UILabel *vehiclesTitleLabel ;
+@property (weak ,nonatomic) IBOutlet UIView *vehiclesTitleLabelView ;
 @property (weak ,nonatomic) IBOutlet UITableView *vehiclesList ;
 @property (nonatomic ,strong) NSMutableArray *vehiclesArray ;
 
@@ -80,6 +82,7 @@
         self.vehiclesView.hidden = YES ;
         containerView.hidden = YES ;
         titleLabel.hidden = YES ;
+        titleLabelView.hidden = YES ;
         
         self.vehiclesTitleLabel.textColor = Red_UIColor;
         [self.vehiclesTitleLabel addRightBorderWithColor:Red_UIColor];
@@ -187,7 +190,7 @@
     self.dateFormatter.dateFormat = @"dd/MM/yyyy";
     NSString *dateString = [self.dateFormatter stringFromDate:self.date];
     
-    [[MobAccountManager sharedMobAccountManager] registerVehicle:[NSString stringWithFormat:@"%@",sharedUser.ID] TrafficFileNo:self.traficFileNo.text BirthDate:dateString WithSuccess:^(NSString *user) {
+    [[MobAccountManager sharedMobAccountManager] registerVehicle:[NSString stringWithFormat:@"%@",sharedUser.ID] TrafficFileNo:self.traficFileNo.text BirthDate:dateString WithSuccess:^(NSString *user){
         
         [KVNProgress dismiss];
         
@@ -199,7 +202,6 @@
         self.vehiclesTitleLabel.textColor = Red_UIColor;
         [self.vehiclesTitleLabel addRightBorderWithColor:Red_UIColor];
         [self.vehiclesTitleLabel addLeftBorderWithColor:Red_UIColor];
-        self.vehiclesTitleLabel.backgroundColor = [UIColor whiteColor];
         
         self.vehiclesContainerView.layer.cornerRadius = 20;
         self.vehiclesContainerView.layer.borderWidth = 1;

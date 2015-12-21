@@ -12,7 +12,8 @@
 
 @implementation PassengerCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self = (PassengerCell *)[[[NSBundle mainBundle] loadNibNamed:@"PassengerCell" owner:nil options:nil] objectAtIndex:(KIS_ARABIC)?1:0];
         self.ratingView = [[HCSStarRatingView alloc] initWithFrame:self.placeholderView.frame];

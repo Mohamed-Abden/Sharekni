@@ -87,7 +87,7 @@
         dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Home Page"),@"Side_Home"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
-        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Saved Search"),@"Side_vehicles"] forKeys:@[Title_Key,Image_Key]];
+        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Saved Search"),@"Side_savesearch"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
         dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Most Rides"),@"Side_mostrides"] forKeys:@[Title_Key,Image_Key]];

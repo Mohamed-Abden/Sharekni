@@ -114,8 +114,8 @@ typedef enum DirectionType : NSUInteger {
     }
 }
 
-- (void) configureUI{
-    
+- (void) configureUI
+{    
     self.navigationItem.title = GET_STRING(@"Set Direction");
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -130,7 +130,6 @@ typedef enum DirectionType : NSUInteger {
         titleLabel.textColor = Red_UIColor;
         [titleLabel addRightBorderWithColor:Red_UIColor];
         [titleLabel addLeftBorderWithColor:Red_UIColor];
-        titleLabel.backgroundColor = [UIColor whiteColor];
     }
     
     for (UIView *containerView in self.containerViews) {

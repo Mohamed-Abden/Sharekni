@@ -56,8 +56,6 @@
     
     [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
 
-    
-    
     if(self.isEdit){
         [[MobAccountManager sharedMobAccountManager] EditreviewWithID:self.review.ReviewId ReviewText:viewText.text WithSuccess:^(BOOL deleted) {
             [KVNProgress dismiss];
