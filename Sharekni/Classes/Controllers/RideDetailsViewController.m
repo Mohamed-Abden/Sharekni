@@ -38,6 +38,7 @@
 #define REVIEWS_CELL_HEIGHT  110
 #define PASSENGER_ALERT_TAG  1199
 #define DELETE_RIDE_ALERT_TAG  1188
+#define DELETE_REVIEW_ALERT_TAG  1166
 
 @interface RideDetailsViewController ()<GMSMapViewDelegate,MJDetailPopupDelegate,MJAddRemarkPopupDelegate,MFMessageComposeViewControllerDelegate,UIAlertViewDelegate>
 {
@@ -158,7 +159,7 @@
         _driverRatingsView = [[HCSStarRatingView alloc] initWithFrame:placeholderRatingView.frame];
         _driverRatingsView.maximumValue = 5;
         _driverRatingsView.minimumValue = 0;
-        _driverRatingsView.value = 0;
+        _driverRatingsView.value = (self.routeDetails.AccountRating) ? self.routeDetails.AccountRating.integerValue : 0 ;
         _driverRatingsView.tintColor = [UIColor whiteColor];
         _driverRatingsView.backgroundColor = [UIColor clearColor];
         [_driverRatingsView addTarget:self action:@selector(didChangeValue:) forControlEvents:UIControlEventValueChanged];
@@ -216,7 +217,7 @@
     
     if ([NSStringEmpty isNullOrEmpty:(KIS_ARABIC)?self.routeDetails.NationalityArName:self.routeDetails.NationalityEnName])
     {
-        nationality.text = GET_STRING(@"Not Set");
+        nationality.text = GET_STRING(@"Not Specified");
     }
     else
     {
@@ -225,7 +226,7 @@
     
     if ([NSStringEmpty isNullOrEmpty:self.routeDetails.AgeRange])
     {
-        ageRange.text = GET_STRING(@"Not Set");
+        ageRange.text = GET_STRING(@"Not Specified");
     }
     else
     {
@@ -240,7 +241,7 @@
     
     if ([NSStringEmpty isNullOrEmpty:(KIS_ARABIC)?self.routeDetails.PrefLanguageArName:self.routeDetails.PrefLanguageEnName])
     {
-        language.text = GET_STRING(@"Not Set");
+        language.text = GET_STRING(@"Not Specified");
     }
     else
     {
@@ -672,16 +673,26 @@
         Review *review = self.reviews[indexPath.row];
         if (self.createdRide)  {
             [reviewCell  showHideDelete:YES];
-        }
-        else{
-            [reviewCell  showHideDelete:NO];
-        }
-        if ([review.AccountId.stringValue containsString:applicationUserID]) {
-            [reviewCell showHideEdit:YES];
-        }
-        else{
             [reviewCell showHideEdit:NO];
         }
+        else if ([review.AccountId.stringValue containsString:applicationUserID]) {
+            [reviewCell showHideEdit:YES];
+            [reviewCell showHideDelete:YES];
+        }
+        else
+        {
+            [reviewCell  showHideDelete:NO];
+            [reviewCell showHideEdit:NO];
+        }
+        
+//        if ([review.AccountId.stringValue containsString:applicationUserID]) {
+//            [reviewCell showHideEdit:YES];
+//            [reviewCell showHideDelete:YES];
+//        }
+//        else{
+//            [reviewCell showHideEdit:NO];
+//            [reviewCell showHideDelete:NO];
+//        }
         [reviewCell setReview:review];
         __block RideDetailsViewController *blockSelf = self;
         [reviewCell setEditHandler:^{
@@ -694,8 +705,9 @@
             [self presentPopupViewController:addReview animationType:MJPopupViewAnimationSlideBottomBottom];
         }];
         [reviewCell setDeleteHandler:^{
+            blockSelf.toBeDeletedReview = review;
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:GET_STRING(@"Do you want to delete this review ?") delegate:self cancelButtonTitle:GET_STRING(@"Cancel") otherButtonTitles:GET_STRING(@"Delete"), nil];
-            alertView.tag = 1010;
+            alertView.tag = DELETE_REVIEW_ALERT_TAG;
             [alertView show];
         }];
         return reviewCell ;
@@ -770,7 +782,7 @@
         frame =  CGRectMake(_MKmapView.frame.origin.x, _MKmapView.frame.origin.y, 320.0f, 280);
     }
     _mapView = [GMSMapView mapWithFrame:frame camera:camera];
-    _mapView.myLocationEnabled = YES;
+    _mapView.myLocationEnabled = NO;
     _mapView.delegate = self;
     [contentView addSubview:_mapView];
     [_MKmapView removeFromSuperview];
@@ -781,14 +793,16 @@
     self.markers = [NSMutableArray array];
         CLLocationCoordinate2D startPosition = CLLocationCoordinate2DMake(self.routeDetails.StartLat.doubleValue, self.routeDetails.StartLng.doubleValue);
         GMSMarker *startMarker = [GMSMarker markerWithPosition:startPosition];
-    MapItemView *startItem = [[MapItemView alloc] initWithLat:self.routeDetails.StartLat lng:self.routeDetails.StartLng address:self.routeDetails.FromStreetName name:(KIS_ARABIC)?self.routeDetails.FromEmirateArName:self.routeDetails.FromEmirateEnName];
+        MapItemView *startItem = [[MapItemView alloc] initWithLat:self.routeDetails.StartLat lng:self.routeDetails.StartLng address:self.routeDetails.FromStreetName name:(KIS_ARABIC)?self.routeDetails.FromEmirateArName:self.routeDetails.FromEmirateEnName];
         startItem.arabicName = (KIS_ARABIC)?self.routeDetails.FromRegionArName:self.routeDetails.FromRegionEnName;
-    startItem.englishName = (KIS_ARABIC)?self.routeDetails.FromRegionArName:self.routeDetails.FromRegionEnName;
+        startItem.englishName = (KIS_ARABIC)?self.routeDetails.FromRegionArName:self.routeDetails.FromRegionEnName;
         startItem.rides = self.routeDetails.NoOfSeats.stringValue;
         startMarker.userData = startItem;
-    startMarker.title = (KIS_ARABIC)?self.routeDetails.FromEmirateArName:self.routeDetails.FromEmirateEnName;
+        startMarker.title = (KIS_ARABIC)?self.routeDetails.FromEmirateArName:self.routeDetails.FromEmirateEnName;
         startMarker.icon = [UIImage imageNamed:@"Location"];
+        startMarker.snippet = (KIS_ARABIC)?self.routeDetails.FromRegionArName:self.routeDetails.FromRegionEnName;
         startMarker.map = _mapView;
+    
         [self.markers addObject:startMarker];
     
     CLLocationCoordinate2D endPosition = CLLocationCoordinate2DMake(self.routeDetails.EndLat.doubleValue, self.routeDetails.EndLng.doubleValue);
@@ -799,6 +813,7 @@
     endItem.rides = self.routeDetails.NoOfSeats.stringValue;
     endMarker.userData = endItem;
     endMarker.title = (KIS_ARABIC)?self.routeDetails.ToEmirateArName:self.routeDetails.ToEmirateEnName;
+    endMarker.snippet = (KIS_ARABIC)?self.routeDetails.ToRegionArName:self.routeDetails.ToRegionEnName;
     endMarker.icon = [UIImage imageNamed:@"Location"];
     endMarker.map = _mapView;
     [self.markers addObject:endMarker];
@@ -816,7 +831,7 @@
 - (void) addRatingForPassenger:(Passenger *)passenger noOfStars:(NSInteger)noOfStars{
     __block RideDetailsViewController *blockSelf = self;
     self.navigationItem.rightBarButtonItem = self.loadingBarButton;
-[[MobAccountManager sharedMobAccountManager] addPassengerRatingWithPassengerID:passenger.ID.stringValue inRouteID:self.routeDetails.ID.stringValue noOfStars:noOfStars WithSuccess:^(NSString *response) {
+[[MobAccountManager sharedMobAccountManager] addPassengerRatingWithPassengerID:passenger.AccountId.stringValue inRouteID:self.routeDetails.ID.stringValue noOfStars:noOfStars WithSuccess:^(NSString *response) {
     blockSelf.navigationItem.rightBarButtonItem = nil;
     [KVNProgress showSuccessWithStatus:GET_STRING(@"Rating added successfully")];
     [blockSelf performBlock:^{
@@ -877,7 +892,7 @@
     else if (alertView.tag == DELETE_RIDE_ALERT_TAG && buttonIndex == 1) {
         [self deleteRide];
     }
-    else if (alertView.tag == 1010)
+    else if (alertView.tag == DELETE_REVIEW_ALERT_TAG && buttonIndex == 1)
     {
         __block RideDetailsViewController *blockSelf = self;
         [[MasterDataManager sharedMasterDataManager] deleteReviewWithId:self.toBeDeletedReview.ReviewId withSuccess:^(BOOL deleted) {

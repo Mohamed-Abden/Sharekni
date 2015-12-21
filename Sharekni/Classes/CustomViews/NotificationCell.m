@@ -32,8 +32,8 @@
         }
         else if (notification.DriverName) {
             self.notificationLbl.text = [NSString stringWithFormat:@"%@ %@",notification.DriverName,GET_STRING(@"Send you a join request")] ;
-        }else{
-            self.notificationLbl.text = GET_STRING(@"Send you a join request");
+        }else if (notification.PassengerName.length > 0){
+            self.notificationLbl.text = [NSString stringWithFormat:@"%@ %@",notification.PassengerName,GET_STRING(@"Send you a join request")] ;;
         }
     }
     self.nationality.text = (KIS_ARABIC)?notification.NationalityArName:notification.NationalityEnName ;

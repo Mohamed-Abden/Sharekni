@@ -117,6 +117,10 @@
     MostRideDetails *ride = self.rides[indexPath.row];
     rideCell.delegate = self ;
     [rideCell setMostRide:ride];
+    __block MostRideDetailsViewController *blockSelf = self;
+    [rideCell setReloadHandler:^{
+        [blockSelf.ridesList reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }];
     return rideCell ;
 }
 

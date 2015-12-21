@@ -107,6 +107,7 @@
     mapping[@"EndLng"] = @"EndLng";
     mapping[@"AgeRangeID"] = @"AgeRangeID";
     mapping[@"AgeRange"] = @"AgeRange";
+    mapping[@"AccountRating"] = @"AccountRating";    
     return mapping;
 }
 
@@ -138,7 +139,7 @@
         _PreferredGender = @"Female";
     }
     else{
-        _PreferredGender = @"No Specified";
+        _PreferredGender = @"Not Specified";
     }
 }
 @end

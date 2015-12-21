@@ -157,14 +157,14 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
 
         if (responseString)
         {
-            NSString *str = @"A reset password link has been sent to your email";
+            NSString *str = GET_STRING(@"A reset password link has been sent to your email");
             success(str);
         }else{
-            success(nil);
+            failure(GET_STRING(@"data are not matching"));
         }
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        failure(@"incorrect");
+        failure(GET_STRING(@"data are not matching"));
     }];
 }
 

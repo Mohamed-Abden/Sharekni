@@ -410,7 +410,9 @@
         NSMutableArray *reviews = [NSMutableArray array];
         for (NSDictionary *dictionary in resultDictionaries) {
             Review *review = [Review gm_mappedObjectWithJsonRepresentation:dictionary];
-            [reviews addObject:review];
+            if(!([review.Review containsString:@"Nulll"] || review.Review.length == 0)){
+                [reviews addObject:review];
+            }
         }
         success(reviews);
         

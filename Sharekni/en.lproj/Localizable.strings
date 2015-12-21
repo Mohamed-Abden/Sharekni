@@ -238,5 +238,9 @@
 "Review deleted successfully" = "Review deleted successfully";
 "Cannot delete Review" = "Cannot delete Review";
 "Password must be at least 5 characters" = "Password must be at least 5 characters";
-"No Specified" = "No Specified";
-
+"data are not matching" = "data are not matching";
+"Not Specified" = "Not Specified";
+"No Specified" = "Not Specified";
+"No Specified" = "Not Specified";
+"Error" = "Error";
+"You don't have any norifications" = "You don't have any norifications";

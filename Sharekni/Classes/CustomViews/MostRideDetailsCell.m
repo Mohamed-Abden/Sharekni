@@ -93,6 +93,9 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
     else if (self.driver){
         self.driverImage.image = self.driver.driverImage;
     }
+    if (self.reloadHandler) {
+        self.reloadHandler();
+    }
 }
 
 - (void) ratingChanged{
@@ -102,6 +105,9 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
     }
     else if (self.driver){
         self.rate.text = self.driver.Rating;
+    }
+    if (self.reloadHandler) {
+        self.reloadHandler();
     }
 }
 

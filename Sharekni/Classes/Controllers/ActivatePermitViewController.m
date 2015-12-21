@@ -20,6 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeLeft];
+    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     // Do any additional setup after loading the view from its nib.
     self.title = GET_STRING(@"Permit");
     
@@ -38,6 +40,12 @@
     [_permitWebView loadRequest:request];
     
     [ActivatePermitViewController attemptRotationToDeviceOrientation];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
 }
 
 - (void)popViewController

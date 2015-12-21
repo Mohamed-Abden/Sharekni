@@ -52,19 +52,34 @@
     [self configureMapView];
     [self configureData];
 
+
 }
 
 - (void) currentLocationHanlder{
-    currentLocationEnabled = !currentLocationEnabled;
-    if (currentLocationEnabled) {
-        [self.locationManager startUpdatingLocation];
-    }
-    else{
-        userMarker.map = nil;
-        [self.markers removeObject:userMarker];
-        [self focusMapToShowAllMarkers];
-    }
-//    mapView_.myLocationEnabled = YES;
+            CLLocationCoordinate2D myLocation = mapView_.myLocation.coordinate;
+            GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:myLocation coordinate:myLocation];
+    
+    
+            [mapView_ animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:100.0f]];
+//    [self.locationManager startUpdatingLocation];
+//    if(userMarker){
+
+//    }
+//    currentLocationEnabled = !currentLocationEnabled;
+//    if (currentLocationEnabled) {
+//        [self.locationManager startUpdatingLocation];
+//        [self.locationManager startMonitoringSignificantLocationChanges];
+//        [self.locationManager startUpdatingLocation];
+//    }
+//    else{
+//
+////        userMarker.map = nil;
+////        [self.markers removeObject:userMarker];
+////        [self focusMapToShowAllMarkers];
+//    }
+
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -135,9 +150,15 @@
 }
 
 - (UIView *) mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker {
+    
     MapItemView *mapItem = (MapItemView *)marker.userData;
-    MapInfoWindow *infoWindow = [[MapInfoWindow alloc] initWithArabicName:mapItem.arabicName englishName:mapItem.englishName passengers:mapItem.passengers drivers:mapItem.drivers lat:mapItem.lat lng:mapItem.lng time:mapItem.comingRides];
-    return infoWindow;
+    if (mapItem) {
+        MapInfoWindow *infoWindow = [[MapInfoWindow alloc] initWithArabicName:mapItem.arabicName englishName:mapItem.englishName passengers:mapItem.passengers drivers:mapItem.drivers lat:mapItem.lat lng:mapItem.lng time:mapItem.comingRides];
+        return infoWindow;
+    }
+    else{
+        return nil;
+    }
 }
 
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
@@ -215,6 +236,10 @@
         _locationManager.delegate = self;
         //Configure Accuracy depending on your needs, default is kCLLocationAccuracyBest
         _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        [_locationManager requestWhenInUseAuthorization];
+        [_locationManager startUpdatingLocation];
+        [_locationManager startMonitoringSignificantLocationChanges];
+        [_locationManager startUpdatingLocation];
     }
     return _locationManager;
 }
@@ -234,8 +259,7 @@
     userMarker.title = @"Current Location";
     userMarker.icon = [UIImage imageNamed:@"CurrentLocation"];
     userMarker.map = mapView_;
-    [self.markers addObject:userMarker];
-    [self focusMapToShowAllMarkers];
+//    [self.markers addObject:userMarker];
 }
 
 @end

@@ -241,3 +241,8 @@
 "Cannot delete Review" = "لا يمكن حذف التعليق";
 "Password must be at least 5 characters" = "كلمة المرور يجب أن لا تقل عن ٥ أحرف";
 "No Specified" = "غير محدد";
+"data are not matching" = "البيانات غير صحيحة";
+"Not Specified" = "غير محدد";
+"No Specified" = "غير محدد";
+"Error" = "خطأ";
+"You don't have any norifications" = "لا يوجد لديك تنبيهات";

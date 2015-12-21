@@ -65,6 +65,9 @@
         dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Vehicles"),@"Side_vehicles"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
+        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Saved Search"),@"Side_vehicles"] forKeys:@[Title_Key,Image_Key]];
+        [self.items addObject:dictionary];
+        
         dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Most Rides"),@"Side_mostrides"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
@@ -112,6 +115,7 @@
 
 - (void) configureTableView
 {
+
     self.tableView.separatorColor = Red_UIColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
