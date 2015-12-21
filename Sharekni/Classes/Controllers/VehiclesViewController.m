@@ -65,7 +65,8 @@
     
     self.title = GET_STRING(@"Vehicles");
     
-    if (self.enableBackButton) {
+    if (self.enableBackButton)
+    {
         UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _backBtn.frame = CGRectMake(0, 0, 22, 22);
         [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
@@ -87,7 +88,6 @@
         self.vehiclesTitleLabel.textColor = Red_UIColor;
         [self.vehiclesTitleLabel addRightBorderWithColor:Red_UIColor];
         [self.vehiclesTitleLabel addLeftBorderWithColor:Red_UIColor];
-        self.vehiclesTitleLabel.backgroundColor = [UIColor whiteColor];
         
         self.vehiclesContainerView.layer.cornerRadius = 20;
         self.vehiclesContainerView.layer.borderWidth = 1;
