@@ -26,7 +26,7 @@
                 <outlet property="preferenceLbl" destination="YXz-0j-EP2" id="4rD-2d-5b3"/>
                 <outlet property="preferenceLblView" destination="IOn-Fc-d6K" id="LQN-5C-dm3"/>
                 <outlet property="preferenceView" destination="U8L-oZ-DXX" id="KT4-ue-AgB"/>
-                <outlet property="reviewLbl" destination="o27-7B-X0W" id="WTv-S6-8wf"/>
+                <outlet property="reviewLbl" destination="o27-7B-X0W" id="Wcm-FL-YkM"/>
                 <outlet property="reviewLblView" destination="BPV-bd-Gfl" id="9WU-Xv-T1s"/>
                 <outlet property="reviewList" destination="dDr-U3-DO4" id="nsH-gj-Yvc"/>
                 <outlet property="reviewsView" destination="7bF-Ek-4r9" id="cKo-7S-tQp"/>
@@ -339,7 +339,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -354,7 +354,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="134" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <animations/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>

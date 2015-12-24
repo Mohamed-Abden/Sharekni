@@ -158,19 +158,24 @@
 {
     if (buttonIndex == 1)
     {
-        [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
-        __block CreatedRidesViewController *blockSelf = self;
-        [[MobAccountManager sharedMobAccountManager] deleteRideWithID:self.toBeDeletedRide.RouteID.stringValue withSuccess:^(BOOL deletedSuccessfully) {
-//            [KVNProgress showSuccessWithStatus:GET_STRING(@"Ride Deleted successfully.")];
-            [blockSelf configureData];
-            
-        } Failure:^(NSString *error) {
-            [KVNProgress showErrorWithStatus:GET_STRING(@"An error occured when deleting ride")];
-            [blockSelf configureData];
-            [blockSelf performBlock:^{
-                [KVNProgress dismiss];
-            } afterDelay:3];
-        }];
+        [self performBlock:^{
+            [KVNProgress showWithStatus:GET_STRING(@"loading")];
+            __block CreatedRidesViewController *blockSelf = self;
+            [[MobAccountManager sharedMobAccountManager] deleteRideWithID:self.toBeDeletedRide.RouteID.stringValue withSuccess:^(BOOL deletedSuccessfully) {
+                [KVNProgress showSuccessWithStatus:GET_STRING(@"Ride Deleted successfully.")];
+                [blockSelf performBlock:^{
+                    [blockSelf configureData];
+                } afterDelay:1];
+                
+            } Failure:^(NSString *error) {
+                [KVNProgress showErrorWithStatus:GET_STRING(@"An error occured when deleting ride")];
+                [blockSelf configureData];
+                [blockSelf performBlock:^{
+                    [KVNProgress dismiss];
+                } afterDelay:3];
+            }];
+
+        } afterDelay:1];
     }
 }
 

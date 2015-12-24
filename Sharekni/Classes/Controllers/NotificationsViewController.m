@@ -191,11 +191,10 @@
     Notification *notification = self.notifications[indexPath.row];
 
     if (notification.isPending) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"do you want to delete this request ?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:GET_STRING(@"Confirm") message:GET_STRING(@"Do you want to delete this request ?") delegate:self cancelButtonTitle:GET_STRING(@"Cancel") otherButtonTitles:GET_STRING(@"Delete"), nil];
         alertView.tag = 1010;
         [alertView show];
         self.toBeDeletedNotification = notification;
-
     }
     else{
         NotificationDetailsViewController *notificationDetails = [[NotificationDetailsViewController alloc] initWithNibName:(KIS_ARABIC)?@"NotificationDetailsViewController_ar":@"NotificationDetailsViewController" bundle:nil];

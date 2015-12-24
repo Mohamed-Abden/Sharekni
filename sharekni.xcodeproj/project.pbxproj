@@ -102,6 +102,7 @@
 		148795D71BEA97EF00B940D8 /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 148795D61BEA97EF00B940D8 /* Review.m */; };
 		148795DB1BEA9CF900B940D8 /* ReviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 148795D91BEA9CF900B940D8 /* ReviewCell.m */; };
 		148795DC1BEA9CF900B940D8 /* ReviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 148795DA1BEA9CF900B940D8 /* ReviewCell.xib */; };
+		14A61F6B1C2C472A00FF8F93 /* UINavigationController+Rotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A61F6A1C2C472A00FF8F93 /* UINavigationController+Rotation.m */; };
 		14B00C971BFB921E004F46F7 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B00C951BFB921E004F46F7 /* ForgetPasswordViewController.m */; };
 		14B00C981BFB921E004F46F7 /* ForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B00C961BFB921E004F46F7 /* ForgetPasswordViewController.xib */; };
 		14C3F39F1C029A8300CEF11C /* RideHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C3F39D1C029A8200CEF11C /* RideHistoryCell.m */; };
@@ -381,6 +382,8 @@
 		148795D81BEA9CF900B940D8 /* ReviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewCell.h; sourceTree = "<group>"; };
 		148795D91BEA9CF900B940D8 /* ReviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewCell.m; sourceTree = "<group>"; };
 		148795DA1BEA9CF900B940D8 /* ReviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewCell.xib; sourceTree = "<group>"; };
+		14A61F691C2C472A00FF8F93 /* UINavigationController+Rotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Rotation.h"; sourceTree = "<group>"; };
+		14A61F6A1C2C472A00FF8F93 /* UINavigationController+Rotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Rotation.m"; sourceTree = "<group>"; };
 		14B00C941BFB921E004F46F7 /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
 		14B00C951BFB921E004F46F7 /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
 		14B00C961BFB921E004F46F7 /* ForgetPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgetPasswordViewController.xib; sourceTree = "<group>"; };
@@ -814,6 +817,8 @@
 				140960871BFEACC100BA3268 /* NSStringEmpty.m */,
 				87ED1B311C1221EF00EB58EB /* UploadImageManager.h */,
 				87ED1B321C1221EF00EB58EB /* UploadImageManager.m */,
+				14A61F691C2C472A00FF8F93 /* UINavigationController+Rotation.h */,
+				14A61F6A1C2C472A00FF8F93 /* UINavigationController+Rotation.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1406,6 +1411,7 @@
 				14D3E93A1C06A2290047F415 /* TourViewController.m in Sources */,
 				140960911BFEB0C700BA3268 /* AddReviewViewController.m in Sources */,
 				8777FA601C00C4B20022E368 /* CreatedRidesViewController.m in Sources */,
+				14A61F6B1C2C472A00FF8F93 /* UINavigationController+Rotation.m in Sources */,
 				143BE6B21BB14BE5009F6496 /* WelcomeViewController.m in Sources */,
 				140960881BFEACC100BA3268 /* NSStringEmpty.m in Sources */,
 				047E45911BC63686000B5151 /* MobDriverManager.m in Sources */,

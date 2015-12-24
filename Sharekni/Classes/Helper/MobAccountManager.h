@@ -63,4 +63,6 @@
 
 - (void) updateUserProfileWithAccountID:(NSString *)accountID firstName:(NSString *)firstName lastName:(NSString *)lastName gender:(NSString *)gender imagePath:(NSString *)photoName birthDate:(NSString *)birthDate nationalityID:(NSString *)nationalityId PreferredLanguageId:(NSString *)langID Mobile:(NSString *)mobile WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure ;
 
+- (void) getDriverRate:(NSString *)driverID inRouteID:(NSString *)routeID WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure ;
+
 @end

@@ -83,14 +83,15 @@
 
 @implementation HomeViewController
 
-- (void)viewDidLoad{
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
 
     [Tune measureSession];
     
     [self configureData];
-    [self configureUI];
+//    [self configureUI];
     [self configureActionsUI];
     
     __block HomeViewController *blockSelf = self;
@@ -101,14 +102,23 @@
     }];
 }
 
+- (BOOL)shouldAutorotate
+{    
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait){
+        // your code for portrait mode
+        return NO ;
+    }else{
+        return YES ;
+    }
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.notificationCount = 0;
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
-
-    [self getNotifications];
 
     [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
     __block HomeViewController *blockSelf = self;
@@ -121,6 +131,8 @@
     {
         [KVNProgress dismiss];
     }];
+    
+    [self getNotifications];
 }
 
 #pragma Data
@@ -133,7 +145,8 @@
 }
 #pragma UI
 
-- (void) configureActionsUI{
+- (void) configureActionsUI
+{
     self.topLeftView.backgroundColor = Red_UIColor;
     self.topRightView.backgroundColor = Red_UIColor;
     self.bottomLeftView.backgroundColor = Red_UIColor;
@@ -199,7 +212,6 @@
 - (void) configureUI
 {
     self.navigationItem.title = GET_STRING(@"Home Page");
-    self.notificationCountLabel.text = [NSString stringWithFormat:@"%@",self.sharedUser.DriverMyAlertsCount];
     
     self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",self.sharedUser.FirstName,self.sharedUser.LastName];
     self.nameLabel.text = [self.nameLabel.text capitalizedString];

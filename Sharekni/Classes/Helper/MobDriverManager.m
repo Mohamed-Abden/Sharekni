@@ -103,7 +103,7 @@
         accountID = @"0";
     }
     
-    NSString *requestBody = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_FindRide?AccountID=%@&PreferredGender=%@&Time=%@&FromEmirateID=%@&FromRegionID=%@&ToEmirateID=%@&ToRegionID=%@&PrefferedLanguageId=%@&PrefferedNationlaities=%@&AgeRangeId=%@&StartDate=%@&SaveFind=%@&IsPeriodic=%@",accountID,@"N",timeString,fromEmirateID,fromRegionID,toEmirateID,toRegionID,languageID,nationalityID,ageRangeID ,dateString,saveSearchString,isPeriodicString];
+    NSString *requestBody = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_FindRide?AccountID=%@&PreferredGender=%@&Time=%@&FromEmirateID=%@&FromRegionID=%@&ToEmirateID=%@&ToRegionID=%@&PrefferedLanguageId=%@&PrefferedNationlaities=%@&AgeRangeId=%@&StartDate=%@&SaveFind=%@&IsPeriodic=%@&IsSmoking=%@",accountID,@"N",timeString,fromEmirateID,fromRegionID,toEmirateID,toRegionID,languageID,nationalityID,ageRangeID ,dateString,saveSearchString,isPeriodicString,@"0"];
     
     [self.operationManager GET:requestBody parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         NSLog(@"%@",responseObject);

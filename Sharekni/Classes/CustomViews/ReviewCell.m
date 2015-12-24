@@ -26,12 +26,12 @@
     self.nationality.text = (KIS_ARABIC)?review.AccountNationalityAr:review.AccountNationalityEn ;
     if (review.Review && review.Review.length != 0)
     {
-        self.comment.layer.borderColor = [[UIColor lightGrayColor]CGColor];
-        self.comment.layer.borderWidth = 1.0f;
-        self.comment.layer.cornerRadius = 4.0f;
+        self.bgView.layer.borderColor = [[UIColor lightGrayColor]CGColor];
+        self.bgView.layer.borderWidth = 1.0f;
+        self.bgView.layer.cornerRadius = 4.0f;
     }
     
-    self.comment.text = [NSString stringWithFormat:@"   %@   ",review.Review] ;
+    self.comment.text = [NSString stringWithFormat:@" %@ ",review.Review] ;
 }
 
 - (IBAction)edit:(id)sender

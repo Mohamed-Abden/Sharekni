@@ -129,7 +129,8 @@
 #pragma mark -
 #pragma mark UITableView Delegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return 220;
 }
 
@@ -153,25 +154,29 @@
     [self.navigationController pushViewController:driverDetails animated:YES];
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
-        [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
-        __block RidesJoinedViewController *blockSelf = self;
-        [[MobAccountManager sharedMobAccountManager] leaveRideWithID:self.toBeLeavedRide.RouteID.stringValue withSuccess:^(BOOL deletedSuccessfully) {
-            [KVNProgress dismiss];
-            [KVNProgress showSuccessWithStatus:GET_STRING(@"Ride leaved successfully.")];
-            [blockSelf performBlock:^{
-                [KVNProgress dismiss];
-                [blockSelf configureData];
-            } afterDelay:3];
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        [self performBlock:^{
             
-        } Failure:^(NSString *error) {
-            [KVNProgress showErrorWithStatus:GET_STRING(@"An error occured when leaving ride")];
-            [blockSelf configureData];
-            [blockSelf performBlock:^{
-                [KVNProgress dismiss];
-            } afterDelay:3];
-        }];
+            [KVNProgress showWithStatus:GET_STRING(@"loading")];
+            
+            __block RidesJoinedViewController *blockSelf = self;
+            [[MobAccountManager sharedMobAccountManager] leaveRideWithID:self.toBeLeavedRide.RoutePassengerId.stringValue withSuccess:^(BOOL deletedSuccessfully) {
+                [KVNProgress showSuccessWithStatus:GET_STRING(@"Ride leaved successfully.")];
+                [blockSelf configureData];
+                
+            } Failure:^(NSString *error) {
+                [KVNProgress showErrorWithStatus:GET_STRING(@"An error occured when leaving ride")];
+                [blockSelf configureData];
+                [blockSelf performBlock:^{
+                    [KVNProgress dismiss];
+                } afterDelay:3];
+            }];
+        } afterDelay:1];
     }
 }
 

@@ -447,7 +447,8 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
         NSLog(@"delete response :%@",responseString);
-        if ([responseString containsString:@"1"]) {
+        if ([responseString containsString:@"1"])
+        {
             success(YES);
         }
         else{
@@ -496,6 +497,22 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
         failure(error.localizedDescription);
     }];
+}
+
+- (void) getDriverRate:(NSString *)driverID inRouteID:(NSString *)routeID WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure
+{
+    NSString *passengerID = self.applicationUserID;
+    
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_GetDriverRate?PassengerId=%@&DriverId=%@&RouteId=%@",passengerID,driverID,routeID];
+    
+    [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        success(responseString);
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        failure(error.localizedDescription);
+    }];
+
 }
 
 - (void) getCalculatedRatingForAccount:(NSString *)accountID WithSuccess:(void (^)(NSString *rating))success Failure:(void (^)(NSString *error))failure{

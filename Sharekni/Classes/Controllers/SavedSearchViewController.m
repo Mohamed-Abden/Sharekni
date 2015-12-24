@@ -119,16 +119,19 @@
         [[MobDriverManager sharedMobDriverManager] findRidesFromEmirateID:ride.FromEmirateId andFromRegionID:ride.FromRegionId toEmirateID:ride.ToEmirateId andToRegionID:ride.ToRegionId PerfferedLanguageID:@"0" nationalityID:@"" ageRangeID:@"0" date:nil isPeriodic:nil saveSearch:nil WithSuccess:^(NSArray *searchResults) {
     
             [KVNProgress dismiss];
-            if(searchResults){
+            
+            if(searchResults)
+            {
                 SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:(KIS_ARABIC)?@"SearchResultsViewController_ar":@"SearchResultsViewController" bundle:nil];
                 resultViewController.results = searchResults;
-                resultViewController.fromEmirate = ride.FromEmirateEnName;
-                resultViewController.toEmirate = ride.ToEmirateEnName;
-                resultViewController.fromRegion = ride.FromRegionEnName;
-                resultViewController.toRegion = ride.ToRegionEnName;
+                resultViewController.fromEmirate = (KIS_ARABIC)?ride.FromEmirateArName:ride.FromEmirateEnName;
+                resultViewController.toEmirate = (KIS_ARABIC)?ride.ToEmirateArName:ride.ToEmirateEnName;
+                resultViewController.fromRegion = (KIS_ARABIC)?ride.FromRegionArName:ride.FromRegionEnName;
+                resultViewController.toRegion = (KIS_ARABIC)?ride.ToRegionArName:ride.ToRegionEnName;
                 [blockSelf.navigationController pushViewController:resultViewController animated:YES];
             }
-            else{
+            else
+            {
                 [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"No Rides Found")];
             }
         } Failure:^(NSString *error) {

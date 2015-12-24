@@ -36,9 +36,10 @@
 
 NSString * const TUNE_ADVERTISER_ID  = @"189698";
 NSString * const TUNE_CONVERSION_KEY = @"172510cf81e7148e5a01851f65fb0c7e";
-NSString * const TUNE_PACKAGE_NAME   = @"com.sharekni.Sharekni";
+NSString * const TUNE_PACKAGE_NAME   = @"rta.ae.sharekni";
 
 @import GoogleMaps;
+
 @interface AppDelegate ()<REFrostedViewControllerDelegate,TuneDelegate>
 @property (nonatomic,strong) UINavigationController *splashNavigationController;
 @property (nonatomic,strong) REFrostedViewController *homeViewController;
@@ -58,17 +59,34 @@ NSString * const TUNE_PACKAGE_NAME   = @"com.sharekni.Sharekni";
     
     [Tune setDelegate:self];
     
+    [Tune setRedirectUrl:@"https://itunes.apple.com/us/app/rta-sharekni/id989008714?ls=1&mt=8"];
+    
     [Tune setDebugMode:NO];
+    
     [Tune setAllowDuplicateRequests:NO];
     
     [Tune checkForDeferredDeeplink:self];
     
-    [Tune startAppToAppMeasurement:@"abc" advertiserId:TUNE_ADVERTISER_ID offerId:@"12345" publisherId:@"321" redirect:YES];
+    [Tune startAppToAppMeasurement:TUNE_PACKAGE_NAME advertiserId:TUNE_ADVERTISER_ID offerId:@"" publisherId:@"" redirect:YES];
+
+    [Tune measureSession];
+
     [self configureAppearance];
+    
     self.window.rootViewController = self.splashNavigationController;
 
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)tuneDidSucceedWithData:(NSData *)data
+{
+    NSLog(@"data :%@",data);
+}
+
+- (void)tuneDidFailWithError:(NSError *)error
+{
+    NSLog(@"error :%@",error);
 }
 
 - (void)reloadApp
