@@ -45,10 +45,25 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self shouldAutorotate];
     self.navigationController.navigationBarHidden = NO ;
     [self.navigationItem setHidesBackButton:YES];
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
     [self configureUI];
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientationsForWindow:(nullable UIWindow *)window
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (BOOL)shouldAutorotate {
+    return NO;
 }
 
 - (BOOL)prefersStatusBarHidden

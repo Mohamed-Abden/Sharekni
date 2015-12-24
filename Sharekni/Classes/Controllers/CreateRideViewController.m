@@ -951,7 +951,7 @@
         }
     }
     else if (self.rideNameTextField.text.length == 0){
-        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please enter ride name.")];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please enter ride name")];
     }
     else if (!self.pickupDate){
         [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please select start date")];

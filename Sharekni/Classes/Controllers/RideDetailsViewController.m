@@ -82,7 +82,7 @@
 @property (nonatomic ,strong) NSMutableArray *markers ;
 @property (nonatomic ,strong) NSArray *passengers ;
 @property (nonatomic ,strong) Passenger *toBeDeletedpassenger ;
-@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *passengersHeaderLabels;
+@property (nonatomic ,strong) IBOutletCollection(UILabel) NSArray *passengersHeaderLabels;
 @property (nonatomic ,strong) RouteDetails *routeDetails ;
 @property (nonatomic ,strong) UIBarButtonItem *loadingBarButton;
 @property (nonatomic ,assign) BOOL alreadyJoined;
@@ -202,11 +202,13 @@
     }];
 }
 
-- (void) popViewController{
+- (void) popViewController
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void) showRideDetailsData{
+- (void) showRideDetailsData
+{
     FromRegionName.text = [NSString stringWithFormat:@"%@ : %@",(KIS_ARABIC)?self.routeDetails.FromEmirateArName:self.routeDetails.FromEmirateEnName,(KIS_ARABIC)?self.routeDetails.FromRegionArName:self.routeDetails.FromRegionEnName];
     
     ToRegionName.text = [NSString stringWithFormat:@"%@ : %@",(KIS_ARABIC)?self.routeDetails.ToEmirateArName:self.routeDetails.ToEmirateEnName,(KIS_ARABIC)?self.routeDetails.ToRegionArName:self.routeDetails.ToRegionEnName];
@@ -233,7 +235,8 @@
         ageRange.text = self.routeDetails.AgeRange ;
     }
     
-    if (self.routeDetails.IsSmoking.boolValue) {
+    if (self.routeDetails.IsSmoking.boolValue)
+    {
         smoking.text = GET_STRING(@"Yes");
     }else{
         smoking.text = GET_STRING(@"No");
@@ -248,7 +251,14 @@
         language.text = (KIS_ARABIC)?self.routeDetails.PrefLanguageArName:self.routeDetails.PrefLanguageEnName;
     }
     
-    gender.text = GET_STRING(self.routeDetails.PreferredGender);
+    if ([self.routeDetails.PreferredGender isEqualToString:@"Not Specified"])
+    {
+        gender.text = GET_STRING(@"Both");
+    }
+    else
+    {
+        gender.text = GET_STRING(self.routeDetails.PreferredGender);
+    }
 }
 
 - (void) configureData{

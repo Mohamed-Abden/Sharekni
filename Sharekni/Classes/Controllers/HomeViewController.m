@@ -239,14 +239,16 @@
     self.vehiclesLabel.text = vehiclesCountText;
 }
 
-- (IBAction) verfiyMobileAction:(id)sender{
+- (IBAction) verfiyMobileAction:(id)sender
+{
     [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
 
     [[MobAccountManager sharedMobAccountManager] verifyMobileNumber:[NSString stringWithFormat:@"%@",self.sharedUser.ID] WithSuccess:^(NSString *user)
     {
         [KVNProgress dismiss];
 
-        if ([user containsString:@"1"]) {
+        if ([user containsString:@"1"])
+        {
             [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Mobile verification code has been sent to your mobile")];
             
             VerifyMobileViewController *verifyView = [[VerifyMobileViewController alloc] initWithNibName:@"VerifyMobileViewController" bundle:nil];
@@ -255,7 +257,9 @@
             verifyView.delegate = self;
             [self presentPopupViewController:verifyView animationType:MJPopupViewAnimationSlideBottomBottom];
             
-        }else{
+        }
+        else
+        {
             [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please check your mobile number")];
         }
     } Failure:^(NSString *error) {
@@ -281,12 +285,15 @@
     [self.navigationController pushViewController:searchView animated:YES];
 }
 
-- (void) createRideAction{
-    if (self.sharedUser.DriverMyRidesCount.integerValue < 2) {
+- (void) createRideAction
+{
+    if (self.sharedUser.DriverMyRidesCount.integerValue < 2)
+    {
         CreateRideViewController *createRideViewController = [[CreateRideViewController alloc] initWithNibName:(KIS_ARABIC)?@"CreateRideViewController_ar":@"CreateRideViewController" bundle:nil];
         [self.navigationController pushViewController:createRideViewController animated:YES];
     }
-    else{
+    else
+    {
         [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Sorry, It's not allowed to create more than two rides")];
     }
 }
@@ -312,13 +319,15 @@
     [self.navigationController pushViewController:permitsView animated:YES];
 }
 
-- (void) savedSearchAction{
+- (void) savedSearchAction
+{
     SavedSearchViewController *savedSearchViewController = [[SavedSearchViewController alloc] initWithNibName:@"SavedSearchViewController" bundle:nil];
     savedSearchViewController.enableBackButton = YES;
     [self.navigationController pushViewController:savedSearchViewController animated:YES];
 }
 
-- (IBAction) editAction:(id)sender{
+- (IBAction) editAction:(id)sender
+{
     EditProfileViewController *profileView = [[EditProfileViewController alloc] initWithNibName:(KIS_ARABIC)?@"EditProfileViewController_ar":@"EditProfileViewController" bundle:nil];
     [self.navigationController pushViewController:profileView animated:YES];
 }
@@ -343,8 +352,6 @@
        
         [self getAcceptedNotifications];
         
-        [KVNProgress dismiss];
-        
     } Failure:^(NSString *error) {
         NSLog(@"Error in Notifications");
         [KVNProgress dismiss];
@@ -355,19 +362,16 @@
     }];
 }
 
-- (void) getAcceptedNotifications{
+- (void) getAcceptedNotifications
+{
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     
     __block HomeViewController *blockSelf = self;
-    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     
     [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] notificationType:NotificationTypeAccepted WithSuccess:^(NSMutableArray *array) {
         
         blockSelf.notificationCount += (int)array.count ;
-        blockSelf.notificationCountTxt = [NSString stringWithFormat:@"%d",self.notificationCount];
-        blockSelf.notificationCountLabel.text = self.notificationCountTxt;
         [blockSelf getPendingNotifications];
-        [KVNProgress dismiss];
         
     } Failure:^(NSString *error) {
         NSLog(@"Error in Notifications");
@@ -379,17 +383,15 @@
     }];
 }
 
-- (void) getPendingNotifications{
+- (void) getPendingNotifications
+{
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
-    
     __block HomeViewController *blockSelf = self;
-    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     
     [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] notificationType:NotificationTypePending WithSuccess:^(NSMutableArray *array) {
         
-        self.notificationCount += (int)array.count ;
-        self.notificationCountTxt = [NSString stringWithFormat:@"%d",self.notificationCount];
-        self.notificationCountLabel.text = self.notificationCountTxt;
+        blockSelf.notificationCount += (int)array.count ;
+        self.notificationCountLabel.text = [NSString stringWithFormat:@"%d",blockSelf.notificationCount];
         
         [KVNProgress dismiss];
         
@@ -410,12 +412,14 @@
         [self.navigationController pushViewController:registerVehicle animated:YES];
 }
 
-- (void) showCreatedRides{
+- (void) showCreatedRides
+{
     if (self.sharedUser.DriverMyRidesCount.integerValue > 0) {
         CreatedRidesViewController *createdRideViewController = [[CreatedRidesViewController alloc] initWithNibName:@"CreatedRidesViewController" bundle:nil];
         [self.navigationController pushViewController:createdRideViewController animated:YES];
     }
-    else{
+    else
+    {
         [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"You don't have created rides yet")];
     }
 }
@@ -426,7 +430,8 @@
         RidesJoinedViewController *joinedRidesViewController =  [[RidesJoinedViewController alloc] initWithNibName:@"RidesJoinedViewController" bundle:nil];
         [self.navigationController pushViewController:joinedRidesViewController animated:YES];
     }
-    else{
+    else
+    {
         [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"You don't have joined rides yet")];
     }
 }

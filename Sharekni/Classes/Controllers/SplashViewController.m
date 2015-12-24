@@ -25,7 +25,8 @@
 
 @implementation SplashViewController
 
-- (void) viewDidLoad {
+- (void) viewDidLoad
+{
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = YES;
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
@@ -49,7 +50,8 @@
     } afterDelay:4];
 }
 
--(void) viewWillDisappear:(BOOL)animated{
+- (void) viewWillDisappear:(BOOL)animated
+{
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 

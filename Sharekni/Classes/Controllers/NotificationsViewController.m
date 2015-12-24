@@ -41,7 +41,7 @@
 {
     [super viewDidLoad];
     self.title = GET_STRING(@"Notifications");
-    self.emptyLabel.text = GET_STRING(@"You don't have any norifications");
+    self.emptyLabel.text = GET_STRING(@"You don't have any notifications");
     self.notificationsList.tableFooterView = [[UIView alloc] initWithFrame:CGRectNull];
     self.notifications = [NSMutableArray new];
     [self getNotifications2];
@@ -53,55 +53,54 @@
 }
 
 
-- (void)getNotifications
-{
-    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
-    
-    __block NotificationsViewController *blockSelf = self;
-    [KVNProgress showWithStatus:GET_STRING(@"loading")];
-    
-    [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] notificationType:NotificationTypeAlert WithSuccess:^(NSMutableArray *array) {
-        
-        blockSelf.notifications = array;
-
-        [self.notificationsList reloadData];
-        
-        [self getAcceptedNotifications];
-        
-        
-    } Failure:^(NSString *error) {
-        NSLog(@"Error in Notifications");
-        [KVNProgress dismiss];
-        [KVNProgress showErrorWithStatus:GET_STRING(@"Error")];
-        [blockSelf performBlock:^{
-            [KVNProgress dismiss];
-        } afterDelay:3];
-    }];
-}
-
-- (void)getAcceptedNotifications{
-    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
-    
-    __block NotificationsViewController *blockSelf = self;
-    [KVNProgress showWithStatus:GET_STRING(@"loading")];
-    
-    [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] notificationType:NotificationTypeAccepted WithSuccess:^(NSMutableArray *array) {
-        
-        [self.notifications addObjectsFromArray:array];
-
-        [KVNProgress dismiss];
-        
-        [self.notificationsList reloadData];
-        
-    } Failure:^(NSString *error) {
-        NSLog(@"Error in Notifications");
-        [KVNProgress dismiss];
-        [KVNProgress showErrorWithStatus:@"Error"];
-        [blockSelf performBlock:^{
-            [KVNProgress dismiss];
-        } afterDelay:3];
-    }];
-}
+//- (void)getNotifications
+//{
+//    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+//    
+//    __block NotificationsViewController *blockSelf = self;
+//    [KVNProgress showWithStatus:GET_STRING(@"loading")];
+//    
+//    [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] notificationType:NotificationTypeAlert WithSuccess:^(NSMutableArray *array) {
+//        
+//        blockSelf.notifications = array;
+//
+//        [self.notificationsList reloadData];
+//        
+//        [self getAcceptedNotifications];
+//        
+//    } Failure:^(NSString *error) {
+//        NSLog(@"Error in Notifications");
+//        [KVNProgress dismiss];
+//        [KVNProgress showErrorWithStatus:GET_STRING(@"Error")];
+//        [blockSelf performBlock:^{
+//            [KVNProgress dismiss];
+//        } afterDelay:3];
+//    }];
+//}
+//
+//- (void)getAcceptedNotifications{
+//    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+//    
+//    __block NotificationsViewController *blockSelf = self;
+//    [KVNProgress showWithStatus:GET_STRING(@"loading")];
+//    
+//    [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] notificationType:NotificationTypeAccepted WithSuccess:^(NSMutableArray *array) {
+//        
+//        [self.notifications addObjectsFromArray:array];
+//        
+//        
+//        
+//        [self.notificationsList reloadData];
+//        
+//    } Failure:^(NSString *error) {
+//        NSLog(@"Error in Notifications");
+//        [KVNProgress dismiss];
+//        [KVNProgress showErrorWithStatus:@"Error"];
+//        [blockSelf performBlock:^{
+//            [KVNProgress dismiss];
+//        } afterDelay:3];
+//    }];
+//}
 
 - (void) getNotifications2{
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
@@ -120,8 +119,18 @@
             [blockSelf.notificationsList reloadData];
             
             [[MasterDataManager sharedMasterDataManager] getRequestNotifications:user.ID.stringValue notificationType:NotificationTypePending WithSuccess:^(NSMutableArray *array) {
-                [KVNProgress dismiss];
                 [blockSelf.notifications addObjectsFromArray:array];
+                if (blockSelf.notifications.count > 0)
+                {
+                    self.emptyLabel.hidden = YES ;
+                    self.notificationsList.hidden = NO ;
+                }
+                else
+                {
+                    self.emptyLabel.hidden = NO ;
+                    self.notificationsList.hidden = YES ;
+                }
+                [KVNProgress dismiss];
                 [blockSelf.notificationsList reloadData];
             } Failure:^(NSString *error) {
                 [blockSelf handleNetworkFailure];

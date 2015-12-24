@@ -53,7 +53,7 @@
     userImage.clipsToBounds = YES ;
     
     passengerName.text = self.notification.DriverName.length > 0 ? self.notification.DriverName : self.notification.PassengerName ;
-    nationality.text = self.notification.NationalityEnName ;
+    nationality.text = (KIS_ARABIC)?self.notification.NationalityArName:self.notification.NationalityEnName ;
     passengerPhone.text = self.notification.PassengerMobile ;
     routeName.text = self.notification.RouteName ;
     requestDate.text = self.notification.RequestDate ;

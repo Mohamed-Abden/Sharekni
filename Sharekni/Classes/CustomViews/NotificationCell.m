@@ -37,7 +37,9 @@
         }
     }
     self.nationality.text = (KIS_ARABIC)?notification.NationalityArName:notification.NationalityEnName ;
-    if (notification.image) {
+    
+    if (notification.image)
+    {
         self.userImage.image = notification.image ;
     }else{
         self.userImage.image = [UIImage imageNamed:@"thumbnail.png"];
