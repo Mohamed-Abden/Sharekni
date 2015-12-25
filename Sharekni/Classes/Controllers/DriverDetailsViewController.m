@@ -18,6 +18,8 @@
 #import "RideDetailsViewController.h"
 #import "MobAccountManager.h"
 #import "RZDataBinding.h"   
+#import "LoginViewController.h"
+#import "User.h"
 
 @interface DriverDetailsViewController () <MFMessageComposeViewControllerDelegate>
 
@@ -56,6 +58,17 @@
     
     [self.ridesList registerClass:[DriverRideCell class] forCellReuseIdentifier:RIDE_CELLID];
     [self configureData];
+}
+
+- (BOOL)shouldAutorotate
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait){
+        // your code for portrait mode
+        return NO ;
+    }else{
+        return YES ;
+    }
 }
 
 - (void) configureData
@@ -168,7 +181,8 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)configureDriverData:(NSString *)driverID{
+- (void)configureDriverData:(NSString *)driverID
+{
     __block DriverDetailsViewController *blockSelf = self;
         [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
         NSString *accountID = driverID;
@@ -199,24 +213,31 @@
 
 
 #pragma mark - Event Handler
-- (IBAction)sendMail:(id)sender{
+- (IBAction)sendMail:(id)sender
+{
     NSString *driverMobile ;
-    if(self.mostRideDetails){
+    if(self.mostRideDetails)
+    {
         driverMobile = self.mostRideDetails.DriverMobile;
     }
-    else if (self.bestDriver){
+    else if (self.bestDriver)
+    {
         driverMobile = self.bestDriver.AccountMobile;
     }
-    else if (self.driverSearchResult){
+    else if (self.driverSearchResult)
+    {
         driverMobile = self.driverSearchResult.AccountMobile;
     }
-    else if (self.joinedRide){
+    else if (self.joinedRide)
+    {
         driverMobile = self.joinedRide.DriverMobile;
     }
+    
     [self sendSMSFromPhone:driverMobile];
 }
 
-- (IBAction)call:(id)sender{
+- (IBAction)call:(id)sender
+{
     NSString *driverMobile ;
     if(self.mostRideDetails){
         driverMobile = self.mostRideDetails.DriverMobile;
@@ -230,7 +251,50 @@
     else if (self.joinedRide){
         driverMobile = self.joinedRide.DriverMobile;
     }
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",driverMobile]]];
+    
+    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    if (user)
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",driverMobile]]];
+    }
+    else
+    {
+        LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+        loginView.isLogged = YES ;
+        [self presentViewController:navg animated:YES completion:nil];
+    }
+}
+
+- (void)sendSMSFromPhone:(NSString *)phone
+{
+    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    if (user)
+    {
+        if(![MFMessageComposeViewController canSendText])
+        {
+            UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [warningAlert show];
+            return;
+        }
+        
+        NSArray *recipents = @[phone];
+        
+        MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+        messageController.messageComposeDelegate = self;
+        [messageController setRecipients:recipents];
+        
+        // Present message view controller on screen
+        [self presentViewController:messageController animated:YES completion:nil];
+        
+    }
+    else
+    {
+        LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+        loginView.isLogged = YES ;
+        [self presentViewController:navg animated:YES completion:nil];
+    }
 }
 
 #pragma mark -
@@ -269,23 +333,6 @@
 }
 
 #pragma mark - Message Delegate
-- (void)sendSMSFromPhone:(NSString *)phone{
-    if(![MFMessageComposeViewController canSendText])
-    {
-        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [warningAlert show];
-        return;
-    }
-    
-    NSArray *recipents = @[phone];
-    
-    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
-    messageController.messageComposeDelegate = self;
-    [messageController setRecipients:recipents];
-    
-    // Present message view controller on screen
-    [self presentViewController:messageController animated:YES completion:nil];
-}
 
 - (void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
     switch(result)

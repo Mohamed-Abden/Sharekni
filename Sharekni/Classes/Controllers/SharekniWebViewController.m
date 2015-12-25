@@ -66,6 +66,17 @@
     self.webView.delegate = self;
 }
 
+- (BOOL)shouldAutorotate
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait){
+        // your code for portrait mode
+        return NO ;
+    }else{
+        return YES ;
+    }
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillDisappear:animated];
     KVNProgressConfiguration *progressConfiguration = [KVNProgress configuration];

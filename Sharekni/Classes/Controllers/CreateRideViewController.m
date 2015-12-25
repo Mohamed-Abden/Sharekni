@@ -153,6 +153,17 @@
     [self configureGenderView];
 }
 
+- (BOOL)shouldAutorotate
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait){
+        // your code for portrait mode
+        return NO ;
+    }else{
+        return YES ;
+    }
+}
+
 - (void) configureEditMode{
     
     //Emirates and regions view

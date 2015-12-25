@@ -19,6 +19,9 @@
 #import "NSObject+Blocks.h"
 #import "MessageUI/MessageUI.h"
 #import "DriverDetailsViewController.h"
+#import "MobAccountManager.h"
+#import "User.h"
+#import "LoginViewController.h"
 
 @interface BestDriversViewController () <SendSMSDelegate,MFMessageComposeViewControllerDelegate>
 
@@ -42,6 +45,17 @@
     
     self.title = GET_STRING(@"bestDrivers");
     [self getBestDrivers];
+}
+
+- (BOOL)shouldAutorotate
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait){
+        // your code for portrait mode
+        return NO ;
+    }else{
+        return YES ;
+    }
 }
 
 #pragma mark - Methods
@@ -119,23 +133,49 @@
 }
 
 #pragma mark - Message Delegate
+- (void)callMobileNumber:(NSString *)phone
+{
+    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    if (user) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",phone]]];
+    }
+    else{
+        LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+        loginView.isLogged = YES ;
+        [self presentViewController:navg animated:YES completion:nil];
+    }
+}
+
 - (void)sendSMSFromPhone:(NSString *)phone
 {
-    if(![MFMessageComposeViewController canSendText])
+    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    if (user)
     {
-        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [warningAlert show];
-        return;
+        if(![MFMessageComposeViewController canSendText])
+        {
+            UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [warningAlert show];
+            return;
+        }
+        
+        NSArray *recipents = @[phone];
+        
+        MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+        messageController.messageComposeDelegate = self;
+        [messageController setRecipients:recipents];
+        
+        // Present message view controller on screen
+        [self presentViewController:messageController animated:YES completion:nil];
+
     }
-    
-    NSArray *recipents = @[phone];
-    
-    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
-    messageController.messageComposeDelegate = self;
-    [messageController setRecipients:recipents];
-    
-    // Present message view controller on screen
-    [self presentViewController:messageController animated:YES completion:nil];
+    else
+    {
+        LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+        loginView.isLogged = YES ;
+        [self presentViewController:navg animated:YES completion:nil];
+    }
 }
 
 - (void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
@@ -149,15 +189,5 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

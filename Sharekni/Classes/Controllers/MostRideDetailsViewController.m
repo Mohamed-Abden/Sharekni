@@ -17,6 +17,9 @@
 #import <UIColor+Additions.h>
 #import "MasterDataManager.h"
 #import "DriverDetailsViewController.h"
+#import "MobAccountManager.h"
+#import "User.h"
+#import "LoginViewController.h"
 
 @interface MostRideDetailsViewController ()<SendMSGDelegate,MFMessageComposeViewControllerDelegate>
 
@@ -68,6 +71,17 @@
     }
 
     [self getRideDetails];
+}
+
+- (BOOL)shouldAutorotate
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait){
+        // your code for portrait mode
+        return NO ;
+    }else{
+        return YES ;
+    }
 }
 
 - (void)popViewController
@@ -137,23 +151,51 @@
 }
 
 #pragma mark - Message Delegate
+- (void)callPhone:(NSString *)phone
+{
+    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    if (user)
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",phone]]];
+    }
+    else
+    {
+        LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+        loginView.isLogged = YES ;
+        [self presentViewController:navg animated:YES completion:nil];
+    }
+}
+
 - (void)sendSMSFromPhone:(NSString *)phone
 {
-    if(![MFMessageComposeViewController canSendText])
+    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    if (user)
     {
-        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [warningAlert show];
-        return;
+        if(![MFMessageComposeViewController canSendText])
+        {
+            UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [warningAlert show];
+            return;
+        }
+        
+        NSArray *recipents = @[phone];
+        
+        MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+        messageController.messageComposeDelegate = self;
+        [messageController setRecipients:recipents];
+        
+        // Present message view controller on screen
+        [self presentViewController:messageController animated:YES completion:nil];
+        
     }
-    
-    NSArray *recipents = @[phone];
-    
-    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
-    messageController.messageComposeDelegate = self;
-    [messageController setRecipients:recipents];
-    
-    // Present message view controller on screen
-    [self presentViewController:messageController animated:YES completion:nil];
+    else
+    {
+        LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+        loginView.isLogged = YES ;
+        [self presentViewController:navg animated:YES completion:nil];
+    }
 }
 
 - (void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result

@@ -42,6 +42,11 @@
     [ActivatePermitViewController attemptRotationToDeviceOrientation];
 }
 
+- (BOOL)shouldAutorotate
+{
+    return YES ;
+}
+
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];

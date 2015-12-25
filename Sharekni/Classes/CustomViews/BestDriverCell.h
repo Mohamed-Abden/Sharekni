@@ -11,6 +11,8 @@
 
 @protocol SendSMSDelegate <NSObject>
 - (void)sendSMSFromPhone:(NSString *)phone;
+- (void)callMobileNumber:(NSString *)phone;
+
 @end
 
 @interface BestDriverCell : UITableViewCell

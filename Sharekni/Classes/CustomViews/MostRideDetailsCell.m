@@ -15,8 +15,8 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
 
 @implementation MostRideDetailsCell
 
-
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])
     {
         self = (MostRideDetailsCell *)[[[NSBundle mainBundle] loadNibNamed:@"MostRideDetailsCell" owner:nil options:nil] objectAtIndex:(KIS_ARABIC)?1:0];
@@ -26,8 +26,8 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
     return self;
 }
 
-
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     // Initialization code
     self.driverImage.layer.cornerRadius = self.driverImage.frame.size.width / 2.0f ;
     self.driverImage.clipsToBounds = YES ;
@@ -47,9 +47,10 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
     [self.mostRide rz_addTarget:self action:@selector(ratingChanged) forKeyPathChange:@"Rating" callImmediately:YES];
 }
 
-- (void)setDriver:(DriverSearchResult *)driver{
+- (void)setDriver:(DriverSearchResult *)driver
+{
     _driver = driver;
-    self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
+    self.driverImage.image = driver.driverImage;
     
     self.driverName.text = driver.AccountName;
     self.country.text = (KIS_ARABIC)?driver.Nationality_ar:driver.Nationality_en;
@@ -86,37 +87,46 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
     [self.mostRide rz_addTarget:self action:@selector(ratingChanged) forKeyPathChange:@"Rating" callImmediately:YES];
 }
 
-- (void) imageChanged{
-    if(self.mostRide){
+- (void) imageChanged
+{
+    if(self.mostRide)
+    {
         self.driverImage.image = self.mostRide.driverImage;
     }
-    else if (self.driver){
+    else if (self.driver)
+    {
         self.driverImage.image = self.driver.driverImage;
     }
-    if (self.reloadHandler) {
+    if (self.reloadHandler)
+    {
         self.reloadHandler();
     }
 }
 
-- (void) ratingChanged{
-    if(self.mostRide){
+- (void) ratingChanged
+{
+    if(self.mostRide)
+    {
         self.rate.text = self.mostRide.Rating;
-
     }
-    else if (self.driver){
+    else if (self.driver)
+    {
         self.rate.text = self.driver.Rating;
     }
-    if (self.reloadHandler) {
+    if (self.reloadHandler)
+    {
         self.reloadHandler();
     }
 }
 
-- (IBAction)sendMail:(id)sender{
+- (IBAction)sendMail:(id)sender
+{
     [self.delegate sendSMSFromPhone:self.phone];
 }
 
-- (IBAction)call:(id)sender{
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",[NSString stringWithFormat:@"%@",self.phone]]]];
+- (IBAction)call:(id)sender
+{
+    [self.delegate callPhone:self.phone];
 }
 
 - (NSString *)getAvailableDays:(MostRideDetails *)mostRide{

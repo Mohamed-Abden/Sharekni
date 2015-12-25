@@ -86,9 +86,10 @@
     }];
 }
 
-- (void)setDriverPhoto:(NSString *)DriverPhoto{
-    _DriverPhoto = DriverPhoto;
+- (void)setDriverPhoto:(NSString *)DriverPhoto
+{
     __block MostRideDetails *blockSelf = self;
+    _DriverPhoto = DriverPhoto ;
     [[MobAccountManager sharedMobAccountManager] GetPhotoWithName:DriverPhoto withSuccess:^(UIImage *image, NSString *filePath) {
         if(image){
             blockSelf.driverImage = image;

@@ -50,7 +50,7 @@
 
 - (IBAction)call:(id)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",self.phone]]];
+    [self.delegate callMobileNumber:self.phone];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -121,6 +121,17 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (BOOL)shouldAutorotate
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait){
+        // your code for portrait mode
+        return NO ;
+    }else{
+        return YES ;
+    }
+}
+
 #pragma Data
 
 - (void) configureUI{

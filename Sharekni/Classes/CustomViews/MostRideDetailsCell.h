@@ -11,9 +11,12 @@
 #import "DriverSearchResult.h"
 
 #define MOST_RIDE_DETAILS_CELLID @"MostRideDetailsCell"
+
 @protocol SendMSGDelegate <NSObject>
 
+- (void)callPhone:(NSString *)phone;
 - (void)sendSMSFromPhone:(NSString *)phone;
+
 @end
 
 @interface MostRideDetailsCell : UITableViewCell

@@ -51,65 +51,40 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"user-Location"] style:UIBarButtonItemStylePlain target:self action:@selector(currentLocationHanlder)];
     [self configureMapView];
     [self configureData];
+    
+    
+}
 
-
+- (BOOL)shouldAutorotate
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait){
+        // your code for portrait mode
+        return NO ;
+    }else{
+        return YES ;
+    }
 }
 
 - (void) currentLocationHanlder{
-            CLLocationCoordinate2D myLocation = mapView_.myLocation.coordinate;
-            GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:myLocation coordinate:myLocation];
+    CLLocationCoordinate2D myLocation = mapView_.myLocation.coordinate;
+    GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:myLocation coordinate:myLocation];
     
     
-            [mapView_ animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:100.0f]];
-//    [self.locationManager startUpdatingLocation];
-//    if(userMarker){
-
-//    }
-//    currentLocationEnabled = !currentLocationEnabled;
-//    if (currentLocationEnabled) {
-//        [self.locationManager startUpdatingLocation];
-//        [self.locationManager startMonitoringSignificantLocationChanges];
-//        [self.locationManager startUpdatingLocation];
-//    }
-//    else{
-//
-////        userMarker.map = nil;
-////        [self.markers removeObject:userMarker];
-////        [self focusMapToShowAllMarkers];
-//    }
-
-    
-    
+    [mapView_ animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:100.0f]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-//    [mapView_ addObserver:self forKeyPath:@"myLocation" options:0 context:nil];
+    //    [mapView_ addObserver:self forKeyPath:@"myLocation" options:0 context:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-//    [mapView_ removeObserver:self forKeyPath:@"myLocation"];
+    //    [mapView_ removeObserver:self forKeyPath:@"myLocation"];
 }
 
 #pragma mark - KVO updates
 
-/*- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context {
-    if([keyPath isEqualToString:@"myLocation"]) {
-        CLLocation *location = [object myLocation];
-        //...
-        NSLog(@"Location, %@,", location);
-        
-        CLLocationCoordinate2D target =
-        CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
-        
-        [mapView_ animateToLocation:target];
-        [mapView_ animateToZoom:17];
-    }
-}
-*/
 - (void) configureMapView{
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:24.4667
                                                             longitude:54.3667
@@ -119,11 +94,11 @@
     [self.view addSubview:mapView_];
     mapView_.settings.compassButton = YES;
     mapView_.settings.myLocationButton = YES;
-
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         mapView_.myLocationEnabled = YES;
     });
-
+    
     mapView_.delegate = self;
 }
 
@@ -187,8 +162,6 @@
     } Failure:^(NSString *error) {
         [KVNProgress dismiss];
     }];
-
-
 }
 
 - (BOOL) mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
@@ -259,7 +232,7 @@
     userMarker.title = @"Current Location";
     userMarker.icon = [UIImage imageNamed:@"CurrentLocation"];
     userMarker.map = mapView_;
-//    [self.markers addObject:userMarker];
+    //    [self.markers addObject:userMarker];
 }
 
 @end

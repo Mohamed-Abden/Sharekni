@@ -475,7 +475,8 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
     }];
 }
 
-- (void) addPassengerRatingWithPassengerID:(NSString *)PassengerID inRouteID:(NSString *)routeID noOfStars:(NSInteger)noOfStars WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure{
+- (void) addPassengerRatingWithPassengerID:(NSString *)PassengerID inRouteID:(NSString *)routeID noOfStars:(NSInteger)noOfStars WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure
+{
     NSString *driverID = self.applicationUserID;
     NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_RatePassenger?DriverId=%@&PassengerId=%@&RouteId=%@&NoOfStars=%ld",driverID,PassengerID,routeID,(long)noOfStars];
     [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
@@ -487,7 +488,8 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
     }];
 }
 
-- (void) addDriverRatingWithDriverID:(NSString *)driverID inRouteID:(NSString *)routeID noOfStars:(NSInteger)noOfStars WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure{
+- (void) addDriverRatingWithDriverID:(NSString *)driverID inRouteID:(NSString *)routeID noOfStars:(NSInteger)noOfStars WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure
+{
     NSString *passengerID = self.applicationUserID;
     NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_RateDriver?PassengerId=%@&DriverId=%@&RouteId=%@&NoOfStars=%ld",passengerID,driverID,routeID,(long)noOfStars];
     [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
@@ -498,6 +500,7 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
         failure(error.localizedDescription);
     }];
 }
+
 
 - (void) getDriverRate:(NSString *)driverID inRouteID:(NSString *)routeID WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure
 {

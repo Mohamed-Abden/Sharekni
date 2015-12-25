@@ -88,6 +88,17 @@
     self.navigationController.navigationBar.translucent = YES;
 }
 
+- (BOOL)shouldAutorotate
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait){
+        // your code for portrait mode
+        return NO ;
+    }else{
+        return YES ;
+    }
+}
+
 - (void) configureUI{
     
     [self.setDirectionButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

@@ -321,13 +321,14 @@
                                                                         error:&jsonError];
         
         NSMutableArray *mostRideDetails = [NSMutableArray array];
-        for (NSDictionary *dictionary in resultDictionaries) {
-            MostRideDetails *rideDetails= [MostRideDetails gm_mappedObjectWithJsonRepresentation:dictionary];
+        for (NSDictionary *dictionary in resultDictionaries)
+        {
+            MostRideDetails *rideDetails = [MostRideDetails gm_mappedObjectWithJsonRepresentation:dictionary];
             [mostRideDetails addObject:rideDetails];
         }
         success(mostRideDetails);
         
-    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error){
         failure(error.localizedDescription);
     }];
 }
