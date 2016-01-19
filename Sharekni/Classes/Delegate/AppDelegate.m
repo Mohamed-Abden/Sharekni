@@ -52,6 +52,7 @@ NSString * const TUNE_PACKAGE_NAME   = @"rta.ae.sharekni";
 - (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     sleep(1);
+    
     [Tune initializeWithTuneAdvertiserId:TUNE_ADVERTISER_ID
                        tuneConversionKey:TUNE_CONVERSION_KEY
                          tunePackageName:TUNE_PACKAGE_NAME

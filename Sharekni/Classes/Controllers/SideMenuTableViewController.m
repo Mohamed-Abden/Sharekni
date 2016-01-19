@@ -55,7 +55,8 @@
     [self configureTableView];
 }
 
-- (void) configureDataSourceArray{
+- (void) configureDataSourceArray
+{
     self.items = [NSMutableArray array];
     NSDictionary *dictionary;
     if ([self.applicationUser.AccountStatus containsString:@"D"] || [self.applicationUser.AccountStatus containsString:@"B"]) {
@@ -115,7 +116,6 @@
 
 - (void) configureTableView
 {
-
     self.tableView.separatorColor = Red_UIColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

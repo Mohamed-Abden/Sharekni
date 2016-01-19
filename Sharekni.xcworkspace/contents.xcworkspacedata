@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:sharekni.xcodeproj">
+      location = "group:/Users/ahmedaskar/Work/inCore/Sharekni/Sharekni.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

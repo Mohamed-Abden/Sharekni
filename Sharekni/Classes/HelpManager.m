@@ -45,6 +45,7 @@
     if (!_imagesDirectory) {
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *basePath = paths.firstObject;
+        [self addSkipBackupAttributeToItemAtPath:basePath];
         _imagesDirectory = [basePath stringByAppendingPathComponent:@"CahcedImages"];
         if(![[NSFileManager defaultManager] fileExistsAtPath:_imagesDirectory]){
             [[NSFileManager defaultManager] createDirectoryAtPath:_imagesDirectory withIntermediateDirectories:NO attributes:0 error:nil];
@@ -53,6 +54,21 @@
     return _imagesDirectory;
 }
 
+
+- (void)addSkipBackupAttributeToItemAtPath:(NSString *) filePathString
+{
+    NSURL* URL= [NSURL fileURLWithPath: filePathString];
+    assert([[NSFileManager defaultManager] fileExistsAtPath: [URL path]]);
+    
+    NSError *error = nil;
+    BOOL success = [URL setResourceValue: [NSNumber numberWithBool: YES]
+                                  forKey: NSURLIsExcludedFromBackupKey error: &error];
+    if(!success){
+        NSLog(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
+    }else{
+        NSLog(@"Success");
+    }
+}
 
 - (NSInteger) yearsBetweenDate:(NSDate *)date1 andDate:(NSDate *)date2{
     NSTimeInterval distanceBetweenDates = [date1 timeIntervalSinceDate:date2];

@@ -1155,7 +1155,7 @@
 				TargetAttributes = {
 					04931B1A1BAAF814000F5434 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = FN9NQZP477;
+						DevelopmentTeam = 89SHAPC6FM;
 					};
 					04931B361BAAF815000F5434 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -1163,7 +1163,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 04931B161BAAF814000F5434 /* Build configuration list for PBXProject "sharekni" */;
+			buildConfigurationList = 04931B161BAAF814000F5434 /* Build configuration list for PBXProject "Sharekni" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1567,7 +1567,7 @@
 				INFOPLIST_FILE = Sharekni/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sharekni.sharekni;
+				PRODUCT_BUNDLE_IDENTIFIER = rta.ae.sharekni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1580,7 +1580,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Mohammed Abdel Gawad (FN9NQZP477)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Roads & Transport Authority (89SHAPC6FM)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1589,9 +1589,9 @@
 				INFOPLIST_FILE = Sharekni/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sharekni.sharekni;
+				PRODUCT_BUNDLE_IDENTIFIER = rta.ae.sharekni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5b51978a-7350-4a42-acd5-b84d13cc9a7b";
+				PROVISIONING_PROFILE = "30e41b80-40f6-4538-8001-37f38e36971d";
 			};
 			name = Release;
 		};
@@ -1632,7 +1632,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		04931B161BAAF814000F5434 /* Build configuration list for PBXProject "sharekni" */ = {
+		04931B161BAAF814000F5434 /* Build configuration list for PBXProject "Sharekni" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				04931B3F1BAAF815000F5434 /* Debug */,
